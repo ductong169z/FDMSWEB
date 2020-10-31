@@ -1,6 +1,3 @@
-C:\Workbench\Coding\GitHub\FDMSWEB\bin\FMSWeb.dll.config
-C:\Workbench\Coding\GitHub\FDMSWEB\bin\FMSWeb.dll
-C:\Workbench\Coding\GitHub\FDMSWEB\bin\FMSWeb.pdb
 C:\Workbench\Coding\GitHub\FDMSWEB\bin\roslyn\csc.exe
 C:\Workbench\Coding\GitHub\FDMSWEB\bin\roslyn\csc.exe.config
 C:\Workbench\Coding\GitHub\FDMSWEB\bin\roslyn\csc.rsp
@@ -75,5 +72,8 @@ C:\Workbench\Coding\GitHub\FDMSWEB\bin\Microsoft.CodeDom.Providers.DotNetCompile
 C:\Workbench\Coding\GitHub\FDMSWEB\obj\Debug\FDMSWeb.csprojAssemblyReference.cache
 C:\Workbench\Coding\GitHub\FDMSWEB\obj\Debug\FDMSWeb.csproj.CoreCompileInputs.cache
 C:\Workbench\Coding\GitHub\FDMSWEB\obj\Debug\FDMSWeb.csproj.CopyComplete
-C:\Workbench\Coding\GitHub\FDMSWEB\obj\Debug\FMSWeb.dll
-C:\Workbench\Coding\GitHub\FDMSWEB\obj\Debug\FMSWeb.pdb
+C:\Workbench\Coding\GitHub\FDMSWEB\bin\FDMSWeb.dll.config
+C:\Workbench\Coding\GitHub\FDMSWEB\bin\FDMSWeb.dll
+C:\Workbench\Coding\GitHub\FDMSWEB\bin\FDMSWeb.pdb
+C:\Workbench\Coding\GitHub\FDMSWEB\obj\Debug\FDMSWeb.dll
+C:\Workbench\Coding\GitHub\FDMSWEB\obj\Debug\FDMSWeb.pdb
