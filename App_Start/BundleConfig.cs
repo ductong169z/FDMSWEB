@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace FMSWeb
+namespace FDMSWeb
 {
     public class BundleConfig
     {

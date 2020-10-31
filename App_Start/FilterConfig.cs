@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace FMSWeb
+namespace FDMSWeb
 {
     public class FilterConfig
     {
