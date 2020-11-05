@@ -155,103 +155,134 @@
     <title>@ViewBag.Title - WibuAnimeList</title>
 </head>
 <body>
+    <div class="container emp-details">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="details-img">
+                    HINH O DAY
+                </div>
+                <div class="details-work">
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="details-head">
+                    <h1>
+                        @Html.DisplayFor(model => model.Name)
+                    </h1>
+                    <h6>
+                        // if else anime season Id != 0
+                        @Html.DisplayFor(model => model.Season.Name)
+                    </h6>
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="synopsis-tab" data-toggle="tab" href="#synopsis" role="tab" aria-controls="synopsis" aria-selected="true">Synopsis</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="details-tab" data-toggle="tab" href="#details" role="tab" aria-controls="details" aria-selected="false">Details</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="trailer-tab" data-toggle="tab" href="#trailer" role="tab" aria-controls="trailer" aria-selected="false">Trailer</a>
+                        </li>
 
+                    </ul>
+                </div>
+
+                <div class="tab-content details-tab" id="myTabContent">
+                    <div class="tab-pane fade show active" id="synopsis" role="tabpanel" aria-labelledby="synopsis-tab">
+                        <p class="synopsis">@Html.DisplayFor(model => model.Description)</p>
+                    </div>
+
+                    <div class="tab-pane fade" id="details" role="tabpanel" aria-labelledby="details-tab">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Type</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>@Html.DisplayFor(model => model.Type)</p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Episodes</label>
+                            </div>
+                            <div class="col-md-6">
+                                // if else anime episodes != 0
+                                @Html.DisplayFor(model => model.Episodes)
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Status</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>@Html.DisplayFor(model => model.Status)</p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Release Date</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>
+                                    // if else release Date null
+                                    @Html.DisplayFor(model => model.ReleaseDate)
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Studio(s)</label>
+                            </div>
+                            <div class="col-md-6">
+                                STUDIOS
+                                LIST
+                                HERE
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Genre(s)</label>
+                            </div>
+                            <div class="col-md-6">
+                                GENRES
+                                LIST
+                                HERE
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Duration</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>
+                                    // if else anime duration null
+                                    @Html.DisplayFor(model => model.Duration)
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Rating</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>@Html.DisplayFor(model => model.Rating)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="trailer" role="tabpanel" aria-labelledby="trailer-tab">
+                        // if else trailer null
+                        @Html.DisplayFor(model => model.Trailer)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
-
-<div>
-    <h4>Anime</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Type)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Type)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ReleaseDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ReleaseDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Rating)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Rating)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Episodes)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Episodes)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Status)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Duration)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Duration)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Poster)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Poster)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Trailer)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Trailer)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Created_at)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Created_at)
-        </dd>
-
-    </dl>
-</div>
-<p>
-</p>

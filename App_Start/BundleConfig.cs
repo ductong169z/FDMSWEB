@@ -9,7 +9,7 @@ namespace FDMSWeb
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Library/Bootstrap/js/jquery-3.5.1.slim.min"));
+                        "~/Library/Bootstrap/js/jquery-3.5.1.slim.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
