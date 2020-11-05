@@ -5,25 +5,25 @@ using System.Web;
 
 namespace FDMSWeb.Models
 {
-    public class Season
+    public class Role
     {
         private int id;
+        private string slug;
         private string name;
-        private DateTime created_at;
 
-        public Season()
+        public Role()
         {
         }
 
-        public Season(int id, string name, DateTime created_at)
+        public Role(int id, string slug, string name)
         {
             this.id = id;
+            this.slug = slug;
             this.name = name;
-            this.created_at = created_at;
         }
 
         public int Id { get => id; set => id = value; }
+        public string Slug { get => slug; set => slug = value; }
         public string Name { get => name; set => name = value; }
-        public DateTime Created_at { get => created_at; set => created_at = value; }
     }
 }
