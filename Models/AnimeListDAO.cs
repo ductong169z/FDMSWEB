@@ -37,7 +37,15 @@ namespace FDMSWeb.Models
                 {
                     /* Temp vars to store anime properties */
                     int id = rd.GetInt32(0);
-                    Season season = GetSeason(rd.GetInt32(2));
+                    Season season;
+                    if (!rd.IsDBNull(2))
+                    {
+                        season = GetSeason(rd.GetInt32(2));
+                    }
+                    else
+                    {
+                        season = GetSeason(0);
+                    }
                     List<Studio> studios = GetStudioList(id);
                     List<Genre> genres = GetGenreList(id);
                     string type = rd.GetString(3);
@@ -52,12 +60,36 @@ namespace FDMSWeb.Models
                         releaseDate = "";
                     }
                     string rating = rd.GetString(6);
-                    int episodes = rd.GetInt32(7);
+                    int episodes;
+                    if (!rd.IsDBNull(7))
+                    {
+                        episodes = rd.GetInt32(7);
+                    }
+                    else
+                    {
+                        episodes = 0;
+                    }
                     string status = rd.GetString(8);
-                    string duration = rd.GetString(9);
+                    string duration;
+                    if (!rd.IsDBNull(9))
+                    {
+                        duration = rd.GetString(9);
+                    }
+                    else
+                    {
+                        duration = null;
+                    }
                     string description = rd.GetString(10);
                     string poster = rd.GetString(11);
-                    string trailer = rd.GetString(12);
+                    string trailer;
+                    if (!rd.IsDBNull(12))
+                    {
+                        trailer = rd.GetString(12);
+                    }
+                    else
+                    {
+                        trailer = null;
+                    }
                     string created_at;
                     if (!rd.IsDBNull(13))
                     {
@@ -416,7 +448,8 @@ namespace FDMSWeb.Models
                     if (!rd.IsDBNull(5))
                     {
                         created_at = rd.GetDateTime(5).ToString("dd/MM/yyyy");
-                    } else
+                    }
+                    else
                     {
                         created_at = "";
                     }
@@ -533,7 +566,15 @@ namespace FDMSWeb.Models
                 if (rd.Read())
                 {
                     /* Temp vars to store anime properties */
-                    Season season = GetSeason(rd.GetInt32(2));
+                    Season season;
+                    if (!rd.IsDBNull(2))
+                    {
+                        season = GetSeason(rd.GetInt32(2));
+                    } else
+                    {
+                        season = GetSeason(0);
+                    }
+                    
                     List<Studio> studios = GetStudioList(animeId);
                     List<Genre> genres = GetGenreList(animeId);
                     string type = rd.GetString(3);
@@ -548,12 +589,36 @@ namespace FDMSWeb.Models
                         releaseDate = "";
                     }
                     string rating = rd.GetString(6);
-                    int episodes = rd.GetInt32(7);
+                    int episodes;
+                    if (!rd.IsDBNull(7))
+                    {
+                        episodes = rd.GetInt32(7);
+                    }
+                    else
+                    {
+                        episodes = 0;
+                    }
                     string status = rd.GetString(8);
-                    string duration = rd.GetString(9);
+                    string duration;
+                    if (!rd.IsDBNull(9))
+                    {
+                        duration = rd.GetString(9);
+                    }
+                    else
+                    {
+                        duration = null;
+                    }
                     string description = rd.GetString(10);
                     string poster = rd.GetString(11);
-                    string trailer = rd.GetString(12);
+                    string trailer;
+                    if (!rd.IsDBNull(12))
+                    {
+                        trailer = rd.GetString(12);
+                    }
+                    else
+                    {
+                        trailer = null;
+                    }
                     string created_at;
                     if (!rd.IsDBNull(13))
                     {
@@ -628,7 +693,15 @@ namespace FDMSWeb.Models
                 {
                     /* Temp vars to store anime properties */
                     int id = rd.GetInt32(0);
-                    Season season = GetSeason(rd.GetInt32(2));
+                    Season season;
+                    if (!rd.IsDBNull(2))
+                    {
+                        season = GetSeason(rd.GetInt32(2));
+                    }
+                    else
+                    {
+                        season = GetSeason(0);
+                    }
                     List<Studio> studios = GetStudioList(id);
                     List<Genre> genres = GetGenreList(id);
                     string type = rd.GetString(3);
@@ -643,12 +716,36 @@ namespace FDMSWeb.Models
                         releaseDate = "";
                     }
                     string rating = rd.GetString(6);
-                    int episodes = rd.GetInt32(7);
+                    int episodes;
+                    if (!rd.IsDBNull(7))
+                    {
+                        episodes = rd.GetInt32(7);
+                    }
+                    else
+                    {
+                        episodes = 0;
+                    }
                     string status = rd.GetString(8);
-                    string duration = rd.GetString(9);
+                    string duration;
+                    if (!rd.IsDBNull(9))
+                    {
+                        duration = rd.GetString(9);
+                    }
+                    else
+                    {
+                        duration = null;
+                    }
                     string description = rd.GetString(10);
                     string poster = rd.GetString(11);
-                    string trailer = rd.GetString(12);
+                    string trailer;
+                    if (!rd.IsDBNull(12))
+                    {
+                        trailer = rd.GetString(12);
+                    }
+                    else
+                    {
+                        trailer = null;
+                    }
                     string created_at;
                     if (!rd.IsDBNull(13))
                     {
