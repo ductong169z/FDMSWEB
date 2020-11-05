@@ -37,7 +37,7 @@ namespace FDMSWeb.Models
                 {
                     /* Temp vars to store anime properties */
                     int id = rd.GetInt32(0);
-                    Season season = GetSeason(2);
+                    Season season = GetSeason(rd.GetInt32(2));
                     List<Studio> studios = GetStudioList(id);
                     List<Genre> genres = GetGenreList(id);
                     string type = rd.GetString(3);
@@ -510,7 +510,7 @@ namespace FDMSWeb.Models
                 {
                     /* Temp vars to store anime properties */
                     int id = rd.GetInt32(0);
-                    Season season = GetSeason(2);
+                    Season season = GetSeason(rd.GetInt32(2));
                     List<Studio> studios = GetStudioList(id);
                     List<Genre> genres = GetGenreList(id);
                     string type = rd.GetString(3);
@@ -594,7 +594,7 @@ namespace FDMSWeb.Models
                 {
                     /* Temp vars to store anime properties */
                     int id = rd.GetInt32(0);
-                    Season season = GetSeason(2);
+                    Season season = GetSeason(rd.GetInt32(2));
                     List<Studio> studios = GetStudioList(id);
                     List<Genre> genres = GetGenreList(id);
                     string type = rd.GetString(3);
