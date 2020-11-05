@@ -325,6 +325,7 @@ namespace FDMSWeb.Models
             MySqlConnection conn = null; // connection to database
             MySqlCommand cmd; // store SQL statement
             MySqlDataReader rd = null; // reader for return results
+            Season season = null; // the season obj to return
             try
             {
                 conn = DBUtils.GetConnection(); // get connection to database
@@ -336,14 +337,16 @@ namespace FDMSWeb.Models
                 /* Keep reading and adding data to list until end */
                 if (rd.Read())
                 {
+                    /* Temp vars to store season properties */
                     string name = rd.GetString("name");
                     DateTime created_at = rd.GetDateTime("created_at");
 
-                    // add new anime to list
-                    return new Season(seasonId, name, created_at);
+                    // assign a new instance with properties to the return season
+                    season = new Season(seasonId, name, created_at);
                 }
 
-                return null;
+                // return the season obj
+                return season;
             }
             catch (Exception ex)
             {
@@ -483,5 +486,70 @@ namespace FDMSWeb.Models
             }
         }
 
+        /// <summary>
+        /// Get a specific anime from database with its ID
+        /// </summary>
+        /// <returns>A specific anime</returns>
+        public Anime GetAnime(int animeId)
+        {
+            /* Declare resources used for interacting with database */
+            MySqlConnection conn = null; // connection to database
+            MySqlCommand cmd; // store SQL statement
+            MySqlDataReader rd = null; // reader for return results
+            Anime anime = null; // the anime obj to return 
+            try
+            {
+                conn = DBUtils.GetConnection(); // get connection to database
+                conn.Open(); // open the connection
+                cmd = new MySqlCommand("SELECT * FROM Anime WHERE AnimeID = @Id AND deleted_at IS NULL", conn); // SQL statement
+                cmd.Parameters.AddWithValue("@Id", animeId);
+                rd = cmd.ExecuteReader(); // execute the SQL statement and store results to reader
+
+                /* Keep reading and adding data to list until end */
+                if (rd.Read())
+                {
+                    /* Temp vars to store anime properties */
+                    int id = rd.GetInt32(0);
+                    Season season = GetSeason(2);
+                    List<Studio> studios = GetStudioList(id);
+                    List<Genre> genres = GetGenreList(id);
+                    string type = rd.GetString(3);
+                    string name = rd.GetString(4);
+                    DateTime releaseDate = rd.GetDateTime(5);
+                    string rating = rd.GetString(6);
+                    int episodes = rd.GetInt32(7);
+                    string status = rd.GetString(8);
+                    string duration = rd.GetString(9);
+                    string description = rd.GetString(10);
+                    string poster = rd.GetString(11);
+                    string trailer = rd.GetString(12);
+                    DateTime created_at = rd.GetDateTime(13);
+
+                    // assign a new anime instance with properties to the return anime
+                    anime = new Anime(id, season, studios, genres, type, name, releaseDate, rating, episodes, status, duration, description, poster, trailer, created_at);
+                }
+
+                // return the anime obj
+                return anime;
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+                return null;
+            }
+            finally
+            {
+                /* Close resources after use */
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+
+                if (rd != null)
+                {
+                    rd.Close();
+                }
+            }
+        }
     }
 }
