@@ -5,17 +5,17 @@ using System.Web;
 
 namespace FDMSWeb.Models
 {
-    public class Season
+    public class Studio
     {
         private int id;
         private string name;
         private DateTime created_at;
 
-        public Season()
+        public Studio()
         {
         }
 
-        public Season(int id, string name, DateTime created_at)
+        public Studio(int id, string name, DateTime created_at)
         {
             this.id = id;
             this.name = name;
