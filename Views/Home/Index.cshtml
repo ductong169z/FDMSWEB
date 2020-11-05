@@ -18,36 +18,6 @@
         <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
     </div>
 
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Created_at)
-            </th>
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Id)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Created_at)
-                </td>
-            </tr>
-        }
-    </table>
-
     <div class="row">
         <div class="col-md-4">
             <h2>Getting started</h2>
