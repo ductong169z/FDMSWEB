@@ -157,7 +157,7 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="details-img">
-                    HINH O DAY
+                    <img src="~/Content/Images/@ViewBag.Anime.Poster" alt=""/>
                 </div>
                 <div class="details-work">
                 </div>
@@ -167,7 +167,7 @@
                     <h1>
                         @Html.Raw(ViewBag.Anime.Name)
                     </h1>
-                    @if (ViewBag.Anime.Season.Id != 0)
+                    @if (@ViewBag.Anime.Season.Id != 0)
                     {
                         <h6>@Html.Raw(ViewBag.Anime.Season.Name)</h6>
                     }
@@ -209,7 +209,7 @@
                                 <label>Episodes</label>
                             </div>
                             <div class="col-md-6">
-                                @if (ViewBag.Anime.Episodes != 0)
+                                @if (@ViewBag.Anime.Episodes != 0)
                                 {
                                     <p>@Html.Raw(ViewBag.Anime.Episodes)</p>
                                 }
@@ -234,7 +234,7 @@
                                 <label>Release Date</label>
                             </div>
                             <div class="col-md-6">
-                                @if (ViewBag.Anime.ReleaseDate != null)
+                                @if (@ViewBag.Anime.ReleaseDate != null)
                                 {
                                     <p>@Html.Raw(ViewBag.Anime.ReleaseDate)</p>
                                 }
@@ -252,9 +252,9 @@
                             <div class="col-md-6">
                                 <p>
                                     @{ int studioIndex = 0; }
-                                    @foreach (FDMSWeb.Models.Studio studio in ViewBag.Studios)
+                                    @foreach (FDMSWeb.Models.Studio studio in @ViewBag.Studios)
                                     {
-                                        if (studioIndex == 0 && ViewBag.Studios.Count == 1)
+                                        if (studioIndex == 0 && @ViewBag.Studios.Count == 1)
                                         {
                                             @Html.Raw(@studio.Name)
                                         }
@@ -279,9 +279,9 @@
                             <div class="col-md-6">
                                 <p>
                                     @{ int genreIndex = 0; }
-                                    @foreach (FDMSWeb.Models.Genre genre in ViewBag.Genres)
+                                    @foreach (FDMSWeb.Models.Genre genre in @ViewBag.Genres)
                                     {
-                                        if (genreIndex == 0 && ViewBag.Genres.Count == 1)
+                                        if (genreIndex == 0 && @ViewBag.Genres.Count == 1)
                                         {
                                             @Html.Raw(@genre.Name)
                                         }
@@ -303,7 +303,7 @@
                                 <label>Duration</label>
                             </div>
                             <div class="col-md-6">
-                                @if (ViewBag.Anime.Duration != null)
+                                @if (@ViewBag.Anime.Duration != null)
                                 {
                                     <p>@Html.Raw(ViewBag.Anime.Duration)</p>
                                 }
@@ -325,9 +325,9 @@
                     </div>
 
                     <div class="tab-pane fade" id="trailer" role="tabpanel" aria-labelledby="trailer-tab">
-                        @if (ViewBag.Anime.Trailer != null)
+                        @if (@ViewBag.Anime.Trailer != null)
                         {
-                            <div style="text-align: center;"><iframe width="500" height="300" src="@Html.Raw(ViewBag.Anime.Trailer)?rel=0" frameborder="0" allow="encrypted-media" allowfullscreen></iframe></div>
+                            <div class="embed-responsive embed-responsive-16by9" style="text-align: center;"><iframe class="embed-responsive-item" width="500" height="300" src="@Html.Raw(ViewBag.Anime.Trailer)?rel=0" frameborder="0" allow="encrypted-media" allowfullscreen></iframe></div>
                         }
                         else
                         {
