@@ -5,8 +5,10 @@ using System.Web;
 
 namespace FDMSWeb.Models
 {
+    /* DTO for Account table */
     public class Account
     {
+        /* Account properties */
         private int id;
         private int roleId;
         private string username;
@@ -16,6 +18,7 @@ namespace FDMSWeb.Models
         private int gender;
         private DateTime created_at;
 
+        /* Constructors */
         public Account()
         {
         }
@@ -32,6 +35,7 @@ namespace FDMSWeb.Models
             this.created_at = created_at;
         }
 
+        /* Getters and Setters */
         public int Id { get => id; set => id = value; }
         public int RoleId { get => roleId; set => roleId = value; }
         public string Username { get => username; set => username = value; }
