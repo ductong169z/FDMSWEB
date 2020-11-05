@@ -82,7 +82,7 @@ namespace FDMSWeb.Models
             MySqlConnection conn = null; // connection to database
             MySqlCommand cmd; // store SQL statement
             MySqlDataReader rd = null; // reader for return results
-            List<Studio> genreList = null; // list of all studios
+            List<Studio> studioList = null; // list of all studios
             try
             {
                 conn = DBUtils.GetConnection(); // get connection to database
@@ -99,16 +99,16 @@ namespace FDMSWeb.Models
                     DateTime created_at = rd.GetDateTime(2);
 
                     // instantiate if list has not yet been instantiated
-                    if (genreList == null)
+                    if (studioList == null)
                     {
-                        genreList = new List<Studio>();
+                        studioList = new List<Studio>();
                     }
 
                     // add new studio to list
-                    genreList.Add(new Studio(id, name, created_at));
+                    studioList.Add(new Studio(id, name, created_at));
                 }
 
-                return genreList;
+                return studioList;
             }
             catch (Exception ex)
             {
