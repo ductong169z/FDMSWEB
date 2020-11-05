@@ -260,11 +260,11 @@
                                         }
                                         else if (studioIndex == 0)
                                         {
-                                            @Html.Raw(@studio.Name + ", ")
+                                            @Html.Raw(@studio.Name)
                                         }
                                         else
                                         {
-                                            @Html.Raw(@studio.Name)
+                                            @Html.Raw(", " + @studio.Name)
                                         }
                                         studioIndex++;
                                     }
@@ -287,11 +287,11 @@
                                         }
                                         else if (genreIndex == 0)
                                         {
-                                            @Html.Raw(@genre.Name + ", ")
+                                            @Html.Raw(@genre.Name)
                                         }
                                         else
                                         {
-                                            @Html.Raw(@genre.Name)
+                                            @Html.Raw(", " + @genre.Name)
                                         }
                                         genreIndex++;
                                     }
