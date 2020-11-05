@@ -415,7 +415,7 @@ namespace FDMSWeb.Models
                     string created_at;
                     if (!rd.IsDBNull(5))
                     {
-                        created_at = rd.GetDateTime(6).ToString("dd/MM/yyyy");
+                        created_at = rd.GetDateTime(5).ToString("dd/MM/yyyy");
                     } else
                     {
                         created_at = "";
