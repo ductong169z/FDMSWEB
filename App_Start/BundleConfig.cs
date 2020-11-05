@@ -22,7 +22,7 @@ namespace FDMSWeb
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Library/Bootstrap/js/bootstrap.js"));
 
-            bundles.Add(new StyleBundle("~/Library/Bootstrap/css").Include(
+            bundles.Add(new StyleBundle("~/bundles/css").Include(
                       "~/Library/Bootstrap/css/bootstrap.css"));
         }
     }
