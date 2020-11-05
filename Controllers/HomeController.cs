@@ -12,7 +12,7 @@ namespace FDMSWeb.Controllers
         public ActionResult Index()
         {
             AnimeListDAO dao = new AnimeListDAO();
-            List<Season> seasonList = dao.GetSeasons();
+            List<Season> seasonList = dao.GetAllSeasons();
 
             return View(seasonList);
         }
