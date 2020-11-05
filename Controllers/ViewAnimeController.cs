@@ -14,6 +14,10 @@ namespace FDMSWeb.Controllers
             /* Instantiate DAO obj and interact with DB */
             AnimeListDAO dao = new AnimeListDAO();
             Anime anime = dao.GetAnime(id);
+            dynamic animeModel = new System.Dynamic.ExpandoObject();
+            animeModel.anime = anime;
+            animeModel.genres = anime.Genres;
+            animeModel.studios = anime.Studios;
 
             ///* Check if user logged in to get user anime list */
 
@@ -25,7 +29,7 @@ namespace FDMSWeb.Controllers
 
             //}
 
-            return View(anime);
+            return View(animeModel);
         }
     }
 }

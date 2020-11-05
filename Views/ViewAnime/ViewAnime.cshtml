@@ -1,4 +1,4 @@
-﻿@model FDMSWeb.Models.Anime
+﻿@model dynamic
 
 @{
     ViewBag.Title = "View";
@@ -167,11 +167,11 @@
             <div class="col-md-8">
                 <div class="details-head">
                     <h1>
-                        @Html.DisplayFor(model => model.Name)
+                        @Html.Raw(Model.anime.Name)
                     </h1>
-                    @if (Model.Season.Id != 0)
+                    @if (Model.anime.Season.Id != 0)
                     {
-                        <h6>@Html.DisplayFor(model => model.Season.Name)</h6>
+                        <h6>@Html.Raw(Model.anime.Season.Name)</h6>
                     }
                     else
                     {
@@ -193,7 +193,7 @@
 
                 <div class="tab-content details-tab" id="myTabContent">
                     <div class="tab-pane fade show active" id="synopsis" role="tabpanel" aria-labelledby="synopsis-tab">
-                        <p class="synopsis">@Html.DisplayFor(model => model.Description)</p>
+                        <p class="synopsis">@Html.Raw(Model.anime.Description)</p>
                     </div>
 
                     <div class="tab-pane fade" id="details" role="tabpanel" aria-labelledby="details-tab">
@@ -202,7 +202,7 @@
                                 <label>Type</label>
                             </div>
                             <div class="col-md-6">
-                                <p>@Html.DisplayFor(model => model.Type)</p>
+                                <p>@Html.Raw(Model.anime.Type)</p>
                             </div>
                         </div>
 
@@ -211,9 +211,9 @@
                                 <label>Episodes</label>
                             </div>
                             <div class="col-md-6">
-                                @if (Model.Episodes != 0)
+                                @if (Model.anime.Episodes != 0)
                                 {
-                                    <p>@Html.DisplayFor(model => model.Episodes)</p>
+                                <p>@Html.Raw(Model.anime.Episodes)</p>
                                 }
                                 else
                                 {
@@ -227,7 +227,7 @@
                                 <label>Status</label>
                             </div>
                             <div class="col-md-6">
-                                <p>@Html.DisplayFor(model => model.Status)</p>
+                                <p>@Html.Raw(Model.anime.Status)</p>
                             </div>
                         </div>
 
@@ -236,9 +236,9 @@
                                 <label>Release Date</label>
                             </div>
                             <div class="col-md-6">
-                                @if (Model.ReleaseDate != null)
+                                @if (Model.anime.ReleaseDate != null)
                                 {
-                                    <p>@Html.DisplayFor(model => model.ReleaseDate)</p>
+                                <p>@Html.Raw(Model.anime.ReleaseDate)</p>
                                 }
                                 else
                                 {
@@ -254,15 +254,15 @@
                             <div class="col-md-6">
                                 <p>
                                     @{ var studioIndex = 0; }
-                                    @foreach (var item in Model.Studios)
+                                    @foreach (var studio in Model.studios)
                                     {
                                         if (studioIndex == 0)
                                         {
-                                            @Html.Raw(item.Name + ", ")
+                                            @Html.Raw(@studio.Name + ", ")
                                         }
                                         else
                                         {
-                                            @Html.Raw(item.Name)
+                                            @Html.Raw(@studio.Name)
                                         }
                                         studioIndex++;
                                     }
@@ -277,15 +277,15 @@
                             <div class="col-md-6">
                                 <p>
                                     @{ var genreIndex = 0; }
-                                    @foreach (var item in Model.Genres)
+                                    @foreach (var item in Model.genres)
                                     {
                                         if (genreIndex == 0)
                                         {
-                                            @Html.Raw(item.Name + ", ")
+                                            @Html.Raw(@item.Name + ", ")
                                         }
                                         else
                                         {
-                                            @Html.Raw(item.Name)
+                                            @Html.Raw(@item.Name)
                                         }
                                         genreIndex++;
                                     }
@@ -297,9 +297,9 @@
                                 <label>Duration</label>
                             </div>
                             <div class="col-md-6">
-                                @if (Model.Duration != null)
+                                @if (Model.anime.Duration != null)
                                 {
-                                    <p>@Html.DisplayFor(model => model.Duration)</p>
+                                <p>@Html.Raw(Model.anime.Duration)</p>
                                 }
                                 else
                                 {
@@ -313,15 +313,15 @@
                                 <label>Rating</label>
                             </div>
                             <div class="col-md-6">
-                                <p>@Html.DisplayFor(model => model.Rating)</p>
+                                <p>@Html.Raw(Model.anime.Rating)</p>
                             </div>
                         </div>
                     </div>
 
                     <div class="tab-pane fade" id="trailer" role="tabpanel" aria-labelledby="trailer-tab">
-                        @if (Model.Trailer != null)
+                        @if (Model.anime.Trailer != null)
                         {
-                            <div style="text-align: center;"><iframe width="500" height="300" src="@Html.DisplayFor(model => model.Trailer)" frameborder="0" allow="encrypted-media" allowfullscreen></iframe></div>
+                            <div style="text-align: center;"><iframe width="500" height="300" src="@Html.Raw(Model.anime.Trailer)" frameborder="0" allow="encrypted-media" allowfullscreen></iframe></div>
                         }
                         else
                         {
