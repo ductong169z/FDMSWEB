@@ -80,11 +80,6 @@ namespace FDMSWeb.Models
 
                 return animeList;
             }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine(ex.Message);
-                return null;
-            }
             finally
             {
                 /* Close resources after use */
@@ -145,11 +140,6 @@ namespace FDMSWeb.Models
                 }
 
                 return genreList;
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine(ex.Message);
-                return null;
             }
             finally
             {
@@ -212,11 +202,6 @@ namespace FDMSWeb.Models
 
                 return studioList;
             }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine(ex.Message);
-                return null;
-            }
             finally
             {
                 /* Close resources after use */
@@ -277,10 +262,6 @@ namespace FDMSWeb.Models
                 }
 
                 return seasonList;
-            } catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine(ex.Message);
-                return null;
             }
             finally
             {
@@ -329,11 +310,6 @@ namespace FDMSWeb.Models
                 }
 
                 return typeList;
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine(ex.Message);
-                return null;
             }
             finally
             {
@@ -396,11 +372,6 @@ namespace FDMSWeb.Models
                 // return the season obj
                 return season;
             }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine(ex.Message);
-                return null;
-            }
             finally
             {
                 /* Close resources after use */
@@ -440,9 +411,9 @@ namespace FDMSWeb.Models
                 {
                     /* Temp vars to store studio properties */
                     int id = rd.GetInt32(1);
-                    String name = rd.GetString(5);
+                    String name = rd.GetString(4);
                     string created_at;
-                    if (!rd.IsDBNull(6))
+                    if (!rd.IsDBNull(5))
                     {
                         created_at = rd.GetDateTime(6).ToString("dd/MM/yyyy");
                     } else
@@ -523,11 +494,6 @@ namespace FDMSWeb.Models
                 }
 
                 return genreList;
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine(ex.Message);
-                return null;
             }
             finally
             {
@@ -698,11 +664,6 @@ namespace FDMSWeb.Models
                 }
 
                 return animeList;
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine(ex.Message);
-                return null;
             }
             finally
             {
