@@ -24,6 +24,9 @@ namespace FDMSWeb
 
             bundles.Add(new StyleBundle("~/Library/Bootstrap/css").Include(
                       "~/Library/Bootstrap/css/bootstrap.css"));
+
+            bundles.Add(new ScriptBundle("~/Library/fontawesome").Include(
+                      "~/Library/fontawesome.js"));
         }
     }
 }
