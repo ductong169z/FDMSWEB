@@ -391,8 +391,8 @@ namespace FDMSWeb.Models
                 while (rd.Read())
                 {
                     /* Temp vars to store studio properties */
-                    int id = rd.GetInt32("StudioID");
-                    String name = rd.GetString("name");
+                    int id = rd.GetInt32(0);
+                    String name = rd.GetString(5);
                     DateTime created_at = rd.GetDateTime(6);
 
                     // instantiate if list has not yet been instantiated
@@ -450,8 +450,8 @@ namespace FDMSWeb.Models
                 while (rd.Read())
                 {
                     /* Temp vars to store genre properties */
-                    int id = rd.GetInt32("GenreID");
-                    String name = rd.GetString("name");
+                    int id = rd.GetInt32(0);
+                    String name = rd.GetString(5);
                     DateTime created_at = rd.GetDateTime(6);
 
                     // instantiate if list has not yet been instantiated
@@ -509,10 +509,9 @@ namespace FDMSWeb.Models
                 if (rd.Read())
                 {
                     /* Temp vars to store anime properties */
-                    int id = rd.GetInt32(0);
                     Season season = GetSeason(rd.GetInt32(2));
-                    List<Studio> studios = GetStudioList(id);
-                    List<Genre> genres = GetGenreList(id);
+                    List<Studio> studios = GetStudioList(animeId);
+                    List<Genre> genres = GetGenreList(animeId);
                     string type = rd.GetString(3);
                     string name = rd.GetString(4);
                     DateTime releaseDate = rd.GetDateTime(5);
@@ -526,7 +525,7 @@ namespace FDMSWeb.Models
                     DateTime created_at = rd.GetDateTime(13);
 
                     // assign a new anime instance with properties to the return anime
-                    anime = new Anime(id, season, studios, genres, type, name, releaseDate, rating, episodes, status, duration, description, poster, trailer, created_at);
+                    anime = new Anime(animeId, season, studios, genres, type, name, releaseDate, rating, episodes, status, duration, description, poster, trailer, created_at);
                 }
 
                 // return the anime obj
