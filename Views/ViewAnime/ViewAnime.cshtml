@@ -191,7 +191,7 @@
 
                 <div class="tab-content details-tab" id="myTabContent">
                     <div class="tab-pane fade show active" id="synopsis" role="tabpanel" aria-labelledby="synopsis-tab">
-                        <p class="synopsis">@Html.Raw(ViewBag.Anime.Description)</p>
+                        <p class="synopsis text-justify">@Html.Raw(ViewBag.Anime.Description)</p>
                     </div>
 
                     <div class="tab-pane fade" id="details" role="tabpanel" aria-labelledby="details-tab">
@@ -327,7 +327,7 @@
                     <div class="tab-pane fade" id="trailer" role="tabpanel" aria-labelledby="trailer-tab">
                         @if (ViewBag.Anime.Trailer != null)
                         {
-                            <div style="text-align: center;"><iframe width="500" height="300" src="@Html.Raw(ViewBag.Anime.Trailer)" frameborder="0" allow="encrypted-media" allowfullscreen></iframe></div>
+                            <div style="text-align: center;"><iframe width="500" height="300" src="@Html.Raw(ViewBag.Anime.Trailer)?rel=0" frameborder="0" allow="encrypted-media" allowfullscreen></iframe></div>
                         }
                         else
                         {
