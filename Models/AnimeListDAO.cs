@@ -42,7 +42,7 @@ namespace FDMSWeb.Models
                     List<Genre> genres = GetGenreList(id);
                     string type = rd.GetString(3);
                     string name = rd.GetString(4);
-                    DateTime releaseDate = rd.GetDateTime(5);
+                    string releaseDate = rd.GetDateTime(5).ToString("dd/MM/yyyy");
                     string rating = rd.GetString(6);
                     int episodes = rd.GetInt32(7);
                     string status = rd.GetString(8);
@@ -50,7 +50,7 @@ namespace FDMSWeb.Models
                     string description = rd.GetString(10);
                     string poster = rd.GetString(11);
                     string trailer = rd.GetString(12);
-                    DateTime created_at = rd.GetDateTime(13);
+                    string created_at = rd.GetDateTime(13).ToString("dd/MM/yyyy");
 
                     // instantiate if list has not yet been instantiated
                     if (animeList == null)
@@ -108,7 +108,7 @@ namespace FDMSWeb.Models
                     /* Temp vars to store genre properties */
                     int id = rd.GetInt32(0);
                     String name = rd.GetString(1);
-                    DateTime created_at = rd.GetDateTime(2);
+                    string created_at = rd.GetDateTime(2).ToString("dd/MM/yyyy");
 
                     // instantiate if list has not yet been instantiated
                     if (genreList == null)
@@ -166,7 +166,7 @@ namespace FDMSWeb.Models
                     /* Temp vars to store studio properties */
                     int id = rd.GetInt32(0);
                     String name = rd.GetString(1);
-                    DateTime created_at = rd.GetDateTime(2);
+                    string created_at = rd.GetDateTime(2).ToString("dd/MM/yyyy");
 
                     // instantiate if list has not yet been instantiated
                     if (studioList == null)
@@ -224,7 +224,7 @@ namespace FDMSWeb.Models
                     /* Temp vars to store season properties */
                     int id = rd.GetInt32(0);
                     String name = rd.GetString(1);
-                    DateTime created_at = rd.GetDateTime(2);
+                    string created_at = rd.GetDateTime(2).ToString("dd/MM/yyyy");
 
                     // instantiate if list has not yet been instantiated
                     if (seasonList == null)
@@ -340,7 +340,7 @@ namespace FDMSWeb.Models
                 {
                     /* Temp vars to store season properties */
                     string name = rd.GetString("name");
-                    DateTime created_at = rd.GetDateTime("created_at");
+                    string created_at = rd.GetDateTime("created_at").ToString("dd/MM/yyyy");
 
                     // assign a new instance with properties to the return season
                     season = new Season(seasonId, name, created_at);
@@ -394,13 +394,13 @@ namespace FDMSWeb.Models
                     /* Temp vars to store studio properties */
                     int id = rd.GetInt32(1);
                     String name = rd.GetString(5);
-                    DateTime created_at;
+                    string created_at;
                     if (!rd.IsDBNull(6))
                     {
-                        created_at = rd.GetDateTime(6).Date;
+                        created_at = rd.GetDateTime(6).ToString("dd/MM/yyyy");
                     } else
                     {
-                        created_at = DateTime.MinValue;
+                        created_at = "";
                     }
 
                     // instantiate if list has not yet been instantiated
@@ -455,14 +455,14 @@ namespace FDMSWeb.Models
                     /* Temp vars to store genre properties */
                     int id = rd.GetInt32(1);
                     String name = rd.GetString(5);
-                    DateTime created_at;
+                    string created_at;
                     if (!rd.IsDBNull(6))
                     {
-                        created_at = rd.GetDateTime(6).Date;
+                        created_at = rd.GetDateTime(6).ToString("dd/MM/yyyy");
                     }
                     else
                     {
-                        created_at = DateTime.MinValue;
+                        created_at = "";
                     }
 
                     // instantiate if list has not yet been instantiated
@@ -525,7 +525,7 @@ namespace FDMSWeb.Models
                     List<Genre> genres = GetGenreList(animeId);
                     string type = rd.GetString(3);
                     string name = rd.GetString(4);
-                    DateTime releaseDate = rd.GetDateTime(5);
+                    string releaseDate = rd.GetDateTime(5).ToString("dd/MM/yyyy");
                     string rating = rd.GetString(6);
                     int episodes = rd.GetInt32(7);
                     string status = rd.GetString(8);
@@ -533,7 +533,7 @@ namespace FDMSWeb.Models
                     string description = rd.GetString(10);
                     string poster = rd.GetString(11);
                     string trailer = rd.GetString(12);
-                    DateTime created_at = rd.GetDateTime(13);
+                    string created_at = rd.GetDateTime(13).ToString("dd/MM/yyyy");
 
                     // assign a new anime instance with properties to the return anime
                     anime = new Anime(animeId, season, studios, genres, type, name, releaseDate, rating, episodes, status, duration, description, poster, trailer, created_at);
@@ -604,7 +604,7 @@ namespace FDMSWeb.Models
                     List<Genre> genres = GetGenreList(id);
                     string type = rd.GetString(3);
                     string name = rd.GetString(4);
-                    DateTime releaseDate = rd.GetDateTime(5);
+                    string releaseDate = rd.GetDateTime(5).ToString("dd/MM/yyyy");
                     string rating = rd.GetString(6);
                     int episodes = rd.GetInt32(7);
                     string status = rd.GetString(8);
@@ -612,7 +612,7 @@ namespace FDMSWeb.Models
                     string description = rd.GetString(10);
                     string poster = rd.GetString(11);
                     string trailer = rd.GetString(12);
-                    DateTime created_at = rd.GetDateTime(13);
+                    string created_at = rd.GetDateTime(13).ToString("dd/MM/yyyy");
 
                     // add new anime to list
                     animeList.Add(new Anime(id, season, studios, genres, type, name, releaseDate, rating, episodes, status, duration, description, poster, trailer, created_at));
