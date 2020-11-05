@@ -331,7 +331,8 @@ namespace FDMSWeb.Models
                 conn = DBUtils.GetConnection(); // get connection to database
                 conn.Open(); // open the connection
                 cmd = new MySqlCommand("SELECT * FROM season WHERE SeasonID = @Id AND deleted_at IS NULL", conn); // SQL statement
-                cmd.Parameters.AddWithValue("@Id", seasonId);
+                cmd.Parameters.AddWithValue("@Id", MySqlDbType.Int32);
+                cmd.Parameters["@Id"].Value = seasonId;
                 rd = cmd.ExecuteReader(); // execute the SQL statement and store results to reader
 
                 /* Keep reading and adding data to list until end */
@@ -383,7 +384,7 @@ namespace FDMSWeb.Models
             {
                 conn = DBUtils.GetConnection(); // get connection to database
                 conn.Open(); // open the connection
-                cmd = new MySqlCommand("SELECT * FROM anime_studio JOIN studio ON studio.StudioID = anime_studio.StudioID WHERE anime_studio.AnimeID = @Id AND studio.deleted_at IS NULL AND anime_studio.deleted_at IS NULL", conn); // SQL statement
+                cmd = new MySqlCommand("SELECT * FROM anime_studio JOIN studio ON studio.StudioID = anime_studio.StudioID WHERE anime_studio.AnimeID = @Id AND studio.deleted_at IS NULL", conn); // SQL statement
                 cmd.Parameters.AddWithValue("@Id", animeId);
                 rd = cmd.ExecuteReader(); // execute the SQL statement and store results to reader
 
@@ -391,9 +392,16 @@ namespace FDMSWeb.Models
                 while (rd.Read())
                 {
                     /* Temp vars to store studio properties */
-                    int id = rd.GetInt32(0);
+                    int id = rd.GetInt32(1);
                     String name = rd.GetString(5);
-                    DateTime created_at = rd.GetDateTime(6);
+                    DateTime created_at;
+                    if (!rd.IsDBNull(6))
+                    {
+                        created_at = rd.GetDateTime(6).Date;
+                    } else
+                    {
+                        created_at = DateTime.MinValue;
+                    }
 
                     // instantiate if list has not yet been instantiated
                     if (studioList == null)
@@ -406,11 +414,6 @@ namespace FDMSWeb.Models
                 }
 
                 return studioList;
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine(ex.Message);
-                return null;
             }
             finally
             {
@@ -442,7 +445,7 @@ namespace FDMSWeb.Models
             {
                 conn = DBUtils.GetConnection(); // get connection to database
                 conn.Open(); // open the connection
-                cmd = new MySqlCommand("SELECT * FROM genre_anime JOIN genre on genre.GenreID = genre_anime.GenreID WHERE genre_anime.AnimeID = @Id AND genre.deleted_at IS NULL AND genre_anime.deleted_at IS NULL", conn); // SQL statement
+                cmd = new MySqlCommand("SELECT * FROM genre_anime JOIN genre on genre.GenreID = genre_anime.GenreID WHERE genre_anime.AnimeID = @Id AND genre.deleted_at IS NULL", conn); // SQL statement
                 cmd.Parameters.AddWithValue("@Id", animeId);
                 rd = cmd.ExecuteReader(); // execute the SQL statement and store results to reader
 
@@ -450,9 +453,17 @@ namespace FDMSWeb.Models
                 while (rd.Read())
                 {
                     /* Temp vars to store genre properties */
-                    int id = rd.GetInt32(0);
+                    int id = rd.GetInt32(1);
                     String name = rd.GetString(5);
-                    DateTime created_at = rd.GetDateTime(6);
+                    DateTime created_at;
+                    if (!rd.IsDBNull(6))
+                    {
+                        created_at = rd.GetDateTime(6).Date;
+                    }
+                    else
+                    {
+                        created_at = DateTime.MinValue;
+                    }
 
                     // instantiate if list has not yet been instantiated
                     if (genreList == null)
@@ -530,11 +541,6 @@ namespace FDMSWeb.Models
 
                 // return the anime obj
                 return anime;
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine(ex.Message);
-                return null;
             }
             finally
             {

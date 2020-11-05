@@ -165,11 +165,11 @@
             <div class="col-md-8">
                 <div class="details-head">
                     <h1>
-                        @Html.Raw(ViewBag.anime.Name)
+                        @Html.Raw(ViewBag.Anime.Name)
                     </h1>
-                    @if (ViewBag.anime.Season.Id != 0)
+                    @if (ViewBag.Anime.Season.Id != 0)
                     {
-                        <h6>@Html.Raw(ViewBag.anime.Season.Name)</h6>
+                        <h6>@Html.Raw(ViewBag.Anime.Season.Name)</h6>
                     }
                     else
                     {
@@ -191,7 +191,7 @@
 
                 <div class="tab-content details-tab" id="myTabContent">
                     <div class="tab-pane fade show active" id="synopsis" role="tabpanel" aria-labelledby="synopsis-tab">
-                        <p class="synopsis">@Html.Raw(ViewBag.anime.Description)</p>
+                        <p class="synopsis">@Html.Raw(ViewBag.Anime.Description)</p>
                     </div>
 
                     <div class="tab-pane fade" id="details" role="tabpanel" aria-labelledby="details-tab">
@@ -200,7 +200,7 @@
                                 <label>Type</label>
                             </div>
                             <div class="col-md-6">
-                                <p>@Html.Raw(ViewBag.anime.Type)</p>
+                                <p>@Html.Raw(ViewBag.Anime.Type)</p>
                             </div>
                         </div>
 
@@ -209,9 +209,9 @@
                                 <label>Episodes</label>
                             </div>
                             <div class="col-md-6">
-                                @if (ViewBag.anime.Episodes != 0)
+                                @if (ViewBag.Anime.Episodes != 0)
                                 {
-                                <p>@Html.Raw(ViewBag.anime.Episodes)</p>
+                                    <p>@Html.Raw(ViewBag.Anime.Episodes)</p>
                                 }
                                 else
                                 {
@@ -225,7 +225,7 @@
                                 <label>Status</label>
                             </div>
                             <div class="col-md-6">
-                                <p>@Html.Raw(ViewBag.anime.Status)</p>
+                                <p>@Html.Raw(ViewBag.Anime.Status)</p>
                             </div>
                         </div>
 
@@ -234,9 +234,9 @@
                                 <label>Release Date</label>
                             </div>
                             <div class="col-md-6">
-                                @if (ViewBag.anime.ReleaseDate != null)
+                                @if (ViewBag.Anime.ReleaseDate != null)
                                 {
-                                <p>@Html.Raw(ViewBag.anime.ReleaseDate)</p>
+                                    <p>@Html.Raw(ViewBag.Anime.ReleaseDate)</p>
                                 }
                                 else
                                 {
@@ -251,10 +251,14 @@
                             </div>
                             <div class="col-md-6">
                                 <p>
-                                    @{ var studioIndex = 0; }
-                                    @foreach (var studio in ViewBag.studios)
+                                    @{ int studioIndex = 0; }
+                                    @foreach (FDMSWeb.Models.Studio studio in ViewBag.Studios)
                                     {
-                                        if (studioIndex == 0)
+                                        if (studioIndex == 0 && ViewBag.Studios.Count == 1)
+                                        {
+                                            @Html.Raw(@studio.Name)
+                                        }
+                                        else if (studioIndex == 0)
                                         {
                                             @Html.Raw(@studio.Name + ", ")
                                         }
@@ -274,16 +278,20 @@
                             </div>
                             <div class="col-md-6">
                                 <p>
-                                    @{ var genreIndex = 0; }
-                                    @foreach (var item in ViewBag.genres)
+                                    @{ int genreIndex = 0; }
+                                    @foreach (FDMSWeb.Models.Genre genre in ViewBag.Genres)
                                     {
-                                        if (genreIndex == 0)
+                                        if (genreIndex == 0 && ViewBag.Genres.Count == 1)
                                         {
-                                            @Html.Raw(@item.Name + ", ")
+                                            @Html.Raw(@genre.Name)
+                                        }
+                                        else if (genreIndex == 0)
+                                        {
+                                            @Html.Raw(@genre.Name + ", ")
                                         }
                                         else
                                         {
-                                            @Html.Raw(@item.Name)
+                                            @Html.Raw(@genre.Name)
                                         }
                                         genreIndex++;
                                     }
@@ -295,9 +303,9 @@
                                 <label>Duration</label>
                             </div>
                             <div class="col-md-6">
-                                @if (ViewBag.anime.Duration != null)
+                                @if (ViewBag.Anime.Duration != null)
                                 {
-                                <p>@Html.Raw(ViewBag.anime.Duration)</p>
+                                    <p>@Html.Raw(ViewBag.Anime.Duration)</p>
                                 }
                                 else
                                 {
@@ -311,19 +319,19 @@
                                 <label>Rating</label>
                             </div>
                             <div class="col-md-6">
-                                <p>@Html.Raw(ViewBag.anime.Rating)</p>
+                                <p>@Html.Raw(ViewBag.Anime.Rating)</p>
                             </div>
                         </div>
                     </div>
 
                     <div class="tab-pane fade" id="trailer" role="tabpanel" aria-labelledby="trailer-tab">
-                        @if (ViewBag.anime.Trailer != null)
+                        @if (ViewBag.Anime.Trailer != null)
                         {
-                            <div style="text-align: center;"><iframe width="500" height="300" src="@Html.Raw(ViewBag.anime.Trailer)" frameborder="0" allow="encrypted-media" allowfullscreen></iframe></div>
+                            <div style="text-align: center;"><iframe width="500" height="300" src="@Html.Raw(ViewBag.Anime.Trailer)" frameborder="0" allow="encrypted-media" allowfullscreen></iframe></div>
                         }
                         else
                         {
-                            <p style="text-align: center; color: #000000;">There is no trailer available for this anime title</p>
+                            <p style="text-align: center; color: #000000;">There is no trailer available for this Anime title</p>
                         }
                     </div>
                 </div>

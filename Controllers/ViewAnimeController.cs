@@ -15,30 +15,8 @@ namespace FDMSWeb.Controllers
             AnimeListDAO dao = new AnimeListDAO();
             Anime anime = dao.GetAnime(id);
             ViewBag.Anime = anime;
-            ViewBag.Genres = dao.GetGenreList(anime.Id);
-            ViewBag.Studios = dao.GetStudioList(anime.Id);
-
-            foreach (var item in anime.Studios)
-            {
-                System.Diagnostics.Debug.WriteLine(item.Id);
-                System.Diagnostics.Debug.WriteLine(item.Name);
-                System.Diagnostics.Debug.WriteLine(item.Created_at);
-            }
-            System.Diagnostics.Debug.WriteLine("____________________");
-
-            foreach (var item in ViewBag.Studios)
-            {
-                System.Diagnostics.Debug.WriteLine(item.Id);
-                System.Diagnostics.Debug.WriteLine(item.Name);
-                System.Diagnostics.Debug.WriteLine(item.Created_at);
-            }
-
-            foreach (var item in ViewBag.genres)
-            {
-                System.Diagnostics.Debug.WriteLine(item.Id);
-                System.Diagnostics.Debug.WriteLine(item.Name);
-                System.Diagnostics.Debug.WriteLine(item.Created_at);
-            }
+            ViewBag.Genres = anime.Genres;
+            ViewBag.Studios = anime.Studios;
 
             ///* Check if user logged in to get user anime list */
 
