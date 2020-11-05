@@ -5,8 +5,10 @@ using System.Web;
 
 namespace FDMSWeb.Models
 {
+    /* DTO for Anime table */
     public class Anime
     {
+        /* Anime properties */
         private int id;
         private int accountId;
         private Season season;
@@ -24,6 +26,7 @@ namespace FDMSWeb.Models
         private string trailer;
         private DateTime created_at;
 
+        /* Constructors */
         public Anime()
         {
         }
@@ -48,6 +51,7 @@ namespace FDMSWeb.Models
             this.created_at = created_at;
         }
 
+        /* Getters and Setters */
         public int Id { get => id; set => id = value; }
         public int AccountId { get => accountId; set => accountId = value; }
         public Season Season { get => season; set => season = value; }
