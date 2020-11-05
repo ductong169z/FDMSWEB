@@ -551,5 +551,88 @@ namespace FDMSWeb.Models
                 }
             }
         }
+
+        /// <summary>
+        /// Get animes matching search criteria
+        /// </summary>
+        /// <param name="searchValue"></param>
+        /// <param name="searchType"></param>
+        /// <param name="studioId"></param>
+        /// <param name="genreId"></param>
+        /// <param name="seasonId"></param>
+        /// <returns>A list of animes matching search criteria</returns>
+        public List<Anime> GetSearchAnime(string searchValue, string searchType, string studioId, string genreId, string seasonId)
+        {
+            /* Declare resources used for interacting with database */
+            MySqlConnection conn = null; // connection to database
+            MySqlCommand cmd; // store SQL statement
+            MySqlDataReader rd = null; // reader for return results
+            List<Anime> animeList = null; // list of animes matching search criteria
+            try
+            {
+                conn = DBUtils.GetConnection(); // get connection to database
+                conn.Open(); // open the connection
+                cmd = new MySqlCommand("SELECT anime.AnimeID, anime.SeasonID, anime.name , anime.type , anime.releaseDate , anime.rating , anime.episodes , anime.status , anime.duration, anime.description, anime.poster, anime.trailer, anime.created_at, StudioID, GenreID \n"
+                    + "FROM \n"
+                    + "anime JOIN anime_studio ON anime.AnimeID = anime_studio.AnimeID  \n"
+                    + "JOIN genre_anime ON genre_anime.AnimeID = anime.AnimeID \n"
+                    + "WHERE anime.name LIKE @animename AND \n"
+                    + "type LIKE @type AND \n"
+                    + "GenreID LIKE @genreId AND \n"
+                    + "StudioID LIKE @studioId AND \n"
+                    + "(SeasonID LIKE @seasonId OR SeasonID IS NULL)\n"
+                    + "GROUP BY anime.name", conn); // SQL statement
+                cmd.Parameters.AddWithValue("@animename", "%" + searchValue + "%");
+                cmd.Parameters.AddWithValue("@type", searchType);
+                cmd.Parameters.AddWithValue("@genreId", genreId);
+                cmd.Parameters.AddWithValue("@studioId", studioId);
+                cmd.Parameters.AddWithValue("@seasonId", seasonId);
+                rd = cmd.ExecuteReader(); // execute the SQL statement and store results to reader
+
+                /* Keep reading and adding data to list until end */
+                if (rd.Read())
+                {
+                    /* Temp vars to store anime properties */
+                    int id = rd.GetInt32(0);
+                    Season season = GetSeason(2);
+                    List<Studio> studios = GetStudioList(id);
+                    List<Genre> genres = GetGenreList(id);
+                    string type = rd.GetString(3);
+                    string name = rd.GetString(4);
+                    DateTime releaseDate = rd.GetDateTime(5);
+                    string rating = rd.GetString(6);
+                    int episodes = rd.GetInt32(7);
+                    string status = rd.GetString(8);
+                    string duration = rd.GetString(9);
+                    string description = rd.GetString(10);
+                    string poster = rd.GetString(11);
+                    string trailer = rd.GetString(12);
+                    DateTime created_at = rd.GetDateTime(13);
+
+                    // add new anime to list
+                    animeList.Add(new Anime(id, season, studios, genres, type, name, releaseDate, rating, episodes, status, duration, description, poster, trailer, created_at));
+                }
+
+                return animeList;
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+                return null;
+            }
+            finally
+            {
+                /* Close resources after use */
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+
+                if (rd != null)
+                {
+                    rd.Close();
+                }
+            }
+        }
     }
 }
