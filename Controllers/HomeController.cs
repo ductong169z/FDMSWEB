@@ -1,5 +1,4 @@
-﻿using FDMSWeb.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,10 +10,7 @@ namespace FDMSWeb.Controllers
     {
         public ActionResult Index()
         {
-            AnimeListDAO dao = new AnimeListDAO();
-            List<Season> seasonList = dao.GetSeasons();
-
-            return View(seasonList);
+            return View();
         }
 
         public ActionResult About()
