@@ -167,6 +167,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ViewAnimeController.cs" />
+    <Compile Include="Controllers\ViewAnimeListController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -418,6 +420,7 @@
     <Content Include="Library\Bootstrap\js\bootstrap.min.js" />
     <Content Include="Library\Bootstrap\js\jquery-3.5.1.slim.min.js" />
     <Content Include="Library\Bootstrap\js\popper.min.js" />
+    <Content Include="Library\fontawesome.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Library\Bootstrap\css\bootstrap-grid.css.map" />
@@ -582,6 +585,8 @@
     <Content Include="Content\login\vendor\mdi-font\fonts\Material-Design-Iconic-Font.ttf" />
     <Content Include="Content\login\vendor\mdi-font\fonts\Material-Design-Iconic-Font.woff" />
     <Content Include="Content\login\vendor\mdi-font\fonts\Material-Design-Iconic-Font.woff2" />
+    <Content Include="Views\Anime\ViewAnime.cshtml" />
+    <Content Include="Views\Anime\ViewAnimeList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
