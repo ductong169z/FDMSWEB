@@ -77,6 +77,7 @@ C:\Workbench\Coding\GitHub\FDMSWEB\bin\FDMSWeb.dll
 C:\Workbench\Coding\GitHub\FDMSWEB\bin\FDMSWeb.pdb
 C:\Workbench\Coding\GitHub\FDMSWEB\obj\Debug\FDMSWeb.dll
 C:\Workbench\Coding\GitHub\FDMSWEB\obj\Debug\FDMSWeb.pdb
+<<<<<<< HEAD
 C:\Workbench\Coding\GitHub\FDMSWEB\bin\BouncyCastle.Crypto.dll
 C:\Workbench\Coding\GitHub\FDMSWEB\bin\Google.Protobuf.dll
 C:\Workbench\Coding\GitHub\FDMSWEB\bin\K4os.Compression.LZ4.dll
@@ -204,3 +205,6 @@ D:\FDMSWEB\FDMSWEB\obj\Debug\FDMSWeb.csproj.CoreCompileInputs.cache
 D:\FDMSWEB\FDMSWEB\obj\Debug\FDMSWeb.csproj.CopyComplete
 D:\FDMSWEB\FDMSWEB\obj\Debug\FDMSWeb.dll
 D:\FDMSWEB\FDMSWEB\obj\Debug\FDMSWeb.pdb
+=======
+C:\Workbench\Coding\GitHub\FDMSWEB\obj\Debug\FDMSWeb.csprojAssemblyReference.cache
+>>>>>>> Loc

@@ -876,78 +876,120 @@ namespace FDMSWeb.Models
             }
         }
         public static string GetMD5(string str)
-        {
-            System.Diagnostics.Debug.WriteLine(str);
-            MD5 md5 = new MD5CryptoServiceProvider();
-            byte[] fromData = Encoding.UTF8.GetBytes(str);
-            byte[] targetData = md5.ComputeHash(fromData);
-            string byte2String = null;
-
-            for (int i = 0; i < targetData.Length; i++)
             {
-                byte2String += targetData[i].ToString("x2");
+                System.Diagnostics.Debug.WriteLine(str);
+                MD5 md5 = new MD5CryptoServiceProvider();
+                byte[] fromData = Encoding.UTF8.GetBytes(str);
+                byte[] targetData = md5.ComputeHash(fromData);
+                string byte2String = null;
 
-            }
-            return byte2String;
-        }
-        public Account login(string username, string password)
-        {
-            /* Declare resources used for interacting with database */
-            MySqlConnection conn = null; // connection to database
-            MySqlCommand cmd; // store SQL statement
-            MySqlDataReader rd = null; // reader for return results
-            Account account = null;
-            string md5passs = GetMD5(password);
-            try
-            {
-                conn = DBUtils.GetConnection(); // get connection to database
-                conn.Open(); // open the connection
-                cmd = new MySqlCommand("SELECT * FROM account WHERE username = @userName AND password=@password AND deleted_at IS NULL", conn); // SQL statement
-                cmd.Parameters.AddWithValue("@userName", username);
-                cmd.Parameters.AddWithValue("@password", md5passs);
-                Console.WriteLine(cmd.ToString());
-                rd = cmd.ExecuteReader(); // execute the SQL statement and store results to reader
-                if (rd.Read())
+                for (int i = 0; i < targetData.Length; i++)
                 {
-                    int id= rd.GetInt32("AccountID");
-                    int roleID = rd.GetInt32("RoleID");
-                    String fullname = rd.GetString("fullname");
-                    String avatar = rd.GetString("avatar");
-                    String email = rd.GetString("email");
-                    int gender = rd.GetInt32("gender");
-                    string created_at;
+                    byte2String += targetData[i].ToString("x2");
 
-                    if (!rd.IsDBNull(rd.GetOrdinal("created_at")))
-                    {
-                        created_at = rd.GetDateTime("created_at").ToString("dd/MM/yyyy");
-                    }
-                    else
-                    {
-                        created_at = "";
-                    }
-                    account = new Account(id, roleID, username, fullname, avatar, email, gender, created_at);
-                    return account;
                 }
+                return byte2String;
             }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine(ex.Message);
+            public Account login(string username, string password)        {
+                /* Declare resources used for interacting with database */
+                MySqlConnection conn = null; // connection to database
+                MySqlCommand cmd; // store SQL statement
+                MySqlDataReader rd = null; // reader for return results
+                Account account = null;
+                string md5passs = GetMD5(password);
+                    cmd = new MySqlCommand("SELECT * FROM account WHERE username = @userName AND password=@password AND deleted_at IS NULL", conn); // SQL statement
+                    cmd.Parameters.AddWithValue("@userName", username);
+                    cmd.Parameters.AddWithValue("@password", md5passs);
+                    Console.WriteLine(cmd.ToString());
+                    rd = cmd.ExecuteReader(); // execute the SQL statement and store results to reader
+                    if (rd.Read())
+                    {
+                        int id= rd.GetInt32("AccountID");
+                        int roleID = rd.GetInt32("RoleID");
+                        String fullname = rd.GetString("fullname");
+                        String avatar = rd.GetString("avatar");
+                        String email = rd.GetString("email");
+                        int gender = rd.GetInt32("gender");
+                        string created_at;
+
+                        if (!rd.IsDBNull(rd.GetOrdinal("created_at")))
+                        {
+                            created_at = rd.GetDateTime("created_at").ToString("dd/MM/yyyy");
+                        }
+                        else
+                        {
+                            created_at = "";
+                        }
+                        account = new Account(id, roleID, username, fullname, avatar, email, gender, created_at);
+                        return account;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine(ex.Message);
+                    return null;
+                }
+                finally
+                {
+                    /* Close resources after use */
+                    if (conn != null)
+                    {
+                        conn.Close();
+                    }
+
+                    if (rd != null)
+                    {
+                        rd.Close();
+                    }
+                }
                 return null;
-            }
-            finally
+
+            public List<Anime> GetAnimeDetailList(List<List> animeList)
             {
-                /* Close resources after use */
-                if (conn != null)
+                List<Anime> animeDetailList = null;
+
+                if (animeList != null)
                 {
-                    conn.Close();
+                    animeDetailList = new List<Anime>();
+
+                    foreach (List listData in animeList)
+                    {
+                        animeDetailList.Add(GetAnime(listData.AnimeId));
+                    }
                 }
 
-                if (rd != null)
-                {
-                    rd.Close();
-                }
+                return animeDetailList;
             }
-            return null;
-        }
-    }
+
+            public string GetAccountUsername(int accountId)
+                try
+                {
+                    conn = DBUtils.GetConnection(); // get connection to database
+                    conn.Open(); // open the connection
+                    cmd = new MySqlCommand("SELECT username FROM Account WHERE AccountID = @Id", conn); // SQL statement
+                    cmd.Parameters.AddWithValue("@Id", accountId);
+                    rd = cmd.ExecuteReader(); // execute the SQL statement and store results to reader
+
+                    /* Keep reading and adding data to list until end */
+                    if (rd.Read())
+                    {
+                        return rd.GetString(0);
+                    }
+
+                    return "";
+                }
+                finally
+                {
+                    /* Close resources after use */
+                    if (conn != null)
+                    {
+                        conn.Close();
+                    }
+
+                    if (rd != null)
+                    {
+                        rd.Close();
+                    }
+                }
+
 }
