@@ -13,21 +13,27 @@ namespace FDMSWeb.Controllers
         {
             /* Instantiate DAO obj and interact with DB */
             AnimeListDAO dao = new AnimeListDAO();
+            string accountUsername = dao.GetAccountUsername(accountId);
             List<List> animeList = dao.GetAnimeList(accountId, listStatus);
-            List<Anime> animeDetailList = dao.Get
-            ViewBag.Anime = anime;
-            ViewBag.Genres = anime.Genres;
-            ViewBag.Studios = anime.Studios;
+            List<Anime> animeDetailList = dao.GetAnimeDetailList(animeList);
 
-            ///* Check if user logged in to get user anime list */
+            /* Get status list if there is user logged in */
 
 
-            //List animeInList = null; // not null if there is anime in list
+            /* If user whose list is viewed has their own anime list */
+            if (animeList != null)
+            {
+                ViewBag.AnimeList = animeList;
+                ViewBag.AnimeDetailList = animeDetailList;
+            }
+            else
+            {
+                ViewBag.AnimeList = new List<List>();
+                ViewBag.AnimeDetailList = new List<Anime>();
+            }
 
-            //if (anime != null)
-            //{
-
-            //}
+            ViewBag.AccountId = accountId;
+            ViewBag.ListStatus = listStatus;
 
             return View();
         }
