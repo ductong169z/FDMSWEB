@@ -13,8 +13,16 @@ namespace FDMSWeb.Controllers
         {
             AnimeListDAO dao = new AnimeListDAO();
             List<Season> seasonList = dao.GetAllSeasons();
+            if (Session["User"] == null)
+            {
+                return RedirectToAction("Login", "Authentication");
 
-            return View(seasonList);
+
+            }
+            else
+            {
+                return View(seasonList);
+            }
         }
 
         public ActionResult About()
