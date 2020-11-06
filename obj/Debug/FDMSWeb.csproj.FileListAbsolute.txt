@@ -142,7 +142,6 @@ D:\FDMSWEB\FDMSWEB\bin\Newtonsoft.Json.dll
 D:\FDMSWEB\FDMSWEB\bin\Renci.SshNet.dll
 D:\FDMSWEB\FDMSWEB\bin\System.Buffers.dll
 D:\FDMSWEB\FDMSWEB\bin\System.Memory.dll
-D:\FDMSWEB\FDMSWEB\bin\System.Numerics.Vectors.dll
 D:\FDMSWEB\FDMSWEB\bin\System.Runtime.CompilerServices.Unsafe.dll
 D:\FDMSWEB\FDMSWEB\bin\System.Web.Helpers.dll
 D:\FDMSWEB\FDMSWEB\bin\System.Web.Mvc.dll
@@ -163,7 +162,6 @@ D:\FDMSWEB\FDMSWEB\bin\MySql.Data.xml
 D:\FDMSWEB\FDMSWEB\bin\Renci.SshNet.xml
 D:\FDMSWEB\FDMSWEB\bin\System.Buffers.xml
 D:\FDMSWEB\FDMSWEB\bin\System.Memory.xml
-D:\FDMSWEB\FDMSWEB\bin\System.Numerics.Vectors.xml
 D:\FDMSWEB\FDMSWEB\bin\System.Runtime.CompilerServices.Unsafe.xml
 D:\FDMSWEB\FDMSWEB\bin\System.Web.Helpers.xml
 D:\FDMSWEB\FDMSWEB\bin\System.Web.Mvc.xml
@@ -175,7 +173,6 @@ D:\FDMSWEB\FDMSWEB\bin\System.Web.WebPages.Razor.xml
 D:\FDMSWEB\FDMSWEB\bin\Newtonsoft.Json.xml
 D:\FDMSWEB\FDMSWEB\bin\Antlr3.Runtime.pdb
 D:\FDMSWEB\FDMSWEB\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-D:\FDMSWEB\FDMSWEB\obj\Debug\FDMSWeb.csprojAssemblyReference.cache
 D:\FDMSWEB\FDMSWEB\obj\Debug\FDMSWeb.csproj.CoreCompileInputs.cache
 D:\FDMSWEB\FDMSWEB\obj\Debug\FDMSWeb.csproj.CopyComplete
 D:\FDMSWEB\FDMSWEB\obj\Debug\FDMSWeb.dll
