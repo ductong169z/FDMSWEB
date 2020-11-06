@@ -915,7 +915,16 @@ namespace FDMSWeb.Models
                     String avatar = rd.GetString("avatar");
                     String email = rd.GetString("email");
                     int gender = rd.GetInt32("gender");
-                    DateTime created_at = rd.GetDateTime("created_at");
+                    string created_at;
+
+                    if (!rd.IsDBNull(rd.GetOrdinal("created_at")))
+                    {
+                        created_at = rd.GetDateTime("created_at").ToString("dd/MM/yyyy");
+                    }
+                    else
+                    {
+                        created_at = "";
+                    }
                     account = new Account(id, roleID, username, fullname, avatar, email, gender, created_at);
                     return account;
                 }
