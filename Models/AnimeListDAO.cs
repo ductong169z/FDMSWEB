@@ -868,5 +868,60 @@ namespace FDMSWeb.Models
                 }
             }
         }
+
+        public List<Anime> GetAnimeDetailList(List<List> animeList)
+        {
+            List<Anime> animeDetailList = null;
+
+            if (animeList != null)
+            {
+                animeDetailList = new List<Anime>();
+
+                foreach (List listData in animeList)
+                {
+                    animeDetailList.Add(GetAnime(listData.AnimeId));
+                }
+            }
+
+            return animeDetailList;
+        }
+
+        public string GetAccountUsername(int accountId)
+        {
+            /* Declare resources used for interacting with database */
+            MySqlConnection conn = null; // connection to database
+            MySqlCommand cmd; // store SQL statement
+            MySqlDataReader rd = null; // reader for return results
+
+            try
+            {
+                conn = DBUtils.GetConnection(); // get connection to database
+                conn.Open(); // open the connection
+                cmd = new MySqlCommand("SELECT username FROM Account WHERE AccountID = @Id", conn); // SQL statement
+                cmd.Parameters.AddWithValue("@Id", accountId);
+                rd = cmd.ExecuteReader(); // execute the SQL statement and store results to reader
+
+                /* Keep reading and adding data to list until end */
+                if (rd.Read())
+                {
+                    return rd.GetString(0);
+                }
+
+                return "";
+            }
+            finally
+            {
+                /* Close resources after use */
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+
+                if (rd != null)
+                {
+                    rd.Close();
+                }
+            }
+        }
     }
 }

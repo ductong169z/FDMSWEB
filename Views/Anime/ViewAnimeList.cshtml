@@ -973,17 +973,17 @@
     <div id="list-container" class="list-container">
         <div id="status-menu" class="status-menu-container">
             <div class="status-menu">
-                <a id="all_anime" href="viewAnimeList?accountID=<s:property value=" accountID" />&listStatus=0"
+                <a id="all_anime" href="ViewAnimeList/ViewAnimeList?accountId=@ViewBag.AccountId&listStatus=0"
                 class="status-button all_anime">All Anime</a>
-                <a id="watching" href="viewAnimeList?accountID=<s:property value=" accountID" />&listStatus=1"
-                class="status-button watching ">Currently Watching</a>
-                <a id="completed" href="viewAnimeList?accountID=<s:property value=" accountID" />&listStatus=2"
+                <a id="watching" href="ViewAnimeList/ViewAnimeList?accountId=@ViewBag.AccountId&listStatus=1"
+                   class="status-button watching ">Currently Watching</a>
+                <a id="completed" href="ViewAnimeList/ViewAnimeList?accountId=@ViewBag.AccountId&listStatus=2"
                 class="status-button completed ">Completed</a>
-                <a id="onhold" href="viewAnimeList?accountID=<s:property value=" accountID" />&listStatus=3"
+                <a id="onhold" href="ViewAnimeList/ViewAnimeList?accountId=@ViewBag.AccountId&listStatus=3"
                 class="status-button onhold ">On Hold</a>
-                <a id="dropped" href="viewAnimeList?accountID=<s:property value=" accountID" />&listStatus=4"
-                class="status-button dropped ">Dropped</a>
-                <a id="plantowatch" href="viewAnimeList?accountID=<s:property value=" accountID" />&listStatus=5"
+                <a id="dropped" href="ViewAnimeList/ViewAnimeList?accountId=@ViewBag.AccountId&listStatus=4"
+                   class="status-button dropped ">Dropped</a>
+                <a id="plantowatch" href="ViewAnimeList/ViewAnimeList?accountId=@ViewBag.AccountId&listStatus=5"
                 class="status-button plantowatch ">Plan to Watch</a>
                 <div class="search-container">
                     <form action="searchInList" id="search-form-action">
@@ -999,25 +999,31 @@
         <div class="list-block">
 
             <div class="list-unit all_anime">
-                <div class="list-status-title" style="background-image: url('images/bg-03.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center; background-attachment: fixed;">
-                    <s:if test="%{listStatus == 0}">
+                <div class="list-status-title">
+                    @if (@ViewBag.ListStatus == 0)
+                    {
                         <span class="text">ALL ANIME</span>
-                    </s:if>
-                    <s:elseif test="%{listStatus == 1}">
+                    }
+                    else if (@ViewBag.ListStatus == 1)
+                    {
                         <span class="text">CURRENTLY WATCHING</span>
-                    </s:elseif>
-                    <s:elseif test="%{listStatus == 2}">
+                    }
+                    else if (@ViewBag.ListStatus == 2)
+                    {
                         <span class="text">COMPLETED</span>
-                    </s:elseif>
-                    <s:elseif test="%{listStatus == 3}">
+                    }
+                    else if (@ViewBag.ListStatus == 3)
+                    {
                         <span class="text">ON HOLD</span>
-                    </s:elseif>
-                    <s:elseif test="%{listStatus == 4}">
+                    }
+                    else if (@ViewBag.ListStatus == 1)
+                    {
                         <span class="text">DROPPED</span>
-                    </s:elseif>
-                    <s:elseif test="%{listStatus == 5}">
+                    }
+                    else if (@ViewBag.ListStatus == 5)
+                    {
                         <span class="text">PLAN TO WATCH</span>
-                    </s:elseif>
+                    }
 
                 </div>
                 <table class="list-table" style="font-size: 12px;" id="myListTable">
@@ -1033,88 +1039,74 @@
                             <th class="header-title delete"><a href="" class="link sort" style="font-size: 12px;">Delete</a></th>
                         </tr>
                     </thead>
-                    <% ArrayList
-                    <ListDTO>
-                        animeList = (ArrayList<ListDTO>
-                            ) request.getAttribute("AnimeList");
-                            ArrayList<AnimeDTO>
-                                animeDetailsList = (ArrayList<AnimeDTO>
-                                    ) request.getAttribute("AnimeDetailsList");
-                                    int animeIndex = 0;
-                                    if (!animeDetailsList.isEmpty()) {
-                                    ArrayList<String>
-                                        statusList = (ArrayList<String>
-                                            ) request.getAttribute("StatusList");
-                                            for (AnimeDTO anime : animeDetailsList) {
-                                            ListDTO listAnime = animeList.get(animeIndex);
-                                            animeIndex++;
-                                            %>
-                                            <tbody class="list-item">
-                                                <form action="editRemoveAnimeFromList" method="POST">
-                                                    <tr class="list-table-data">
-                                                        <td class="data number" style="width: 5%;"><%= animeIndex%></td>
+                    @{ int animeIndex = 0; }
 
-                                                        <td class="data image" style="width: 7%;">
-                                                            <a href="viewAnime?animeID=<%= anime.getId()%>" class="link sort">
-                                                                <img src="images/poster/<%= anime.getPoster()%>" class="hover-info image">
-                                                            </a>
-                                                        </td>
+                    <tbody class="list-item">
+                        <form action="editRemoveAnimeFromList" method="POST">
+                            <tr class="list-table-data">
+                                <td class="data number" style="width: 5%;"><%= animeIndex%></td>
 
-                                                        <td class="data title clearfix" style="width: 48%;">
-                                                            <a href="viewAnime?animeID=<%= anime.getId()%>" class="link sort"><%= anime.getName()%></a>
-                                                        </td>
+                                <td class="data image" style="width: 7%;">
+                                    <a href="viewAnime?animeID=<%= anime.getId()%>" class="link sort">
+                                        <img src="images/poster/<%= anime.getPoster()%>" class="hover-info image">
+                                    </a>
+                                </td>
 
-                                                        <td class="data type" style="width: 8%;">
-                                                            <%= anime.getType()%>
-                                                        </td>
+                                <td class="data title clearfix" style="width: 48%;">
+                                    <a href="viewAnime?animeID=<%= anime.getId()%>" class="link sort"><%= anime.getName()%></a>
+                                </td>
 
-                                                        <td class="data progress" style="background-color: transparent!important; width: 9%; text-align: left">
-                                                            <% if (listAnime.getProgress() == 0 && listAnime.getStatus().equals("Completed") && anime.getEpisodes() == 0) { %>
-                                                            <input type="text" style="font-size: 12px;" name="progressEdit" size="1" class="inputtext form-control-sm progresseps" value="?" style="border: 1px solid #ced4da!important;"> /
-                                                            <%} else {%>
-                                                            <input type="text" style="font-size: 12px;" name="progressEdit" size="1" class="inputtext form-control-sm progresseps" value="<%= listAnime.getProgress()%>" style="border: 1px solid #ced4da!important;"> /
-                                                            <% }%>
+                                <td class="data type" style="width: 8%;">
+                                    <%= anime.getType()%>
+                                </td>
 
-                                                            <% if (anime.getEpisodes() != 0) {%>
-                                                            <%= anime.getEpisodes()%>
-                                                            <%} else {%>
-                                                            ?
-                                                            <% }%>
-                                                            <input type="hidden" name="episodesEdit" value="<%= anime.getEpisodes()%>" />
-                                                            <input type="hidden" name="animeIDEdit" value="<%= anime.getId()%>" />
-                                                            <% if (session.getAttribute("user") != null) { %>
-                                                            <input type="hidden" name="accountIDEdit" value="<s:property value=" %{#session.id}" />" />
-                                                            <% } %>
-                                                        </td>
+                                <td class="data progress" style="background-color: transparent!important; width: 9%; text-align: left">
+                                    <% if (listAnime.getProgress() == 0 && listAnime.getStatus().equals("Completed") && anime.getEpisodes() == 0) { %>
+                                    <input type="text" style="font-size: 12px;" name="progressEdit" size="1" class="inputtext form-control-sm progresseps" value="?" style="border: 1px solid #ced4da!important;"> /
+                                    <%} else {%>
+                                    <input type="text" style="font-size: 12px;" name="progressEdit" size="1" class="inputtext form-control-sm progresseps" value="<%= listAnime.getProgress()%>" style="border: 1px solid #ced4da!important;"> /
+                                    <% }%>
 
-                                                        <td class="data status" style="width: 15%;">
-                                                            <select name="statusEdit">
-                                                                <%
-                                                                int statusIndex = 1;
-                                                                for (String status : statusList) {
-                                                                if (!status.equals(listAnime.getStatus())) {
-                                                                %>
-                                                                <option value="<%= statusIndex%>"> <%= status%> </option>
-                                                                <br />
-                                                                <% } else {%>
-                                                                <option value="<%= statusIndex%>" selected="selected"> <%= status%> </option>
-                                                                <br />
-                                                                <% }
-                                                                statusIndex++;
-                                                                } %>
-                                                            </select>
-                                                        </td>
-                                                        <td style="width: 5%; text-align: center;">
-                                                            <input type="submit" name="btnAction" style="font-size: 12px;" value="Edit" />
-                                                        </td>
-                                                        <td style="width: 6%; text-align: center;">
-                                                            <input type="submit" name="btnAction" style="font-size: 12px;" value="Delete" />
-                                                        </td>
-                                                    </tr>
-                                                </form>
-                                            </tbody>
-                                            <% }
-                                            }%>
+                                    <% if (anime.getEpisodes() != 0) {%>
+                                    <%= anime.getEpisodes()%>
+                                    <%} else {%>
+                                    ?
+                                    <% }%>
+                                    <input type="hidden" name="episodesEdit" value="<%= anime.getEpisodes()%>" />
+                                    <input type="hidden" name="animeIDEdit" value="<%= anime.getId()%>" />
+                                    <% if (session.getAttribute("user") != null) { %>
+                                    <input type="hidden" name="accountIDEdit" value="<s:property value=" %{#session.id}" />" />
+                                    <% } %>
+                                </td>
+
+                                <td class="data status" style="width: 15%;">
+                                    <select name="statusEdit">
+                                        <%
+                                        int statusIndex = 1;
+                                        for (String status : statusList) {
+                                        if (!status.equals(listAnime.getStatus())) {
+                                        %>
+                                        <option value="<%= statusIndex%>"> <%= status%> </option>
+                                        <br />
+                                        <% } else {%>
+                                        <option value="<%= statusIndex%>" selected="selected"> <%= status%> </option>
+                                        <br />
+                                        <% }
+                                        statusIndex++;
+                                        } %>
+                                    </select>
+                                </td>
+                                <td style="width: 5%; text-align: center;">
+                                    <input type="submit" name="btnAction" style="font-size: 12px;" value="Edit" />
+                                </td>
+                                <td style="width: 6%; text-align: center;">
+                                    <input type="submit" name="btnAction" style="font-size: 12px;" value="Delete" />
+                                </td>
+                            </tr>
+                        </form>
+                    </tbody>
+                    <% }
+                    }%>
                 </table>
                 @*<% if (animeDetailsList.isEmpty()) {%>
                 <div style="text-align: center!important; font-size: 20px; margin-top: 3%;">There are no animes to display!</div>
