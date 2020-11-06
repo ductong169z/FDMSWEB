@@ -165,12 +165,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-<<<<<<< HEAD
     <Compile Include="Controllers\AuthenticationController.cs" />
-=======
-    <Compile Include="Controllers\ViewAnimeListController.cs" />
-    <Compile Include="Controllers\ViewAnimeController.cs" />
->>>>>>> Loc
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ViewAnimeController.cs" />
     <Compile Include="Controllers\ViewAnimeListController.cs" />

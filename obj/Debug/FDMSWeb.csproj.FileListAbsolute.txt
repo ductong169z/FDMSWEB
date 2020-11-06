@@ -77,31 +77,6 @@ C:\Workbench\Coding\GitHub\FDMSWEB\bin\FDMSWeb.dll
 C:\Workbench\Coding\GitHub\FDMSWEB\bin\FDMSWeb.pdb
 C:\Workbench\Coding\GitHub\FDMSWEB\obj\Debug\FDMSWeb.dll
 C:\Workbench\Coding\GitHub\FDMSWEB\obj\Debug\FDMSWeb.pdb
-<<<<<<< HEAD
-C:\Workbench\Coding\GitHub\FDMSWEB\bin\BouncyCastle.Crypto.dll
-C:\Workbench\Coding\GitHub\FDMSWEB\bin\Google.Protobuf.dll
-C:\Workbench\Coding\GitHub\FDMSWEB\bin\K4os.Compression.LZ4.dll
-C:\Workbench\Coding\GitHub\FDMSWEB\bin\K4os.Compression.LZ4.Streams.dll
-C:\Workbench\Coding\GitHub\FDMSWEB\bin\K4os.Hash.xxHash.dll
-C:\Workbench\Coding\GitHub\FDMSWEB\bin\MySql.Data.dll
-C:\Workbench\Coding\GitHub\FDMSWEB\bin\Renci.SshNet.dll
-C:\Workbench\Coding\GitHub\FDMSWEB\bin\System.Buffers.dll
-C:\Workbench\Coding\GitHub\FDMSWEB\bin\System.Memory.dll
-C:\Workbench\Coding\GitHub\FDMSWEB\bin\System.Numerics.Vectors.dll
-C:\Workbench\Coding\GitHub\FDMSWEB\bin\System.Runtime.CompilerServices.Unsafe.dll
-C:\Workbench\Coding\GitHub\FDMSWEB\bin\Ubiety.Dns.Core.dll
-C:\Workbench\Coding\GitHub\FDMSWEB\bin\Zstandard.Net.dll
-C:\Workbench\Coding\GitHub\FDMSWEB\bin\Google.Protobuf.pdb
-C:\Workbench\Coding\GitHub\FDMSWEB\bin\Google.Protobuf.xml
-C:\Workbench\Coding\GitHub\FDMSWEB\bin\K4os.Compression.LZ4.xml
-C:\Workbench\Coding\GitHub\FDMSWEB\bin\K4os.Compression.LZ4.Streams.xml
-C:\Workbench\Coding\GitHub\FDMSWEB\bin\K4os.Hash.xxHash.xml
-C:\Workbench\Coding\GitHub\FDMSWEB\bin\MySql.Data.xml
-C:\Workbench\Coding\GitHub\FDMSWEB\bin\Renci.SshNet.xml
-C:\Workbench\Coding\GitHub\FDMSWEB\bin\System.Buffers.xml
-C:\Workbench\Coding\GitHub\FDMSWEB\bin\System.Memory.xml
-C:\Workbench\Coding\GitHub\FDMSWEB\bin\System.Numerics.Vectors.xml
-C:\Workbench\Coding\GitHub\FDMSWEB\bin\System.Runtime.CompilerServices.Unsafe.xml
 D:\FDMSWEB\FDMSWEB\bin\FDMSWeb.dll.config
 D:\FDMSWEB\FDMSWEB\bin\FDMSWeb.dll
 D:\FDMSWEB\FDMSWEB\bin\FDMSWeb.pdb
@@ -205,6 +180,3 @@ D:\FDMSWEB\FDMSWEB\obj\Debug\FDMSWeb.csproj.CoreCompileInputs.cache
 D:\FDMSWEB\FDMSWEB\obj\Debug\FDMSWeb.csproj.CopyComplete
 D:\FDMSWEB\FDMSWEB\obj\Debug\FDMSWeb.dll
 D:\FDMSWEB\FDMSWEB\obj\Debug\FDMSWeb.pdb
-=======
-C:\Workbench\Coding\GitHub\FDMSWEB\obj\Debug\FDMSWeb.csprojAssemblyReference.cache
->>>>>>> Loc
