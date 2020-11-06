@@ -18,6 +18,12 @@ namespace FDMSWeb
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+                name: "View Anime",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "ViewAnime", action = "ViewAnime", id = 2 }
+            );
         }
     }
 }

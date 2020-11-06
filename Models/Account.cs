@@ -16,14 +16,14 @@ namespace FDMSWeb.Models
         private string avatar;
         private string email;
         private int gender;
-        private DateTime created_at;
+        private string created_at;
 
         /* Constructors */
         public Account()
         {
         }
 
-        public Account(int id, int roleId, string username, string fullName, string avatar, string email, int gender, DateTime created_at)
+        public Account(int id, int roleId, string username, string fullName, string avatar, string email, int gender, string created_at)
         {
             this.id = id;
             this.roleId = roleId;
@@ -43,6 +43,6 @@ namespace FDMSWeb.Models
         public string Avatar { get => avatar; set => avatar = value; }
         public string Email { get => email; set => email = value; }
         public int Gender { get => gender; set => gender = value; }
-        public DateTime Created_at { get => created_at; set => created_at = value; }
+        public string Created_at { get => created_at; set => created_at = value; }
     }
 }

@@ -13,7 +13,7 @@ namespace FDMSWeb.Models
         private List<Genre> genres;
         private string type;
         private string name;
-        private DateTime releaseDate;
+        private string releaseDate;
         private string rating;
         private int episodes;
         private string status;
@@ -21,14 +21,14 @@ namespace FDMSWeb.Models
         private string description;
         private string poster;
         private string trailer;
-        private DateTime created_at;
+        private string created_at;
 
         /* Constructors */
         public Anime()
         {
         }
 
-        public Anime(int id, Season season, List<Studio> studios, List<Genre> genres, string type, string name, DateTime releaseDate, string rating, int episodes, string status, string duration, string description, string poster, string trailer, DateTime created_at)
+        public Anime(int id, Season season, List<Studio> studios, List<Genre> genres, string type, string name, string releaseDate, string rating, int episodes, string status, string duration, string description, string poster, string trailer, string created_at)
         {
             this.id = id;
             this.season = season;
@@ -54,7 +54,7 @@ namespace FDMSWeb.Models
         public List<Genre> Genres { get => genres; set => genres = value; }
         public string Type { get => type; set => type = value; }
         public string Name { get => name; set => name = value; }
-        public DateTime ReleaseDate { get => releaseDate; set => releaseDate = value; }
+        public string ReleaseDate { get => releaseDate; set => releaseDate = value; }
         public string Rating { get => rating; set => rating = value; }
         public int Episodes { get => episodes; set => episodes = value; }
         public string Status { get => status; set => status = value; }
@@ -62,6 +62,6 @@ namespace FDMSWeb.Models
         public string Description { get => description; set => description = value; }
         public string Poster { get => poster; set => poster = value; }
         public string Trailer { get => trailer; set => trailer = value; }
-        public DateTime Created_at { get => created_at; set => created_at = value; }
+        public string Created_at { get => created_at; set => created_at = value; }
     }
 }

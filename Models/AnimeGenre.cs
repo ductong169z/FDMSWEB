@@ -11,14 +11,14 @@ namespace FDMSWeb.Models
         /* Anime_Genre properties */
         private int genreId;
         private int animeId;
-        private DateTime created_at;
+        private string created_at;
 
         /* Constructors */
         public AnimeGenre()
         {
         }
 
-        public AnimeGenre(int genreId, int animeId, DateTime created_at)
+        public AnimeGenre(int genreId, int animeId, string created_at)
         {
             this.genreId = genreId;
             this.animeId = animeId;
@@ -28,6 +28,6 @@ namespace FDMSWeb.Models
         /* Getters and Setters */
         public int GenreId { get => genreId; set => genreId = value; }
         public int AnimeId { get => animeId; set => animeId = value; }
-        public DateTime Created_at { get => created_at; set => created_at = value; }
+        public string Created_at { get => created_at; set => created_at = value; }
     }
 }

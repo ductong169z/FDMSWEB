@@ -1,3 +1,6 @@
+C:\Workbench\Coding\GitHub\FDMSWEB\bin\FDMSWeb.dll.config
+C:\Workbench\Coding\GitHub\FDMSWEB\bin\FDMSWeb.dll
+C:\Workbench\Coding\GitHub\FDMSWEB\bin\FDMSWeb.pdb
 C:\Workbench\Coding\GitHub\FDMSWEB\bin\roslyn\csc.exe
 C:\Workbench\Coding\GitHub\FDMSWEB\bin\roslyn\csc.exe.config
 C:\Workbench\Coding\GitHub\FDMSWEB\bin\roslyn\csc.rsp
@@ -48,9 +51,20 @@ C:\Workbench\Coding\GitHub\FDMSWEB\bin\roslyn\vbc.rsp
 C:\Workbench\Coding\GitHub\FDMSWEB\bin\roslyn\VBCSCompiler.exe
 C:\Workbench\Coding\GitHub\FDMSWEB\bin\roslyn\VBCSCompiler.exe.config
 C:\Workbench\Coding\GitHub\FDMSWEB\bin\Antlr3.Runtime.dll
+C:\Workbench\Coding\GitHub\FDMSWEB\bin\BouncyCastle.Crypto.dll
+C:\Workbench\Coding\GitHub\FDMSWEB\bin\Google.Protobuf.dll
+C:\Workbench\Coding\GitHub\FDMSWEB\bin\K4os.Compression.LZ4.dll
+C:\Workbench\Coding\GitHub\FDMSWEB\bin\K4os.Compression.LZ4.Streams.dll
+C:\Workbench\Coding\GitHub\FDMSWEB\bin\K4os.Hash.xxHash.dll
 C:\Workbench\Coding\GitHub\FDMSWEB\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Workbench\Coding\GitHub\FDMSWEB\bin\Microsoft.Web.Infrastructure.dll
+C:\Workbench\Coding\GitHub\FDMSWEB\bin\MySql.Data.dll
 C:\Workbench\Coding\GitHub\FDMSWEB\bin\Newtonsoft.Json.dll
+C:\Workbench\Coding\GitHub\FDMSWEB\bin\Renci.SshNet.dll
+C:\Workbench\Coding\GitHub\FDMSWEB\bin\System.Buffers.dll
+C:\Workbench\Coding\GitHub\FDMSWEB\bin\System.Memory.dll
+C:\Workbench\Coding\GitHub\FDMSWEB\bin\System.Numerics.Vectors.dll
+C:\Workbench\Coding\GitHub\FDMSWEB\bin\System.Runtime.CompilerServices.Unsafe.dll
 C:\Workbench\Coding\GitHub\FDMSWEB\bin\System.Web.Helpers.dll
 C:\Workbench\Coding\GitHub\FDMSWEB\bin\System.Web.Mvc.dll
 C:\Workbench\Coding\GitHub\FDMSWEB\bin\System.Web.Optimization.dll
@@ -58,7 +72,20 @@ C:\Workbench\Coding\GitHub\FDMSWEB\bin\System.Web.Razor.dll
 C:\Workbench\Coding\GitHub\FDMSWEB\bin\System.Web.WebPages.Deployment.dll
 C:\Workbench\Coding\GitHub\FDMSWEB\bin\System.Web.WebPages.dll
 C:\Workbench\Coding\GitHub\FDMSWEB\bin\System.Web.WebPages.Razor.dll
+C:\Workbench\Coding\GitHub\FDMSWEB\bin\Ubiety.Dns.Core.dll
 C:\Workbench\Coding\GitHub\FDMSWEB\bin\WebGrease.dll
+C:\Workbench\Coding\GitHub\FDMSWEB\bin\Zstandard.Net.dll
+C:\Workbench\Coding\GitHub\FDMSWEB\bin\Google.Protobuf.pdb
+C:\Workbench\Coding\GitHub\FDMSWEB\bin\Google.Protobuf.xml
+C:\Workbench\Coding\GitHub\FDMSWEB\bin\K4os.Compression.LZ4.xml
+C:\Workbench\Coding\GitHub\FDMSWEB\bin\K4os.Compression.LZ4.Streams.xml
+C:\Workbench\Coding\GitHub\FDMSWEB\bin\K4os.Hash.xxHash.xml
+C:\Workbench\Coding\GitHub\FDMSWEB\bin\MySql.Data.xml
+C:\Workbench\Coding\GitHub\FDMSWEB\bin\Renci.SshNet.xml
+C:\Workbench\Coding\GitHub\FDMSWEB\bin\System.Buffers.xml
+C:\Workbench\Coding\GitHub\FDMSWEB\bin\System.Memory.xml
+C:\Workbench\Coding\GitHub\FDMSWEB\bin\System.Numerics.Vectors.xml
+C:\Workbench\Coding\GitHub\FDMSWEB\bin\System.Runtime.CompilerServices.Unsafe.xml
 C:\Workbench\Coding\GitHub\FDMSWEB\bin\System.Web.Helpers.xml
 C:\Workbench\Coding\GitHub\FDMSWEB\bin\System.Web.Mvc.xml
 C:\Workbench\Coding\GitHub\FDMSWEB\bin\System.Web.Optimization.xml
@@ -69,14 +96,11 @@ C:\Workbench\Coding\GitHub\FDMSWEB\bin\System.Web.WebPages.Razor.xml
 C:\Workbench\Coding\GitHub\FDMSWEB\bin\Newtonsoft.Json.xml
 C:\Workbench\Coding\GitHub\FDMSWEB\bin\Antlr3.Runtime.pdb
 C:\Workbench\Coding\GitHub\FDMSWEB\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Workbench\Coding\GitHub\FDMSWEB\obj\Debug\FDMSWeb.csprojAssemblyReference.cache
 C:\Workbench\Coding\GitHub\FDMSWEB\obj\Debug\FDMSWeb.csproj.CoreCompileInputs.cache
 C:\Workbench\Coding\GitHub\FDMSWEB\obj\Debug\FDMSWeb.csproj.CopyComplete
-C:\Workbench\Coding\GitHub\FDMSWEB\bin\FDMSWeb.dll.config
-C:\Workbench\Coding\GitHub\FDMSWEB\bin\FDMSWeb.dll
-C:\Workbench\Coding\GitHub\FDMSWEB\bin\FDMSWeb.pdb
 C:\Workbench\Coding\GitHub\FDMSWEB\obj\Debug\FDMSWeb.dll
 C:\Workbench\Coding\GitHub\FDMSWEB\obj\Debug\FDMSWeb.pdb
+<<<<<<< HEAD
 D:\FDMSWEB\bin\FDMSWeb.dll.config
 D:\FDMSWEB\bin\FDMSWeb.dll
 D:\FDMSWEB\bin\FDMSWeb.pdb
@@ -184,3 +208,5 @@ D:\FDMSWEB\obj\Debug\FDMSWeb.csproj.CopyComplete
 D:\FDMSWEB\obj\Debug\FDMSWeb.dll
 D:\FDMSWEB\obj\Debug\FDMSWeb.pdb
 D:\FDMSWEB\bin\mysql.data.entity.EF6.dll
+=======
+>>>>>>> Loc
