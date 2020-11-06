@@ -34,7 +34,7 @@ namespace FDMSWeb.Controllers
         public ActionResult ViewAnime()
         {
 
-            return View("ViewAnime/ViewAnime");
+            return View("Anime/ViewAnime");
         }
     }
 }
