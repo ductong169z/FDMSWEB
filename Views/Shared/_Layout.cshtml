@@ -4,11 +4,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Library/Bootstrap/css")
+    @Styles.Render("~/bundles/css")
     @Scripts.Render("~/bundles/modernizr")
     @using FDMSWeb.Models
-
-
+    @Scripts.Render("~/Library/fontawesome");
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
 </head>
 <body class="container">
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
