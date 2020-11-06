@@ -4,12 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/bundles/css")
-    @Scripts.Render("~/bundles/modernizr")
     @using FDMSWeb.Models
-    @Scripts.Render("~/Library/fontawesome");
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+    @Styles.Render("~/Library/Bootstrap/css")
 </head>
 <body class="container">
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
@@ -57,7 +53,8 @@
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
     </div>
-    <script src="~/Library/Bootstrap/js/jquery-3.5.1.slim.min.js"></script>
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/Library/fontawesome");
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
