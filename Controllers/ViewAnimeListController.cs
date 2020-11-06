@@ -14,6 +14,7 @@ namespace FDMSWeb.Controllers
             /* Instantiate DAO obj and interact with DB */
             AnimeListDAO dao = new AnimeListDAO();
             List<List> animeList = dao.GetAnimeList(accountId, listStatus);
+            List<Anime> animeDetailList = dao.Get
             ViewBag.Anime = anime;
             ViewBag.Genres = anime.Genres;
             ViewBag.Studios = anime.Studios;
