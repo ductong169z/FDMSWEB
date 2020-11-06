@@ -16,8 +16,6 @@ namespace FDMSWeb.Controllers
             if (Session["User"] == null)
             {
                 return RedirectToAction("Login", "Authentication");
-
-
             }
             else
             {
@@ -25,30 +23,16 @@ namespace FDMSWeb.Controllers
             }
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
-
         public ActionResult ViewAnime()
         {
 
-            return View("Anime/ViewAnime");
+            return View("~/Views/Anime/ViewAnime.cshtml");
         }
 
         public ActionResult ViewAnimeList()
         {
 
-            return View("Anime/ViewAnimeList");
+            return View("~/Views/Anime/ViewAnimeList.cshtml");
         }
     }
 }
