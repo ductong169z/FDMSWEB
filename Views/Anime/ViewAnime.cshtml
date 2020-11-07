@@ -10,8 +10,10 @@
     <style>
         body {
             background: url(/Content/Backgrounds/bg-15.jpg);
-            background-size: 100%;
+            background-size: cover;
             background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
         }
 
         .emp-details {
@@ -27,7 +29,7 @@
         }
 
             .details-img img {
-                width: 70%;
+                width: 80%;
                 height: 100%;
             }
 
@@ -94,8 +96,9 @@
                 }
 
         .details-work {
-            padding: 14%;
-            margin-top: -15%;
+            padding: 5%;
+            margin: 0;
+            text-align: center;
         }
 
             .details-work p {
@@ -144,15 +147,65 @@
             color: #007bff;
             background-color: #fff;
             border-color: #007bff;
-            width: 100%;
+            width: 90%;
+            margin-top: 3%;
+            margin-bottom: 8%;
         }
 
         .spaceit {
             margin: 3px 0;
             padding: 3px 0;
         }
+
+        #addtolist {
+            padding: 0 !important;
+        }
+
+        #collapseExample{
+            width: 90% !important;
+            margin: 0 auto;
+        }
+
+        span.notice_open_public{
+            display: block;
+            text-align: left;
+        }
+
+        .card.card-body {
+            padding: 10px;
+            margin-top: 0;
+        }
+
+        form{
+            display: block;
+            text-align: center;
+        }
+
+        table {
+            margin-top: 5% !important;
+        }
+
+        #myinfo_status {
+            border: 1px solid #ced4da !important;
+            font-size: 0.95rem !important;
+            padding: 0;
+        }
+
+        #myinfo_watchedeps {
+            border: 1px solid #ced4da !important;
+            font-size: 1rem !important;
+        }
+
+        inputButton {
+            margin-top: 5% !important;
+        }
+
+        #myinfoDisplay {
+            padding-left: 89px;
+            margin-top: 3px;
+        }
     </style>
-    <title>@ViewBag.Title - WibuAnimeList</title>
+    <title>@ViewBag.Anime.Name - WibuAnimeList</title>
 </head>
 <body>
     <div class="container emp-details">
@@ -162,6 +215,145 @@
                     <img class="rounded" src="~/Content/Images/Posters/@ViewBag.Anime.Poster" alt="" />
                 </div>
                 <div class="details-work">
+                    @if ((Session["User"] as FDMSWeb.Models.Account) != null)
+                    {
+                        if (ViewBag.AnimeInList != null)
+                        {
+                            <div class="collapse show" id="collapseExample">
+                                <div class="card card-body">
+                                    <div id="addtolist" class="addtolist-block js-anime-addtolist-block">
+                                        <span class="notice_open_public">* Note: Anyone can view your list by default.</span>
+                                        <form action="@Url.Action("AddRemoveAnimeList", "Anime")" method="POST">
+                                            <table border="0" cellpadding="0" cellspacing="0">
+                                                <input type="hidden" name="animeId" value="@ViewBag.Anime.Id" />
+                                                <input type="hidden" name="accountId" value="@(Session["User"] as FDMSWeb.Models.Account).Id" />
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="spaceit">Status:</td>
+                                                        <td class="spaceit">
+                                                            <select name="status" id="myinfo_status" class="inputtext js-anime-status-dropdown form-control-sm">
+                                                                @{int statusIndex = 1; }
+                                                                @foreach (string status in ViewBag.StatusList)
+                                                                {
+                                                                    if (!status.Equals(ViewBag.AnimeInList.Status))
+                                                                    {
+                                                                        <option value="@statusIndex"> @status </option>
+                                                                        <br />
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <option value="@statusIndex" selected="selected">  @status  </option>
+                                                                        <br />
+                                                                    }
+                                                                    statusIndex++;
+                                                                }
+                                                            </select>
+
+                                                        </td>
+
+                                                    </tr>
+
+                                                    <tr>
+
+                                                        <td class="spaceit">Eps Seen:</td>
+                                                        <td class="spaceit">
+                                                            <input type="hidden" name="episodes" value="@ViewBag.Anime.Episodes" />
+                                                            @if (@ViewBag.AnimeInList.Progress == 0 && @ViewBag.AnimeInList.Status.Equals("Completed") && ViewBag.Anime.Episodes == 0)
+                                                            {
+                                                                <input type="text" id="myinfo_watchedeps" name="progress" size="3" class="inputtext form-control-sm" value="?" />
+                                                            }
+                                                            else
+                                                            {
+                                                                <input type="text" id="myinfo_watchedeps" name="progress" size="3" class="inputtext form-control-sm" value="@ViewBag.AnimeInList.Progress" />
+                                                            }
+                                                            @Html.Raw("/")
+                                                            @if (@ViewBag.Anime.Episodes != 0)
+                                                            {
+                                                                @ViewBag.Anime.Episodes
+                                                            }
+                                                            else
+                                                            {
+                                                                @Html.Raw("?")
+                                                            }
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>&nbsp;</td>
+                                                        <td>
+                                                            <input type="submit" name="btnAction" value="Edit" class="inputButton btn-middle flat js-anime-add-button">
+                                                            <input type="submit" name="btnAction" value="Remove" class="inputButton btn-middle flat js-anime-add-button">
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </form>
+                                        <div id="myinfoDisplay"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                    Add To List
+                                </button>
+                            <div class="collapse show" id="collapseExample">
+                                <div class="card card-body">
+                                    <div id="addtolist" class="addtolist-block js-anime-addtolist-block">
+                                        <span class="notice_open_public">* Note: Anyone can view your list by default.</span>
+                                        <form action="@Url.Action("AddRemoveAnimeList", "Anime")" method="POST">
+                                            <table border="0" cellpadding="0" cellspacing="0">
+                                                <input type="hidden" name="animeId" value="@ViewBag.Anime.Id" />
+                                                <input type="hidden" name="accountId" value="@((Session["User"] as FDMSWeb.Models.Account).Id)" />
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="spaceit">Status:</td>
+                                                        <td class="spaceit">
+                                                            <select name="status" id="myinfo_status" class="inputtext js-anime-status-dropdown form-control-sm">
+                                                                @{int statusIndex = 1; }
+                                                                @foreach (string status in ViewBag.StatusList)
+                                                                {
+                                                                    <option value="@statusIndex"> @status </option>
+                                                                    <br />
+                                                                    statusIndex++;
+                                                                }
+                                                            </select>
+                                                        </td>
+
+                                                    </tr>
+
+                                                    <tr>
+
+                                                        <td class="spaceit">Eps Seen:</td>
+                                                        <td class="spaceit">
+                                                            <input type="hidden" name="episodes" value="@ViewBag.Anime.Episodes" />
+                                                            <input type="text" id="myinfo_watchedeps" name="progress" size="3" class="inputtext form-control-sm" value="" />
+                                                            @Html.Raw("/")
+                                                            @if (@ViewBag.Anime.Episodes != 0)
+                                                            {
+                                                                @ViewBag.Anime.Episodes
+                                                            }
+                                                            else
+                                                            {
+                                                                @Html.Raw("?")
+                                                            }
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>&nbsp;</td>
+                                                        <td>
+                                                            <input type="submit" name="btnAction" value="Add" class="inputButton btn-middle flat js-anime-add-button">
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </form>
+                                        <div id="myinfoDisplay"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
                 </div>
             </div>
             <div class="col-md-8">
@@ -329,11 +521,11 @@
                     <div class="tab-pane fade" id="trailer" role="tabpanel" aria-labelledby="trailer-tab">
                         @if (@ViewBag.Anime.Trailer != null)
                         {
-                            <div class="embed-responsive embed-responsive-16by9" style="text-align: center;"><iframe class="embed-responsive-item" width="500" height="300" src="@Html.Raw(ViewBag.Anime.Trailer)?rel=0" frameborder="0" allow="encrypted-media" allowfullscreen></iframe></div>
+                            <div class="embed-responsive embed-responsive-16by9 text-center"><iframe class="embed-responsive-item" width="500" height="300" src="@Html.Raw(ViewBag.Anime.Trailer)?rel=0" frameborder="0" allow="encrypted-media" allowfullscreen></iframe></div>
                         }
                         else
                         {
-                            <p style="text-align: center; color: #000000;">There is no trailer available for this Anime title</p>
+                            <p class="text-center text-black">There is no trailer available for this Anime title</p>
                         }
                     </div>
                 </div>

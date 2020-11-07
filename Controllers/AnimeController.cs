@@ -15,26 +15,48 @@ namespace FDMSWeb.Controllers
             /* Instantiate DAO obj and interact with DB */
             AnimeListDAO dao = new AnimeListDAO();
             Anime anime = dao.GetAnime(id);
+            List<List> animeList = null;
+            List animeInList = null;
+
+            /* Check if user logged in to get user anime list */
+            if ((Session["User"] as Account) != null)
+            {
+                dao.GetAnimeList((Session["User"] as Account).Id, 0);
+            }
 
             if (anime != null)
             {
                 ViewBag.Anime = anime;
                 ViewBag.Genres = anime.Genres;
                 ViewBag.Studios = anime.Studios;
-            } else
+
+                if (animeList != null)
+                {
+                    foreach (List listAnime in animeList)
+                    {
+                        if (listAnime.AnimeId == id)
+                        {
+                            animeInList = listAnime;
+                        }
+                    }
+
+                    ViewBag.AnimeInList = animeInList;
+                }
+            }
+            else
             {
-                throw new HttpException(404, "Lala");
+                // throw error page
             }
 
-            ///* Check if user logged in to get user anime list */
+            /* Create status list array */
+            List<String> statusList = new List<String>();
+            statusList.Add("Currently Watching");
+            statusList.Add("Completed");
+            statusList.Add("On Hold");
+            statusList.Add("Dropped");
+            statusList.Add("Plan to Watch");
 
-
-            //List animeInList = null; // not null if there is anime in list
-
-            //if (anime != null)
-            //{
-
-            //}
+            ViewBag.StatusList = statusList;
 
             return View();
         }
@@ -80,14 +102,14 @@ namespace FDMSWeb.Controllers
             return View();
         }
 
-        public ActionResult EditRemoveAnimeList(int progressEdit, int episodeEdit, int statusEdit, int animeIdEdit, int accountIdEdit, string btnAction, int accountId, int listStatus)
+        public ActionResult EditRemoveAnimeList(int progress, int episode, int status, int animeId, int accountId, string btnAction, int listStatus)
         {
             /* Instantiate DAO obj and interact with DB */
             AnimeListDAO dao = new AnimeListDAO();
 
             if (btnAction.Equals("Edit"))
             {
-                Boolean result = dao.EditAnimeInList(accountIdEdit, animeIdEdit, progressEdit, episodeEdit, statusEdit);
+                Boolean result = dao.EditAnimeInList(accountId, animeId, progress, episode, status);
 
                 if (!result)
                 {
@@ -96,7 +118,7 @@ namespace FDMSWeb.Controllers
             }
             else if (btnAction.Equals("Delete"))
             {
-                Boolean result = dao.RemoveAnimeFromList(accountIdEdit, animeIdEdit);
+                Boolean result = dao.RemoveAnimeFromList(accountId, animeId);
 
                 if (!result)
                 {
@@ -105,6 +127,42 @@ namespace FDMSWeb.Controllers
             }
 
             return RedirectToAction("ViewAnimeList", "Anime", new { accountId = accountId, listStatus = listStatus });
+        }
+
+        public ActionResult AddRemoveAnimeList(int progress, int episode, int status, int animeId, int accountId, string btnAction)
+        {
+            /* Instantiate DAO obj and interact with DB */
+            AnimeListDAO dao = new AnimeListDAO();
+            if (btnAction.Equals("Add"))
+            {
+                Boolean result = dao.AddAnimeToList(accountId, animeId, progress, episode, status);
+
+                if (!result)
+                {
+                    // return error page
+                }
+            }
+            else if (btnAction.Equals("Edit"))
+            {
+                Boolean result = dao.EditAnimeInList(accountId, animeId, progress, episode, status);
+
+                if (!result)
+                {
+                    // return error page
+                }
+            }
+            else if (btnAction.Equals("Remove"))
+            {
+                Boolean result = dao.RemoveAnimeFromList(accountId, animeId);
+
+                if (!result)
+                {
+                    // return error page
+                }
+            }
+
+
+            return RedirectToAction("ViewAnime", "Anime", new { id = animeId });
         }
     }
 }

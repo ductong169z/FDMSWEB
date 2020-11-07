@@ -404,11 +404,11 @@
                                             <td class="list-item-data progress text-left" style="background-color: transparent!important; width: 9%">
                                                 @if (listAnime.Progress == 0 && listAnime.Status.Equals("Completed") && anime.Episodes == 0)
                                                 {
-                                                    <input size="1" type="number" name="progressEdit" class="inputtext form-control-sm text-left pl-1 progress-input" value="?" required>
+                                                    <input size="1" type="number" name="progress" class="inputtext form-control-sm text-left pl-1 progress-input" value="?" required>
                                                 }
                                                 else
                                                 {
-                                                    <input size="1" type="number" name="progressEdit" class="inputtext form-control-sm text-left pl-1 progress-input" value="@listAnime.Progress" required>
+                                                    <input size="1" type="number" name="progress" class="inputtext form-control-sm text-left pl-1 progress-input" value="@listAnime.Progress" required>
                                                 }
                                                 @Html.Raw("/")
                                                 @if (anime.Episodes != 0)
@@ -421,13 +421,13 @@
                                                 }
                                                 <input type="hidden" name="accountId" value="@ViewBag.AccountId" />
                                                 <input type="hidden" name="listStatus" value="@ViewBag.ListStatus" />
-                                                <input type="hidden" name="accountIdEdit" value="@((Session["User"] as Account).Id)" />
-                                                <input type="hidden" name="episodeEdit" value="@anime.Episodes" />
-                                                <input type="hidden" name="animeIdEdit" value="@anime.Id" />
+                                                <input type="hidden" name="accountId" value="@((Session["User"] as Account).Id)" />
+                                                <input type="hidden" name="episode" value="@anime.Episodes" />
+                                                <input type="hidden" name="animeId" value="@anime.Id" />
                                             </td>
 
                                             <td class="list-item-data status" style="width: 15%;">
-                                                <select name="statusEdit">
+                                                <select name="status">
                                                     @{int statusIndex = 1; }
                                                     @foreach (String status in ViewBag.StatusList)
                                                     {
