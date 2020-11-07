@@ -945,7 +945,7 @@ namespace FDMSWeb.Models
                 }
                 else
                 {
-                    gender = 0;
+                    gender = 0; // 0 indicates null, 1 indicates Male, 2 indicates Female
                 }
 
                 string created_at;
