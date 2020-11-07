@@ -152,7 +152,7 @@ namespace FDMSWeb.Models
                 {
                     /* Temp vars to store genre properties */
                     int id = rd.GetInt32(0);
-                    String name = rd.GetString(1);
+                    string name = rd.GetString(1);
                     string created_at;
                     if (!rd.IsDBNull(2))
                     {
@@ -213,7 +213,7 @@ namespace FDMSWeb.Models
                 {
                     /* Temp vars to store studio properties */
                     int id = rd.GetInt32(0);
-                    String name = rd.GetString(1);
+                    string name = rd.GetString(1);
                     string created_at;
                     if (!rd.IsDBNull(2))
                     {
@@ -274,7 +274,7 @@ namespace FDMSWeb.Models
                 {
                     /* Temp vars to store season properties */
                     int id = rd.GetInt32(0);
-                    String name = rd.GetString(1);
+                    string name = rd.GetString(1);
                     string created_at;
                     if (!rd.IsDBNull(2))
                     {
@@ -321,13 +321,13 @@ namespace FDMSWeb.Models
         /// Get all anime types from database
         /// </summary>
         /// <returns>A list of all anime types available</returns>
-        public List<String> GetAllTypes()
+        public List<string> GetAllTypes()
         {
             /* Declare resources used for interacting with database */
             MySqlConnection conn = null; // connection to database
             MySqlCommand cmd; // store SQL statement
             MySqlDataReader rd = null; // reader for return results
-            List<String> typeList = null; // list of all anime types
+            List<string> typeList = null; // list of all anime types
             try
             {
                 conn = DBUtils.GetConnection(); // get connection to database
@@ -341,7 +341,7 @@ namespace FDMSWeb.Models
                     // instantiate if list has not yet been instantiated
                     if (typeList == null)
                     {
-                        typeList = new List<String>();
+                        typeList = new List<string>();
                     }
 
                     // add anime type to list
@@ -450,7 +450,7 @@ namespace FDMSWeb.Models
                 {
                     /* Temp vars to store studio properties */
                     int id = rd.GetInt32(1);
-                    String name = rd.GetString(4);
+                    string name = rd.GetString(4);
                     string created_at;
                     if (!rd.IsDBNull(5))
                     {
@@ -512,7 +512,7 @@ namespace FDMSWeb.Models
                 {
                     /* Temp vars to store genre properties */
                     int id = rd.GetInt32(1);
-                    String name = rd.GetString(5);
+                    string name = rd.GetString(5);
                     string created_at;
                     if (!rd.IsDBNull(6))
                     {
@@ -908,10 +908,49 @@ namespace FDMSWeb.Models
             {
                 int id = rd.GetInt32("AccountID");
                 int roleID = rd.GetInt32("RoleID");
-                String fullname = rd.GetString("fullname");
-                String avatar = rd.GetString("avatar");
-                String email = rd.GetString("email");
-                int gender = rd.GetInt32("gender");
+                string fullname;
+
+                if (!rd.IsDBNull(rd.GetOrdinal("fullname")))
+                {
+                    fullname = rd.GetString("fullname");
+                }
+                else
+                {
+                    fullname = "";
+                }
+
+                string avatar;
+
+                if (!rd.IsDBNull(rd.GetOrdinal("avatar")))
+                {
+                    avatar = rd.GetString("avatar");
+                }
+                else
+                {
+                    avatar = "";
+                }
+
+                string email;
+
+                if (!rd.IsDBNull(rd.GetOrdinal("email")))
+                {
+                    email = rd.GetString("email");
+                }
+                else
+                {
+                    email = "";
+                }
+
+                int gender;
+                if (!rd.IsDBNull(rd.GetOrdinal("gender")))
+                {
+                    gender = rd.GetInt32("gender");
+                }
+                else
+                {
+                    gender = 0;
+                }
+
                 string created_at;
 
                 if (!rd.IsDBNull(rd.GetOrdinal("created_at")))
