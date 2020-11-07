@@ -160,13 +160,14 @@
         .list-block {
             margin-top: 10px;
             min-height: 600px;
-            padding: 0
+            padding: 0;
         }
 
         .list-table-container {
             display: block;
             margin: 0 auto;
-            width: 1024px
+            width: 1024px;
+            border-radius: 0 0 5px 5px;
         }
 
         .list-status-block {
@@ -176,6 +177,7 @@
             font-size: 22px;
             font-weight: bold;
             padding: 0.4em;
+            border-radius: 5px 5px 0 0;
         }
 
 
@@ -229,6 +231,10 @@
                 font-weight: bold;
             }
 
+            .anime-list-table .anime-list-table-list-item-data .list-item-data.status{
+                text-align: center;
+            }
+
         .progresseps {
             border: 1px solid #000000 !important;
         }
@@ -245,6 +251,10 @@
         
         .progress{
             background: none;
+        }
+
+        #navbarDropdown{
+            font-size: 16px;
         }
     </style>
     <title>
@@ -436,20 +446,18 @@
     <script>
         var status = parseInt('@ViewBag.ListStatus');
 
-        $("#search-button").click(function () {
-            var buttonState = $("#search-box").attr("class");
-            if (buttonState != "open") {
-                $("#search-box").attr("class", "open");
-            } else {
-                $("#search-form-action").submit();
-            }
-        });
+        //$("#search-button").click(function () {
+        //    var buttonState = $("#search-box").attr("class");
+        //    if (buttonState != "open") {
+        //        $("#search-box").attr("class", "open");
+        //    } else {
+        //        $("#search-form-action").submit();
+        //    }
+        //});
 
-        $("#search-box").focusout(function () {
-            $("#search-box").attr("class", "");
-        });
-
-        echo
+        //$("#search-box").focusout(function () {
+        //    $("#search-box").attr("class", "");
+        //});
 
         if (status == 0) {
             $("#all_anime").addClass("on");
