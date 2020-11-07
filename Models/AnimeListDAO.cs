@@ -965,5 +965,105 @@ namespace FDMSWeb.Models
 
             return "";
         }
+
+        public Boolean EditAnimeInList(int accountId, int animeId, int progress, int episodes, int status)
+        {
+            /* Declare resources used for interacting with database */
+            MySqlConnection conn = null; // connection to database
+            MySqlCommand cmd; // store SQL statement
+
+
+            if (progress > 8888)
+            {
+                progress = 8888;
+            }
+
+            if (episodes != 0)
+            {
+                if (progress > episodes)
+                {
+                    progress = episodes;
+                }
+                else if (progress < 0)
+                {
+                    progress = 0;
+                }
+
+                if (status == 2)
+                {
+                    progress = episodes;
+                }
+                else if (status == 5)
+                {
+                    progress = 0;
+                }
+            }
+            else
+            {
+                if (progress < 0 || status == 2 || status == 5)
+                {
+                    progress = 0;
+                }
+            }
+
+            try
+            {
+                conn = DBUtils.GetConnection(); // get connection to database
+                conn.Open(); // open the connection
+                cmd = new MySqlCommand("UPDATE List SET progress = @progress, status = @status WHERE AccountID = @accountId AND AnimeID = @animeId", conn); // SQL statement
+                cmd.Parameters.AddWithValue("@progress", progress);
+                cmd.Parameters.AddWithValue("@status", status);
+                cmd.Parameters.AddWithValue("@accountId", accountId);
+                cmd.Parameters.AddWithValue("@animeId", animeId);
+                int result = cmd.ExecuteNonQuery(); // execute the SQL statement and store results to reader
+
+                if (result > 0)
+                {
+                    return true;
+                }
+            }
+            finally
+            {
+                /* Close resources after use */
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+
+            return false;
+        }
+
+        public Boolean RemoveAnimeFromList(int accountId, int animeId)
+        {
+            /* Declare resources used for interacting with database */
+            MySqlConnection conn = null; // connection to database
+            MySqlCommand cmd; // store SQL statement
+
+            try
+            {
+                conn = DBUtils.GetConnection(); // get connection to database
+                conn.Open(); // open the connection
+                cmd = new MySqlCommand("DELETE FROM List WHERE AccountID = @accountId AND animeId = @animeId", conn); // SQL statement
+                cmd.Parameters.AddWithValue("@accountId", accountId);
+                cmd.Parameters.AddWithValue("@animeId", animeId);
+                int result = cmd.ExecuteNonQuery(); // execute the SQL statement and store results to reader
+
+                if (result > 0)
+                {
+                    return true;
+                }
+            }
+            finally
+            {
+                /* Close resources after use */
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+
+            return false;
+        }
     }
 }

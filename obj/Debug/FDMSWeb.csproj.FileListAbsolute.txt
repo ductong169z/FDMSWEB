@@ -203,3 +203,4 @@ C:\Workbench\Coding\GitHub\FDMSWEB\obj\Debug\FDMSWeb.csproj.CoreCompileInputs.ca
 C:\Workbench\Coding\GitHub\FDMSWEB\obj\Debug\FDMSWeb.csproj.CopyComplete
 C:\Workbench\Coding\GitHub\FDMSWEB\obj\Debug\FDMSWeb.dll
 C:\Workbench\Coding\GitHub\FDMSWEB\obj\Debug\FDMSWeb.pdb
+C:\Workbench\Coding\GitHub\FDMSWEB\obj\Debug\FDMSWeb.csprojAssemblyReference.cache
