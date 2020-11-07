@@ -909,7 +909,6 @@ namespace FDMSWeb.Models
                 int id = rd.GetInt32("AccountID");
                 int roleID = rd.GetInt32("RoleID");
                 string fullname;
-
                 if (!rd.IsDBNull(rd.GetOrdinal("fullname")))
                 {
                     fullname = rd.GetString("fullname");
@@ -920,7 +919,6 @@ namespace FDMSWeb.Models
                 }
 
                 string avatar;
-
                 if (!rd.IsDBNull(rd.GetOrdinal("avatar")))
                 {
                     avatar = rd.GetString("avatar");
@@ -931,7 +929,6 @@ namespace FDMSWeb.Models
                 }
 
                 string email;
-
                 if (!rd.IsDBNull(rd.GetOrdinal("email")))
                 {
                     email = rd.GetString("email");
