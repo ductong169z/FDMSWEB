@@ -368,7 +368,7 @@
                 }
 
         .list-status-title {
-            background-image: url('~/Content/Backgrounds/bg-03.jpg');
+            background-image: url(/Content/Backgrounds/bg-03.jpg);
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center;
@@ -962,6 +962,9 @@
         }
     </title>
 </head>
+<title>
+    @Html.Raw(ViewBag.AccountUsername + "'s Anime List - WibuAnimeList")
+</title>
 <body>
     <div class="header lala col-md-4 font-bold font-weight-bold" style="color:#ffffff;text-shadow:2px 2px #6c757d">
         <div class="header-menu">
@@ -983,17 +986,17 @@
     <div id="list-container" class="list-container">
         <div id="status-menu" class="status-menu-container">
             <div class="status-menu">
-                <a id="all_anime" href="ViewAnimeList/ViewAnimeList?accountId=@ViewBag.AccountId&listStatus=0"
+                <a id="all_anime" href="ViewAnimeList?accountId=@ViewBag.AccountId&listStatus=0"
                    class="status-button all_anime">All Anime</a>
-                <a id="watching" href="ViewAnimeList/ViewAnimeList?accountId=@ViewBag.AccountId&listStatus=1"
+                <a id="watching" href="ViewAnimeList?accountId=@ViewBag.AccountId&listStatus=1"
                    class="status-button watching ">Currently Watching</a>
-                <a id="completed" href="ViewAnimeList/ViewAnimeList?accountId=@ViewBag.AccountId&listStatus=2"
+                <a id="completed" href="ViewAnimeList?accountId=@ViewBag.AccountId&listStatus=2"
                    class="status-button completed ">Completed</a>
-                <a id="onhold" href="ViewAnimeList/ViewAnimeList?accountId=@ViewBag.AccountId&listStatus=3"
+                <a id="onhold" href="ViewAnimeList?accountId=@ViewBag.AccountId&listStatus=3"
                    class="status-button onhold ">On Hold</a>
-                <a id="dropped" href="ViewAnimeList/ViewAnimeList?accountId=@ViewBag.AccountId&listStatus=4"
+                <a id="dropped" href="ViewAnimeList?accountId=@ViewBag.AccountId&listStatus=4"
                    class="status-button dropped ">Dropped</a>
-                <a id="plantowatch" href="ViewAnimeList/ViewAnimeList?accountId=@ViewBag.AccountId&listStatus=5"
+                <a id="plantowatch" href="ViewAnimeList?accountId=@ViewBag.AccountId&listStatus=5"
                    class="status-button plantowatch ">Plan to Watch</a>
                 <div class="search-container">
                     <form action="searchInList" id="search-form-action">
@@ -1025,7 +1028,7 @@
                     {
                         <span class="text">ON HOLD</span>
                     }
-                    else if (@ViewBag.ListStatus == 1)
+                    else if (@ViewBag.ListStatus == 4)
                     {
                         <span class="text">DROPPED</span>
                     }
@@ -1041,15 +1044,15 @@
                             <th class="header-title number">No.</th>
                             <th class="header-title image"><a class="link hover_info" style="font-size: 12px;">Poster</a></th>
                             <th class="header-title title"><a href="" class="link sort" style="font-size: 12px;">Anime Title</th>
-                            <th class="header-title score"> <a href="" class="link sort" style="font-size: 12px;">Type</th>
-                            <th class="header-title type"><a href="" class="link sort" style="font-size: 12px;">Progress</a></th>
-                            <th class="header-title progress"><a href="" class="link sort" style="font-size: 12px;">Status</a></th>
+                            <th class="header-title type"> <a href="" class="link sort" style="font-size: 12px;">Type</th>
+                            <th class="header-title progress"><a href="" class="link sort" style="font-size: 12px;">Progress</a></th>
+                            <th class="header-title status"><a href="" class="link sort" style="font-size: 12px;">Status</a></th>
                             <th class="header-title edit"><a href="" class="link sort" style="font-size: 12px;">Edit</a></th>
                             <th class="header-title delete"><a href="" class="link sort" style="font-size: 12px;">Delete</a></th>
                         </tr>
                     </thead>
                     @{ int animeIndex = 0; }
-                    @if (@ViewBag.AnimeDetailList.Count != 0)
+                    @if (@ViewBag.AnimeDetailList != null && @ViewBag.AnimeDetailList.Count != 0)
                     {
                         foreach (FDMSWeb.Models.Anime anime in ViewBag.AnimeDetailList)
                         {
@@ -1058,32 +1061,32 @@
                             <tbody class="list-item">
                                 <form action="editRemoveAnimeFromList" method="POST">
                                     <tr class="list-table-data">
-                                        <td class="data number" style="width: 5%;">@animeIndex</td>
+                                        <td class="data number text-center" style="width: 5%;">@animeIndex</td>
 
-                                        <td class="data image" style="width: 7%;">
+                                        <td class="data image text-center" style="width: 7%;">
                                             <a href="Anime/ViewAnime/animeID=@anime.Id" class="link sort">
                                                 <img src="~/Content/Images/Posters/@anime.Poster" class="hover-info image">
                                             </a>
                                         </td>
 
-                                        <td class="data title clearfix" style="width: 48%;">
-                                            <a href="Anime/ViewAnime/animeID=@anime.Id" class="link sort">@anime.Name</a>
+                                        <td class="data title clearfix text-wrap" style="width: 46%;">
+                                            <a href="ViewAnime?id=@anime.Id" class="link sort">@anime.Name</a>
                                         </td>
 
-                                        <td class="data type" style="width: 8%;">
+                                        <td class="data type text-center" style="width: 8%;">
                                             @anime.Type
                                         </td>
 
-                                        <td class="data progress" style="background-color: transparent!important; width: 9%; text-align: left">
+                                        <td class="data progress text-left" style="background-color: transparent!important; width: 9%; text-align: left">
                                             @if (listAnime.Progress == 0 && listAnime.Status.Equals("Completed") && anime.Episodes == 0)
                                             {
-                                                <input type="text" style="font-size: 12px;" name="progressEdit" size="1" class="inputtext form-control-sm progresseps" value="?" style="border: 1px solid #ced4da!important;"> @Html.Raw("/")
+                                                <input class="text-left pl-1" type="text" style="font-size: 12px;" name="progressEdit" size="1" class="inputtext form-control-sm progresseps" value="?" style="border: 1px solid #ced4da!important;">
                                             }
                                             else
                                             {
-                                                <input type="text" style="font-size: 12px;" name="progressEdit" size="1" class="inputtext form-control-sm progresseps" value="@listAnime.Progress" style="border: 1px solid #ced4da!important;"> @Html.Raw("/")
+                                                <input class="text-left pl-1" type="text" style="font-size: 12px;" name="progressEdit" size="1" class="inputtext form-control-sm progresseps" value="@listAnime.Progress" style="border: 1px solid #ced4da!important;">
                                             }
-
+                                            @Html.Raw("/")
                                             @if (anime.Episodes != 0)
                                             {
                                                 @Html.Raw(anime.Episodes)
@@ -1119,21 +1122,21 @@
                                                 }
                                             </select>
                                         </td>
-                                        <td style="width: 5%; text-align: center;">
+                                        <td class="text-center" style="width: 5%; text-align: center;">
                                             <input type="submit" name="btnAction" style="font-size: 12px;" value="Edit" />
                                         </td>
-                                        <td style="width: 6%; text-align: center;">
+                                        <td class="pr-2 text-center" style="width: 6%; text-align: center;">
                                             <input type="submit" name="btnAction" style="font-size: 12px;" value="Delete" />
                                         </td>
                                     </tr>
                                 </form>
                             </tbody>
-                        }
-                    }
+                                                        }
+                                                    }
                 </table>
-                @if (@ViewBag.AnimeDetailList.Count == 0)
+                @if (@ViewBag.AnimeDetailList == null || @ViewBag.AnimeDetailList.Count == 0)
                 {
-                    <div style="text-align: center!important; font-size: 20px; margin-top: 3%;">There are no animes to display!</div>
+                    <div style="text-align: center!important; font-size: 20px; margin-top: 3%;">There are no animes in the list!</div>
                 }
             </div>
         </div>

@@ -15,8 +15,8 @@ namespace FDMSWeb
 
             routes.MapRoute(
                 name: "Default",
-                url: "{action}",
-                defaults: new { controller = "Home", action = "Index" }
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
 
             //routes.MapRoute(
