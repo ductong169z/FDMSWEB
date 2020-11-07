@@ -19,9 +19,9 @@ namespace FDMSWeb.Controllers
             List animeInList = null;
 
             /* Check if user logged in to get user anime list */
-            if ((Session["User"] as Account) != null)
+            if (Session["User"] != null)
             {
-                dao.GetAnimeList((Session["User"] as Account).Id, 0);
+                animeList = dao.GetAnimeList((Session["User"] as Account).Id, 0);
             }
 
             if (anime != null)
@@ -39,14 +39,14 @@ namespace FDMSWeb.Controllers
                             animeInList = listAnime;
                         }
                     }
-
-                    ViewBag.AnimeInList = animeInList;
                 }
             }
             else
             {
                 // throw error page
             }
+
+            ViewBag.AnimeInList = animeInList;
 
             /* Create status list array */
             List<String> statusList = new List<String>();
