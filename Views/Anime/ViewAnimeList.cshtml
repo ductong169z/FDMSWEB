@@ -1082,11 +1082,11 @@
                                         <td class="data progress text-left" style="background-color: transparent!important; width: 9%; text-align: left">
                                             @if (listAnime.Progress == 0 && listAnime.Status.Equals("Completed") && anime.Episodes == 0)
                                             {
-                                                <input class="text-left pl-1" type="text" style="font-size: 12px;" name="progressEdit" size="1" class="inputtext form-control-sm progresseps" value="?" style="border: 1px solid #ced4da!important;">
+                                                <input class="text-left pl-1" type="text" style="font-size: 12px;" name="progressEdit" size="1" class="inputtext form-control-sm progresseps" value="?" style="border: 1px solid #ced4da!important;" required>
                                             }
                                             else
                                             {
-                                                <input class="text-left pl-1" type="text" style="font-size: 12px;" name="progressEdit" size="1" class="inputtext form-control-sm progresseps" value="@listAnime.Progress" style="border: 1px solid #ced4da!important;">
+                                                <input class="text-left pl-1" type="text" style="font-size: 12px;" name="progressEdit" size="1" class="inputtext form-control-sm progresseps" value="@listAnime.Progress" style="border: 1px solid #ced4da!important;" required>
                                             }
                                             @Html.Raw("/")
                                             @if (anime.Episodes != 0)
@@ -1101,7 +1101,7 @@
                                             <input type="hidden" name="animeIdEdit" value="@anime.Id" />
                                             @if ((@Session["User"] as Account) != null)
                                             {
-                                                <input type="hidden" name="accountIdEdit" value="@((Session["User"] as Account).Id) " />
+                                                <input type="hidden" name="accountIdEdit" value="@((Session["User"] as Account).Id)" />
                                             }
                                         </td>
 
@@ -1128,7 +1128,7 @@
                                             <input type="submit" name="btnAction" style="font-size: 12px;" value="Edit" />
                                         </td>
                                         <td class="pr-2 pl-2 text-center" style="width: 6%; text-align: center;">
-                                            <input type="submit" name="btnAction" style="font-size: 12px;" value="Delete" />
+                                            <input type="submit" name="btnAction" style="font-size: 12px;" value="Delete" onclick="return confirm('Are you sure you want to remove anime from list?');" />
                                         </td>
                                     </tr>
                                 </form>
