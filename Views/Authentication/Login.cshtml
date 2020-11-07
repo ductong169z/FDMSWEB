@@ -9,16 +9,12 @@
 <head>
     <title>Login - WibuAnimeList</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="https://use.fontawesome.com/7a37b2739f.js"></script>
+    @Styles.Render("~/bundles/css")
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
     <link rel="icon" type="image/png" href="~/Content/login/images/icons/favicon.ico" />
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="~/Content/login/vendor/bootstrap/css/bootstrap.min.css">
+    @*<link rel="stylesheet" type="text/css" href="~/Content/login/vendor/bootstrap/css/bootstrap.min.css">*@
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="~/Content/login/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
     <!--===============================================================================================-->
@@ -36,7 +32,7 @@
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="~/Content/login/css/util.css">
     <link rel="stylesheet" type="text/css" href="~/Content/login/css/main.css">
-        <link rel="stylesheet" href="~/Library/Bootstrap/css/bootstrap.min.css">
+    @*<link rel="stylesheet" href="~/Library/Bootstrap/css/bootstrap.min.css">*@
 
     <!--===============================================================================================-->
     <script src="~/Content/login/vendor/jquery/jquery-3.2.1.min.js"></script>
@@ -44,7 +40,7 @@
     <script src="~/Content/login/vendor/animsition/js/animsition.min.js"></script>
     <!--===============================================================================================-->
     <script src="~/Content/login/vendor/bootstrap/js/popper.js"></script>
-    <script src="~/Content/login/vendor/bootstrap/js/bootstrap.min.js"></script>
+    @*<script src="~/Content/login/vendor/bootstrap/js/bootstrap.min.js"></script>*@
     <!--===============================================================================================-->
     <script src="~/Content/login/vendor/select2/select2.min.js"></script>
     <!--===============================================================================================-->
@@ -54,7 +50,7 @@
     <script src="~/Content/login/vendor/countdowntime/countdowntime.js"></script>
     <!--===============================================================================================-->
     <script src="~/Content/login/js/main.js"></script>
-        <link rel="stylesheet" href="~/Library/Bootstrap/css/bootstrap.min.css">
+    @*<link rel="stylesheet" href="~/Library/Bootstrap/css/bootstrap.min.css">*@
 
     <!--===============================================================================================-->
 </head>
@@ -76,7 +72,9 @@
 
                 <a type="button" href="#" class="btn btn-success ">Sign Up</a>
             </div>
-                } else{
+        }
+        else
+        {
             <ul class="nav navbar-nav">
                 <li class="dropdown">
                     <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
@@ -90,11 +88,11 @@
                 </li>
             </ul>
         }
-        </nav>
+    </nav>
     <div class="limiter">
         <div class="container-login100" style="        background-image: url('../Content/Backgrounds/bg-02.jpg');">
             <div class="wrap-login100">
-                <form class="login100-form validate-form" action="@Url.Action("Login", "Authentication")"  method="POST">
+                <form class="login100-form validate-form" action="@Url.Action("Login", "Authentication")" method="POST">
                     @Html.AntiForgeryToken()
                     <span class="login100-form-logo">
                         <img src="~/Content/Images/lilo.png" width="100" height="100">
@@ -118,7 +116,7 @@
                         <p class="text-lg" style="color:#cb7476;font-weight: bold">
                             @if (ViewBag.error != null)
                             {
-                               @ViewBag.error
+                                @ViewBag.error
                             }
                         </p>
                     </div>
@@ -134,11 +132,10 @@
             </div>
         </div>
     </div>
-
-
     <div id="dropDownSelect1"></div>
-
-
-
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/fontawesome")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
 </body>
 </html>
