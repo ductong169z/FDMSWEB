@@ -69,13 +69,13 @@
             cursor: pointer;
         }
 
-        .proile-rating {
+        .profile-rating {
             font-size: 12px;
             color: #818182;
             margin-top: 5%;
         }
 
-            .proile-rating span {
+            .profile-rating span {
                 color: #495057;
                 font-size: 15px;
                 font-weight: 600;
@@ -110,7 +110,7 @@
 
             .details-work a {
                 text-decoration: none;
-                color: #495057;
+                color: #3333FF;
                 font-weight: 600;
                 font-size: 14px;
             }
@@ -148,8 +148,8 @@
             background-color: #fff;
             border-color: #007bff;
             width: 90%;
-            margin-top: 3%;
-            margin-bottom: 8%;
+            margin-top: 1%;
+            margin-bottom: 6%;
         }
 
         .spaceit {
@@ -174,6 +174,7 @@
         .card.card-body {
             padding: 15px;
             margin-top: 0;
+            padding-bottom: 5px;
         }
 
         form {
@@ -199,10 +200,6 @@
             width: 100%;
         }
 
-/*        .epstr{
-            margin-top: 10px !important;
-        }*/
-
         .status {
             text-align: left;
             padding-left: 2%;
@@ -225,6 +222,8 @@
         .inputButton {
             text-align: right;
             margin: 2px;
+            border-radius: 2px;
+            border: 1px solid;
         }
 
         .submittd {
@@ -291,7 +290,7 @@
                                         <form action="@Url.Action("AddRemoveAnimeList", "Anime")" method="POST">
                                             <table>
                                                 <input type="hidden" name="animeId" value="@ViewBag.Anime.Id" />
-                                                <input type="hidden" name="accountId" value="@(Session["User"] as FDMSWeb.Models.Account).Id" />
+                                                <input type="hidden" name="accountId" value="@((Session["User"] as FDMSWeb.Models.Account).Id)" />
                                                 <tbody>
                                                     <tr class="statustr">
                                                         <td class="status spaceit">Status:</td>
@@ -303,12 +302,10 @@
                                                                     if (!status.Equals(ViewBag.AnimeInList.Status))
                                                                     {
                                                                         <option value="@statusIndex"> @status </option>
-                                                                        <br />
                                                                     }
                                                                     else
                                                                     {
                                                                         <option value="@statusIndex" selected="selected">  @status  </option>
-                                                                        <br />
                                                                     }
                                                                     statusIndex++;
                                                                 }
@@ -342,7 +339,7 @@
                                                         <td></td>
                                                         <td class="submittd">
                                                             <input type="submit" name="btnAction" value="Edit" class="inputButton">
-                                                            <input type="submit" name="btnAction" value="Remove" class="inputButton">
+                                                            <input type="submit" name="btnAction" value="Remove" class="inputButton" onclick="return confirm('Are you sure you want to remove \'@ViewBag.Anime.Name\' from list?');">
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -374,7 +371,6 @@
                                                                 @foreach (string status in ViewBag.StatusList)
                                                                 {
                                                                     <option value="@statusIndex"> @status </option>
-                                                                    <br />
                                                                     statusIndex++;
                                                                 }
                                                             </select>
