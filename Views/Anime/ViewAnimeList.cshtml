@@ -14,7 +14,7 @@
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            margin: 0 0 0 0;
+            margin: 0;
             text-align: center;
             font-family: Verdana, Geneva, Tahoma, sans-serif;
             font-size: 12px;
@@ -28,10 +28,11 @@
         /* Header section */
         .header {
             margin: 2rem;
-            font-size: 30px;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 25px;
+            font-family: Verdana;
             color: #ffffff;
-            text-shadow: 1px 2px #6c757d;
+            font-weight: normal !important;
+            text-shadow: 0px 0px 5px #000000;
         }
 
         /* List status block */
@@ -60,7 +61,8 @@
             width: 1058px;
             height: 46px;
             border: 0;
-            z-index: 1
+            z-index: 1;
+            margin-top: 2px;
         }
 
             .status-menu-container .status-menu {
@@ -79,11 +81,11 @@
                     text-align: center;
                     vertical-align: middle;
                     font-size: 1.4em;
-                    color: #787878;
+                    color: #343a40;
                 }
 
                     .status-menu-container .status-menu .status-button.on {
-                        color: #787878;
+                        color: #343a40;
                         font-weight: bold;
                     }
 
@@ -329,7 +331,7 @@
         </div>
 
         <div class="list-block">
-            <div class="list-table-container all_anime">
+            <div class="list-table-container all_anime pb-3">
                 <div class="list-status-block">
                     @if (@ViewBag.ListStatus == 0)
                     {
@@ -357,7 +359,7 @@
                     }
 
                 </div>
-                <table class="anime-list-table mb-3" id="myListTable">
+                <table class="anime-list-table" id="myListTable">
                     <thead>
                         <tr class="anime-list-table-header">
                             <th class="header-title number">No.</th>
@@ -480,47 +482,47 @@
         //});
 
         if (status == 0) {
-            $("#all_anime").addClass("on");
-            $("#watching").removeClass("on");
-            $("#completed").removeClass("on");
-            $("#onhold").removeClass("on");
-            $("#dropped").removeClass("on");
-            $("#plantowatch").removeClass("on");
+            document.getElementById('all_anime').classList.add("on");
+            document.getElementById('watching').classList.remove("on");
+            document.getElementById('completed').classList.remove("on");
+            document.getElementById('onhold').classList.remove("on");
+            document.getElementById('dropped').classList.remove("on");
+            document.getElementById('plantowatch').classList.remove("on");
         } else if (status == 1) {
-            $("#all_anime").removeClass("on");
-            $("#watching").addClass("on");
-            $("#completed").removeClass("on");
-            $("#onhold").removeClass("on");
-            $("#dropped").removeClass("on");
-            $("#plantowatch").removeClass("on");
+            document.getElementById('all_anime').classList.remove("on");
+            document.getElementById('watching').classList.add("on");
+            document.getElementById('completed').classList.remove("on");
+            document.getElementById('onhold').classList.remove("on");
+            document.getElementById('dropped').classList.remove("on");
+            document.getElementById('plantowatch').classList.remove("on");
         } else if (status == 2) {
-            $("#all_anime").removeClass("on");
-            $("#watching").removeClass("on");
-            $("#completed").addClass("on");
-            $("#onhold").removeClass("on");
-            $("#dropped").removeClass("on");
-            $("#plantowatch").removeClass("on");
+            document.getElementById('all_anime').classList.remove("on");
+            document.getElementById('watching').classList.remove("on");
+            document.getElementById('completed').classList.add("on");
+            document.getElementById('onhold').classList.remove("on");
+            document.getElementById('dropped').classList.remove("on");
+            document.getElementById('plantowatch').classList.remove("on");
         } else if (status == 3) {
-            $("#all_anime").removeClass("on");
-            $("#watching").removeClass("on");
-            $("#completed").removeClass("on");
-            $("#onhold").addClass("on");
-            $("#dropped").removeClass("on");
-            $("#plantowatch").removeClass("on");
+            document.getElementById('all_anime').classList.remove("on");
+            document.getElementById('watching').classList.remove("on");
+            document.getElementById('completed').classList.remove("on");
+            document.getElementById('onhold').classList.add("on");
+            document.getElementById('dropped').classList.remove("on");
+            document.getElementById('plantowatch').classList.remove("on");
         } else if (status == 4) {
-            $("#all_anime").removeClass("on");
-            $("#watching").removeClass("on");
-            $("#completed").removeClass("on");
-            $("#onhold").removeClass("on");
-            $("#dropped").addClass("on");
-            $("#plantowatch").removeClass("on");
+            document.getElementById('all_anime').classList.remove("on");
+            document.getElementById('watching').classList.remove("on");
+            document.getElementById('completed').classList.remove("on");
+            document.getElementById('onhold').classList.remove("on");
+            document.getElementById('dropped').classList.add("on");
+            document.getElementById('plantowatch').classList.remove("on");
         } else if (status == 5) {
-            $("#all_anime").removeClass("on");
-            $("#watching").removeClass("on");
-            $("#completed").removeClass("on");
-            $("#onhold").removeClass("on");
-            $("#dropped").removeClass("on");
-            $("#plantowatch").addClass("on");
+            document.getElementById('all_anime').classList.remove("on");
+            document.getElementById('watching').classList.remove("on");
+            document.getElementById('completed').classList.remove("on");
+            document.getElementById('onhold').classList.remove("on");
+            document.getElementById('dropped').classList.remove("on");
+            document.getElementById('plantowatch').classList.add("on");
         }
     </script>
 </body>
