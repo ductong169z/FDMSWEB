@@ -167,8 +167,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ViewAnimeController.cs" />
-    <Compile Include="Controllers\ViewAnimeListController.cs" />
+    <Compile Include="Controllers\AnimeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -186,6 +185,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Backgrounds\bg-03.jpg" />
     <Content Include="Content\Backgrounds\bg-12.png" />
     <Content Include="Content\Backgrounds\bg-15.jpg" />
     <Content Include="Content\Backgrounds\bg-animelist.jpg" />

@@ -15,20 +15,20 @@ namespace FDMSWeb
 
             routes.MapRoute(
                 name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                url: "{controller}/{action}",
+                defaults: new { controller = "Home", action = "Index" }
             );
 
             routes.MapRoute(
                 name: "View Anime",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "ViewAnime", action = "ViewAnime", id = 2 }
+                url: "{action}/animeId={id}",
+                defaults: new { controller = "Anime", action = "ViewAnime", id = 2 }
             );
 
             routes.MapRoute(
                 name: "View Anime List",
-                url: "{controller}/{action}/accountId={accountId}&listStatus={listStatus}",
-                defaults: new { controller = "ViewAnimeList", action = "ViewAnimeList", id = 3 }
+                url: "{action}/accountId={accountId}&listStatus={listStatus}",
+                defaults: new { controller = "Anime", action = "ViewAnimeList", id = 3 }
             );
         }
     }

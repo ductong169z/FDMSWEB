@@ -2,7 +2,7 @@
     ViewBag.Title = "ViewAnimeList";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@using FDMSWeb.Models
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +13,7 @@
              */
 
         body {
-            background: url(/Content/Backgrounds/bg-animelist.jpg);
+            background: url(/Content/Backgrounds/bg-12.png);
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center;
@@ -367,6 +367,13 @@
                     top: 50px;
                 }
 
+        .list-status-title {
+            background-image: url('~/Content/Backgrounds/bg-03.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
 
         /**
              * List Container
@@ -945,26 +952,29 @@
         }
     </style>
     <title>
-        @*<s:if test="%{accountUsername != null}">
-            <s:property value="accountUsername" />'s Anime List - Wibu Anime List
-        </s:if>
-        <s:else>
-            User Anime List - Wibu Anime List
-        </s:else>*@
-        Wibu Anime List
+        @if (ViewBag.AccountUsername != null)
+        {
+            @Html.Raw(ViewBag.AccountUsername + "'s Anime List - Wibu Anime List")
+        }
+        else
+        {
+            @Html.Raw("User Anime List - Wibu Anime List")
+        }
     </title>
 </head>
 <body>
     <div class="header lala col-md-4 font-bold font-weight-bold" style="color:#ffffff;text-shadow:2px 2px #6c757d">
         <div class="header-menu">
-            <div class="btn-menu" style="font-size:20px">
+            <div class="btn-menu text-center" style="font-size:20px">
                 Viewing
-                @*<s:if test="%{accountUsername != null}">
-                        <s:property value="accountUsername" />'s
-                    </s:if>
-                    <s:else>
-                        User
-                    </s:else>*@
+                @if (ViewBag.AccountUsername != null)
+                {
+                    @Html.Raw(ViewBag.AccountUsername + "'s")
+                }
+                else
+                {
+                    @Html.Raw("User")
+                }
                 Anime List
             </div>
         </div>
@@ -974,17 +984,17 @@
         <div id="status-menu" class="status-menu-container">
             <div class="status-menu">
                 <a id="all_anime" href="ViewAnimeList/ViewAnimeList?accountId=@ViewBag.AccountId&listStatus=0"
-                class="status-button all_anime">All Anime</a>
+                   class="status-button all_anime">All Anime</a>
                 <a id="watching" href="ViewAnimeList/ViewAnimeList?accountId=@ViewBag.AccountId&listStatus=1"
                    class="status-button watching ">Currently Watching</a>
                 <a id="completed" href="ViewAnimeList/ViewAnimeList?accountId=@ViewBag.AccountId&listStatus=2"
-                class="status-button completed ">Completed</a>
+                   class="status-button completed ">Completed</a>
                 <a id="onhold" href="ViewAnimeList/ViewAnimeList?accountId=@ViewBag.AccountId&listStatus=3"
-                class="status-button onhold ">On Hold</a>
+                   class="status-button onhold ">On Hold</a>
                 <a id="dropped" href="ViewAnimeList/ViewAnimeList?accountId=@ViewBag.AccountId&listStatus=4"
                    class="status-button dropped ">Dropped</a>
                 <a id="plantowatch" href="ViewAnimeList/ViewAnimeList?accountId=@ViewBag.AccountId&listStatus=5"
-                class="status-button plantowatch ">Plan to Watch</a>
+                   class="status-button plantowatch ">Plan to Watch</a>
                 <div class="search-container">
                     <form action="searchInList" id="search-form-action">
                         <div id="search-box" class=""><input name="search-text" type="text" value=""></div>
@@ -997,7 +1007,6 @@
         </div>
 
         <div class="list-block">
-
             <div class="list-unit all_anime">
                 <div class="list-status-title">
                     @if (@ViewBag.ListStatus == 0)
@@ -1040,139 +1049,154 @@
                         </tr>
                     </thead>
                     @{ int animeIndex = 0; }
+                    @if (@ViewBag.AnimeDetailList.Count != 0)
+                    {
+                        foreach (FDMSWeb.Models.Anime anime in ViewBag.AnimeDetailList)
+                        {
+                            FDMSWeb.Models.List listAnime = ViewBag.AnimeList[animeIndex];
+                            animeIndex++;
+                            <tbody class="list-item">
+                                <form action="editRemoveAnimeFromList" method="POST">
+                                    <tr class="list-table-data">
+                                        <td class="data number" style="width: 5%;">@animeIndex</td>
 
-                    <tbody class="list-item">
-                        <form action="editRemoveAnimeFromList" method="POST">
-                            <tr class="list-table-data">
-                                <td class="data number" style="width: 5%;"><%= animeIndex%></td>
+                                        <td class="data image" style="width: 7%;">
+                                            <a href="Anime/ViewAnime/animeID=@anime.Id" class="link sort">
+                                                <img src="~/Content/Images/Posters/@anime.Poster" class="hover-info image">
+                                            </a>
+                                        </td>
 
-                                <td class="data image" style="width: 7%;">
-                                    <a href="viewAnime?animeID=<%= anime.getId()%>" class="link sort">
-                                        <img src="images/poster/<%= anime.getPoster()%>" class="hover-info image">
-                                    </a>
-                                </td>
+                                        <td class="data title clearfix" style="width: 48%;">
+                                            <a href="Anime/ViewAnime/animeID=@anime.Id" class="link sort"><%= anime.getName()%></a>
+                                        </td>
 
-                                <td class="data title clearfix" style="width: 48%;">
-                                    <a href="viewAnime?animeID=<%= anime.getId()%>" class="link sort"><%= anime.getName()%></a>
-                                </td>
+                                        <td class="data type" style="width: 8%;">
+                                            @anime.Type
+                                        </td>
 
-                                <td class="data type" style="width: 8%;">
-                                    <%= anime.getType()%>
-                                </td>
+                                        <td class="data progress" style="background-color: transparent!important; width: 9%; text-align: left">
+                                            @if (listAnime.Progress == 0 && listAnime.Status.Equals("Completed") && anime.Episodes == 0)
+                                            {
+                                                <input type="text" style="font-size: 12px;" name="progressEdit" size="1" class="inputtext form-control-sm progresseps" value="?" style="border: 1px solid #ced4da!important;"> @Html.Raw("/")
+                                            }
+                                            else
+                                            {
+                                                <input type="text" style="font-size: 12px;" name="progressEdit" size="1" class="inputtext form-control-sm progresseps" value="@listAnime.Progress" style="border: 1px solid #ced4da!important;"> @Html.Raw("/")
+                                            }
 
-                                <td class="data progress" style="background-color: transparent!important; width: 9%; text-align: left">
-                                    <% if (listAnime.getProgress() == 0 && listAnime.getStatus().equals("Completed") && anime.getEpisodes() == 0) { %>
-                                    <input type="text" style="font-size: 12px;" name="progressEdit" size="1" class="inputtext form-control-sm progresseps" value="?" style="border: 1px solid #ced4da!important;"> /
-                                    <%} else {%>
-                                    <input type="text" style="font-size: 12px;" name="progressEdit" size="1" class="inputtext form-control-sm progresseps" value="<%= listAnime.getProgress()%>" style="border: 1px solid #ced4da!important;"> /
-                                    <% }%>
+                                            @if (anime.Episodes != 0)
+                                            {
+                                                @Html.Raw(anime.Episodes)
+                                            }
+                                            else
+                                            {
+                                                @Html.Raw("?")
+                                            }
+                                            <input type="hidden" name="episodesEdit" value="@anime.Episodes" />
+                                            <input type="hidden" name="animeIDEdit" value="@anime.Id" />
+                                            @if ((@Session["User"] as Account) != null)
+                                            {
+                                                <input type="hidden" name="accountIDEdit" value="@((Session["User"] as Account).Id) " />
+                                            }
+                                        </td>
 
-                                    <% if (anime.getEpisodes() != 0) {%>
-                                    <%= anime.getEpisodes()%>
-                                    <%} else {%>
-                                    ?
-                                    <% }%>
-                                    <input type="hidden" name="episodesEdit" value="<%= anime.getEpisodes()%>" />
-                                    <input type="hidden" name="animeIDEdit" value="<%= anime.getId()%>" />
-                                    <% if (session.getAttribute("user") != null) { %>
-                                    <input type="hidden" name="accountIDEdit" value="<s:property value=" %{#session.id}" />" />
-                                    <% } %>
-                                </td>
-
-                                <td class="data status" style="width: 15%;">
-                                    <select name="statusEdit">
-                                        <%
-                                        int statusIndex = 1;
-                                        for (String status : statusList) {
-                                        if (!status.equals(listAnime.getStatus())) {
-                                        %>
-                                        <option value="<%= statusIndex%>"> <%= status%> </option>
-                                        <br />
-                                        <% } else {%>
-                                        <option value="<%= statusIndex%>" selected="selected"> <%= status%> </option>
-                                        <br />
-                                        <% }
-                                        statusIndex++;
-                                        } %>
-                                    </select>
-                                </td>
-                                <td style="width: 5%; text-align: center;">
-                                    <input type="submit" name="btnAction" style="font-size: 12px;" value="Edit" />
-                                </td>
-                                <td style="width: 6%; text-align: center;">
-                                    <input type="submit" name="btnAction" style="font-size: 12px;" value="Delete" />
-                                </td>
-                            </tr>
-                        </form>
-                    </tbody>
-                    <% }
-                    }%>
+                                        <td class="data status" style="width: 15%;">
+                                            <select name="statusEdit">
+                                                @{int statusIndex = 1; }
+                                                @foreach (String status in ViewBag.StatusList)
+                                                {
+                                                    if (!status.Equals(listAnime.Status))
+                                                    {
+                                                        <option value="@statusIndex"> @status </option>
+                                                        <br />
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="@statusIndex" selected="selected"> @status </option>
+                                                        <br />
+                                                    }
+                                                    statusIndex++;
+                                                }
+                                            </select>
+                                        </td>
+                                        <td style="width: 5%; text-align: center;">
+                                            <input type="submit" name="btnAction" style="font-size: 12px;" value="Edit" />
+                                        </td>
+                                        <td style="width: 6%; text-align: center;">
+                                            <input type="submit" name="btnAction" style="font-size: 12px;" value="Delete" />
+                                        </td>
+                                    </tr>
+                                </form>
+                            </tbody>
+                        }
+                    }
                 </table>
-                @*<% if (animeDetailsList.isEmpty()) {%>
-                <div style="text-align: center!important; font-size: 20px; margin-top: 3%;">There are no animes to display!</div>
-                <% }%>*@
+                @if (@ViewBag.AnimeDetailList.Count == 0)
+                {
+                    <div style="text-align: center!important; font-size: 20px; margin-top: 3%;">There are no animes to display!</div>
+                }
             </div>
         </div>
     </div>
 
     <script>
-            var status = 0 /*<s:property value="listStatus" />*/;
-            $("#search-button").click(function () {
-                var buttonState = $("#search-box").attr("class");
-                if (buttonState != "open") {
-                    $("#search-box").attr("class", "open");
-                } else {
-                    $("#search-form-action").submit();
-                }
-            });
-
-            $("#search-box").focusout(function () {
-                $("#search-box").attr("class", "");
-            });
-
-            if (status == 0) {
-                $("#all_anime").addClass("on");
-                $("#watching").removeClass("on");
-                $("#completed").removeClass("on");
-                $("#onhold").removeClass("on");
-                $("#dropped").removeClass("on");
-                $("#plantowatch").removeClass("on");
-            } else if (status == 1) {
-                $("#all_anime").removeClass("on");
-                $("#watching").addClass("on");
-                $("#completed").removeClass("on");
-                $("#onhold").removeClass("on");
-                $("#dropped").removeClass("on");
-                $("#plantowatch").removeClass("on");
-            } else if (status == 2) {
-                $("#all_anime").removeClass("on");
-                $("#watching").removeClass("on");
-                $("#completed").addClass("on");
-                $("#onhold").removeClass("on");
-                $("#dropped").removeClass("on");
-                $("#plantowatch").removeClass("on");
-            } else if (status == 3) {
-                $("#all_anime").removeClass("on");
-                $("#watching").removeClass("on");
-                $("#completed").removeClass("on");
-                $("#onhold").addClass("on");
-                $("#dropped").removeClass("on");
-                $("#plantowatch").removeClass("on");
-            } else if (status == 4) {
-                $("#all_anime").removeClass("on");
-                $("#watching").removeClass("on");
-                $("#completed").removeClass("on");
-                $("#onhold").removeClass("on");
-                $("#dropped").addClass("on");
-                $("#plantowatch").removeClass("on");
-            } else if (status == 5) {
-                $("#all_anime").removeClass("on");
-                $("#watching").removeClass("on");
-                $("#completed").removeClass("on");
-                $("#onhold").removeClass("on");
-                $("#dropped").removeClass("on");
-                $("#plantowatch").addClass("on");
+        var status = 0 /* listStatus */;
+        $("#search-button").click(function () {
+            var buttonState = $("#search-box").attr("class");
+            if (buttonState != "open") {
+                $("#search-box").attr("class", "open");
+            } else {
+                $("#search-form-action").submit();
             }
+        });
+
+        $("#search-box").focusout(function () {
+            $("#search-box").attr("class", "");
+        });
+
+        if (status == 0) {
+            $("#all_anime").addClass("on");
+            $("#watching").removeClass("on");
+            $("#completed").removeClass("on");
+            $("#onhold").removeClass("on");
+            $("#dropped").removeClass("on");
+            $("#plantowatch").removeClass("on");
+        } else if (status == 1) {
+            $("#all_anime").removeClass("on");
+            $("#watching").addClass("on");
+            $("#completed").removeClass("on");
+            $("#onhold").removeClass("on");
+            $("#dropped").removeClass("on");
+            $("#plantowatch").removeClass("on");
+        } else if (status == 2) {
+            $("#all_anime").removeClass("on");
+            $("#watching").removeClass("on");
+            $("#completed").addClass("on");
+            $("#onhold").removeClass("on");
+            $("#dropped").removeClass("on");
+            $("#plantowatch").removeClass("on");
+        } else if (status == 3) {
+            $("#all_anime").removeClass("on");
+            $("#watching").removeClass("on");
+            $("#completed").removeClass("on");
+            $("#onhold").addClass("on");
+            $("#dropped").removeClass("on");
+            $("#plantowatch").removeClass("on");
+        } else if (status == 4) {
+            $("#all_anime").removeClass("on");
+            $("#watching").removeClass("on");
+            $("#completed").removeClass("on");
+            $("#onhold").removeClass("on");
+            $("#dropped").addClass("on");
+            $("#plantowatch").removeClass("on");
+        } else if (status == 5) {
+            $("#all_anime").removeClass("on");
+            $("#watching").removeClass("on");
+            $("#completed").removeClass("on");
+            $("#onhold").removeClass("on");
+            $("#dropped").removeClass("on");
+            $("#plantowatch").addClass("on");
+        }
     </script>
 </body>
 </html>

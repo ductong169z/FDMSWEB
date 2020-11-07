@@ -2,13 +2,36 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Web;
 using System.Web.Mvc;
 
 namespace FDMSWeb.Controllers
 {
-    public class ViewAnimeListController : Controller
+    public class AnimeController : Controller
     {
+        public ActionResult ViewAnime(int id)
+        {
+            /* Instantiate DAO obj and interact with DB */
+            AnimeListDAO dao = new AnimeListDAO();
+            Anime anime = dao.GetAnime(id);
+            ViewBag.Anime = anime;
+            ViewBag.Genres = anime.Genres;
+            ViewBag.Studios = anime.Studios;
+
+            ///* Check if user logged in to get user anime list */
+
+
+            //List animeInList = null; // not null if there is anime in list
+
+            //if (anime != null)
+            //{
+
+            //}
+
+            return View();
+        }
+
         public ActionResult ViewAnimeList(int accountId, int listStatus)
         {
             /* Instantiate DAO obj and interact with DB */
@@ -32,8 +55,20 @@ namespace FDMSWeb.Controllers
                 ViewBag.AnimeDetailList = new List<Anime>();
             }
 
+            /* Create status list array */
+            List<String> statusList = new List<String>();
+            statusList.Add("Currently Watching");
+            statusList.Add("Completed");
+            statusList.Add("On Hold");
+            statusList.Add("Dropped");
+            statusList.Add("Plan to Watch");
+
+            ViewBag.AccountUsername = accountUsername;
             ViewBag.AccountId = accountId;
+            ViewBag.AnimeList = animeList;
+            ViewBag.AnimeDetailList = animeDetailList;
             ViewBag.ListStatus = listStatus;
+            ViewBag.StatusList = statusList;
 
             return View();
         }
