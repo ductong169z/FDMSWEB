@@ -15,9 +15,16 @@ namespace FDMSWeb.Controllers
             /* Instantiate DAO obj and interact with DB */
             AnimeListDAO dao = new AnimeListDAO();
             Anime anime = dao.GetAnime(id);
-            ViewBag.Anime = anime;
-            ViewBag.Genres = anime.Genres;
-            ViewBag.Studios = anime.Studios;
+
+            if (anime != null)
+            {
+                ViewBag.Anime = anime;
+                ViewBag.Genres = anime.Genres;
+                ViewBag.Studios = anime.Studios;
+            } else
+            {
+                throw new HttpException(404, "Lala");
+            }
 
             ///* Check if user logged in to get user anime list */
 
@@ -81,7 +88,7 @@ namespace FDMSWeb.Controllers
             if (btnAction.Equals("Edit"))
             {
                 Boolean result = dao.EditAnimeInList(accountIdEdit, animeIdEdit, progressEdit, episodeEdit, statusEdit);
-                
+
                 if (!result)
                 {
                     // return error page
@@ -90,7 +97,7 @@ namespace FDMSWeb.Controllers
             else if (btnAction.Equals("Delete"))
             {
                 Boolean result = dao.RemoveAnimeFromList(accountIdEdit, animeIdEdit);
-                
+
                 if (!result)
                 {
                     // return error page
