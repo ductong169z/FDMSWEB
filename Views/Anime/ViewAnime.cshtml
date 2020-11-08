@@ -209,7 +209,7 @@
         #myinfo_watchedeps {
             border: 1px solid #ced4da !important;
             font-size: 1rem !important;
-            width: 30%;
+            width: 35%;
         }
 
         inputButton {
@@ -283,11 +283,11 @@
                                                             <input type="hidden" name="episode" value="@ViewBag.Anime.Episodes" />
                                                             @if (@ViewBag.AnimeInList.Progress == 0 && @ViewBag.AnimeInList.Status.Equals("Completed") && ViewBag.Anime.Episodes == 0)
                                                             {
-                                                                <input type="number" min="0" max="999" id="myinfo_watchedeps" name="progress" size="3" class="inputtext form-control-sm" value="?" />
+                                                                <input type="number" min="0" max="9999" id="myinfo_watchedeps" name="progress" size="3" class="inputtext form-control-sm" value="@Html.Raw("?")" />
                                                             }
                                                             else
                                                             {
-                                                                <input type="number" min="0" max="999" id="myinfo_watchedeps" name="progress" size="3" class="inputtext form-control-sm" value="@ViewBag.AnimeInList.Progress" />
+                                                                <input type="number" min="0" max="9999" id="myinfo_watchedeps" name="progress" size="3" class="inputtext form-control-sm" value="@ViewBag.AnimeInList.Progress" />
                                                             }
                                                             @Html.Raw("/")
                                                             @if (@ViewBag.Anime.Episodes != 0)
@@ -345,7 +345,7 @@
                                                         <td class="epseen spaceit">Eps Seen:</td>
                                                         <td class="epseeninput spaceit">
                                                             <input type="hidden" name="episode" value="@ViewBag.Anime.Episodes" />
-                                                            <input type="number" min="0" max="999" id="myinfo_watchedeps" name="progress" size="1" class="inputtext form-control-sm" value="" required/>
+                                                            <input type="number" min="0" max="9999" id="myinfo_watchedeps" name="progress" size="1" class="inputtext form-control-sm" value="" required/>
                                                             @Html.Raw("/")
                                                             @if (@ViewBag.Anime.Episodes != 0)
                                                             {

@@ -419,11 +419,11 @@
                                         <td class="list-item-data progress text-left" style="background-color: transparent!important; width: 9%">
                                             @if (listAnime.Progress == 0 && listAnime.Status.Equals("Completed") && anime.Episodes == 0)
                                             {
-                                                <input size="1" type="number" min="0" max="999" name="progress" class="inputtext form-control-sm text-left pl-1 progress-input" value="?" required>
+                                                <input size="1" type="number" min="0" max="9999" name="progress" class="inputtext form-control-sm text-left pl-1 progress-input" value="?" required>
                                             }
                                             else
                                             {
-                                                <input size="1" type="number" min="0" max="999" name="progress" class="inputtext form-control-sm text-left pl-1 progress-input" value="@listAnime.Progress" required>
+                                                <input size="1" type="number" min="0" max="9999" name="progress" class="inputtext form-control-sm text-left pl-1 progress-input" value="@listAnime.Progress" required>
                                             }
                                             @Html.Raw("/")
                                             @if (anime.Episodes != 0)
