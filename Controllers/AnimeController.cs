@@ -12,94 +12,108 @@ namespace FDMSWeb.Controllers
     {
         public ActionResult ViewAnime(int id)
         {
-            /* Instantiate DAO obj and interact with DB */
-            AnimeListDAO dao = new AnimeListDAO();
-            Anime anime = dao.GetAnime(id);
-            List<List> animeList = null;
-            List animeInList = null;
-
             /* Check if user logged in to get user anime list */
             if (Session["User"] != null)
             {
+                /* Instantiate DAO obj and interact with DB */
+                AnimeListDAO dao = new AnimeListDAO();
+                Anime anime = dao.GetAnime(id);
+                List<List> animeList = null;
+                List animeInList = null;
+
+
                 animeList = dao.GetAnimeList((Session["User"] as Account).Id, 0);
-            }
 
-            if (anime != null)
-            {
-                ViewBag.Anime = anime;
-                ViewBag.Genres = anime.Genres;
-                ViewBag.Studios = anime.Studios;
 
-                if (animeList != null)
+                if (anime != null)
                 {
-                    foreach (List listAnime in animeList)
+                    ViewBag.Anime = anime;
+                    ViewBag.Genres = anime.Genres;
+                    ViewBag.Studios = anime.Studios;
+
+                    if (animeList != null)
                     {
-                        if (listAnime.AnimeId == id)
+                        foreach (List listAnime in animeList)
                         {
-                            animeInList = listAnime;
+                            if (listAnime.AnimeId == id)
+                            {
+                                animeInList = listAnime;
+                            }
                         }
                     }
                 }
+                else
+                {
+                    // throw error page
+                }
+
+                ViewBag.AnimeInList = animeInList;
+
+                /* Create status list array */
+                List<String> statusList = new List<String>();
+                statusList.Add("Currently Watching");
+                statusList.Add("Completed");
+                statusList.Add("On Hold");
+                statusList.Add("Dropped");
+                statusList.Add("Plan to Watch");
+
+                ViewBag.StatusList = statusList;
+
+                return View();
             }
             else
             {
-                // throw error page
+                return RedirectToAction("Login", "Authentication");
             }
-
-            ViewBag.AnimeInList = animeInList;
-
-            /* Create status list array */
-            List<String> statusList = new List<String>();
-            statusList.Add("Currently Watching");
-            statusList.Add("Completed");
-            statusList.Add("On Hold");
-            statusList.Add("Dropped");
-            statusList.Add("Plan to Watch");
-
-            ViewBag.StatusList = statusList;
-
-            return View();
         }
 
         public ActionResult ViewAnimeList(int accountId, int listStatus)
         {
-            /* Instantiate DAO obj and interact with DB */
-            AnimeListDAO dao = new AnimeListDAO();
-            string accountUsername = dao.GetAccountUsername(accountId);
-            List<List> animeList = dao.GetAnimeList(accountId, listStatus);
-            List<Anime> animeDetailList = dao.GetAnimeDetailList(animeList);
-
-            /* Get status list if there is user logged in */
-
-
-            /* If user whose list is viewed has their own anime list */
-            if (animeList != null)
+            /* Check if user logged in to get user anime list */
+            if (Session["User"] != null)
             {
+                /* Instantiate DAO obj and interact with DB */
+                AnimeListDAO dao = new AnimeListDAO();
+                string accountUsername = dao.GetAccountUsername(accountId);
+                List<List> animeList = dao.GetAnimeList(accountId, listStatus);
+                List<Anime> animeDetailList = dao.GetAnimeDetailList(animeList);
+
+                /* Get status list if there is user logged in */
+
+
+                /* If user whose list is viewed has their own anime list */
+                if (animeList != null)
+                {
+                    ViewBag.AnimeList = animeList;
+                    ViewBag.AnimeDetailList = animeDetailList;
+                }
+                else
+                {
+                    ViewBag.AnimeList = new List<List>();
+                    ViewBag.AnimeDetailList = new List<Anime>();
+                }
+
+                /* Create status list array */
+                List<String> statusList = new List<String>();
+                statusList.Add("Currently Watching");
+                statusList.Add("Completed");
+                statusList.Add("On Hold");
+                statusList.Add("Dropped");
+                statusList.Add("Plan to Watch");
+
+                ViewBag.AccountUsername = accountUsername;
+                ViewBag.AccountId = accountId;
                 ViewBag.AnimeList = animeList;
                 ViewBag.AnimeDetailList = animeDetailList;
+                ViewBag.ListStatus = listStatus;
+                ViewBag.StatusList = statusList;
+
+                return View();
             }
             else
             {
-                ViewBag.AnimeList = new List<List>();
-                ViewBag.AnimeDetailList = new List<Anime>();
+                return RedirectToAction("Login", "Authentication");
             }
-
-            /* Create status list array */
-            List<String> statusList = new List<String>();
-            statusList.Add("Currently Watching");
-            statusList.Add("Completed");
-            statusList.Add("On Hold");
-            statusList.Add("Dropped");
-            statusList.Add("Plan to Watch");
-
-            ViewBag.AccountUsername = accountUsername;
-            ViewBag.AccountId = accountId;
-            ViewBag.AnimeList = animeList;
-            ViewBag.AnimeDetailList = animeDetailList;
-            ViewBag.ListStatus = listStatus;
-            ViewBag.StatusList = statusList;
-
-            return View();
         }
 
         public ActionResult EditRemoveAnimeList(int progress, int episode, int status, int animeId, int accountId, string btnAction, int listStatus)
