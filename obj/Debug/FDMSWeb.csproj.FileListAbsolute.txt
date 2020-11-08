@@ -199,8 +199,8 @@ C:\Workbench\Coding\GitHub\FDMSWEB\bin\System.Web.WebPages.Razor.xml
 C:\Workbench\Coding\GitHub\FDMSWEB\bin\Newtonsoft.Json.xml
 C:\Workbench\Coding\GitHub\FDMSWEB\bin\Antlr3.Runtime.pdb
 C:\Workbench\Coding\GitHub\FDMSWEB\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Workbench\Coding\GitHub\FDMSWEB\obj\Debug\FDMSWeb.csprojAssemblyReference.cache
 C:\Workbench\Coding\GitHub\FDMSWEB\obj\Debug\FDMSWeb.csproj.CoreCompileInputs.cache
 C:\Workbench\Coding\GitHub\FDMSWEB\obj\Debug\FDMSWeb.csproj.CopyComplete
 C:\Workbench\Coding\GitHub\FDMSWEB\obj\Debug\FDMSWeb.dll
 C:\Workbench\Coding\GitHub\FDMSWEB\obj\Debug\FDMSWeb.pdb
+C:\Workbench\Coding\GitHub\FDMSWEB\obj\Debug\FDMSWeb.csprojAssemblyReference.cache

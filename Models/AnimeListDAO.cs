@@ -1167,5 +1167,94 @@ namespace FDMSWeb.Models
 
             return false;
         }
+
+        public List<List> SearchAnimeInList(int accountId, string searchValue, int listStatus)
+        {
+            /* Declare resources used for interacting with database */
+            MySqlConnection conn = null; // connection to database
+            MySqlCommand cmd = null; // store SQL statement
+            MySqlDataReader rd = null; // reader for return results
+            List<List> animeList = null;
+            try
+            {
+                conn = DBUtils.GetConnection(); // get connection to database
+                conn.Open(); // open the connection
+
+                if (listStatus == 0)
+                {
+                    cmd = new MySqlCommand("SELECT * FROM list JOIN anime on list.AnimeID = anime.AnimeID WHERE anime.name LIKE @Value AND list.AccountID = @Id AND deleted_at IS NULL", conn); // SQL statement
+                }
+                else
+                {
+                    cmd = new MySqlCommand("SELECT * FROM list JOIN anime on list.AnimeID = anime.AnimeID WHERE anime.name LIKE @Value AND list.AccountID = @Id AND list.status = @Status AND deleted_at IS NULL", conn); // SQL statement
+                    cmd.Parameters.AddWithValue("@Status", listStatus);
+                }
+                cmd.Parameters.AddWithValue("@Value", "%" + searchValue + "%");
+                cmd.Parameters.AddWithValue("@Id", accountId);
+                rd = cmd.ExecuteReader(); // execute the SQL statement and store results to reader
+
+                /* Keep reading and adding data to list until end */
+                while (rd.Read())
+                {
+                    /* Temp vars to store anime properties */
+                    int animeId = rd.GetInt32(0);
+                    int status = rd.GetInt32(2);
+                    string statusString = "";
+
+                    switch (status)
+                    {
+                        case 1:
+                            statusString = "Currently Watching";
+
+                            break;
+
+                        case 2:
+                            statusString = "Completed";
+
+                            break;
+
+                        case 3:
+                            statusString = "On Hold";
+
+                            break;
+
+                        case 4:
+                            statusString = "Dropped";
+
+                            break;
+
+                        case 5:
+                            statusString = "Plan to Watch";
+
+                            break;
+                    }
+                    int progress = rd.GetInt32(3);
+
+                    if (animeList == null)
+                    {
+                        animeList = new List<List>();
+                    }
+
+                    // assign a new anime instance with properties to the return anime
+                    animeList.Add(new FDMSWeb.Models.List(animeId, accountId, statusString, progress));
+                }
+
+                // return the anime obj
+                return animeList;
+            }
+            finally
+            {
+                /* Close resources after use */
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+
+                if (rd != null)
+                {
+                    rd.Close();
+                }
+            }
+        }
     }
 }

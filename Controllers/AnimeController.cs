@@ -118,8 +118,11 @@ namespace FDMSWeb.Controllers
 
         public ActionResult EditRemoveAnimeList(int progress, int episode, int status, int animeId, int accountId, string btnAction, int listStatus)
         {
-            /* Instantiate DAO obj and interact with DB */
-            AnimeListDAO dao = new AnimeListDAO();
+            /* Check if user logged in to get user anime list */
+            if (Session["User"] != null)
+            {
+                /* Instantiate DAO obj and interact with DB */
+                AnimeListDAO dao = new AnimeListDAO();
 
             if (btnAction.Equals("Edit"))
             {
@@ -141,12 +144,20 @@ namespace FDMSWeb.Controllers
             }
 
             return RedirectToAction("ViewAnimeList", "Anime", new { accountId = accountId, listStatus = listStatus });
+            }
+            else
+            {
+                return RedirectToAction("Login", "Authentication");
+            }
         }
 
         public ActionResult AddRemoveAnimeList(int progress, int episode, int status, int animeId, int accountId, string btnAction)
         {
-            /* Instantiate DAO obj and interact with DB */
-            AnimeListDAO dao = new AnimeListDAO();
+            /* Check if user logged in to get user anime list */
+            if (Session["User"] != null)
+            {
+                /* Instantiate DAO obj and interact with DB */
+                AnimeListDAO dao = new AnimeListDAO();
             if (btnAction.Equals("Add"))
             {
                 Boolean result = dao.AddAnimeToList(accountId, animeId, progress, episode, status);
@@ -177,6 +188,112 @@ namespace FDMSWeb.Controllers
 
 
             return RedirectToAction("ViewAnime", "Anime", new { id = animeId });
+            }
+            else
+            {
+                return RedirectToAction("Login", "Authentication");
+            }
+        }
+
+        public ActionResult SearchAnimeInList(int accountId, string searchValue, int listStatus)
+        {
+            /* Check if user logged in to get user anime list */
+            if (Session["User"] != null)
+            {
+                /* Instantiate DAO obj and interact with DB */
+                AnimeListDAO dao = new AnimeListDAO();
+                List<List> animeList = dao.SearchAnimeInList(accountId, searchValue, listStatus);
+                List<Anime> animeDetailList = dao.GetAnimeDetailList(animeList);
+
+                /* If user whose list is viewed has their own anime list */
+                if (animeList != null)
+                {
+                    TempData["AnimeList"] = animeList;
+                    TempData["AnimeDetailList"] = animeDetailList;
+                }
+                else
+                {
+                    TempData["AnimeList"] = new List<List>();
+                    TempData["AnimeDetailList"] = new List<Anime>();
+                }
+
+                /* Create status list array */
+                List<String> statusList = new List<String>();
+                statusList.Add("Currently Watching");
+                statusList.Add("Completed");
+                statusList.Add("On Hold");
+                statusList.Add("Dropped");
+                statusList.Add("Plan to Watch");
+
+                TempData["AccountId"] = accountId;
+                TempData["ListStatus"] = listStatus;
+                TempData["StatusList"] = statusList;
+                TempData["SearchValue"] = searchValue;
+
+                return RedirectToAction("ViewListSearchResult", "Anime", new { accountId = accountId, listStatus = listStatus });
+            }
+            else
+            {
+                return RedirectToAction("Login", "Authentication");
+            }
+        }
+
+        public ActionResult ViewListSearchResult(int accountId, int listStatus)
+        {
+            /* Check if user logged in to get user anime list */
+            if (Session["User"] != null)
+            {
+                /* Instantiate DAO obj and interact with DB */
+                AnimeListDAO dao = new AnimeListDAO();
+
+                ViewBag.AccountId = TempData["AccountId"];
+                ViewBag.AnimeList = TempData["AnimeList"];
+                ViewBag.AnimeDetailList = TempData["AnimeDetailList"];
+                ViewBag.ListStatus = TempData["ListStatus"];
+                ViewBag.StatusList = TempData["StatusList"];
+                ViewBag.SearchValue = TempData["SearchValue"];
+
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Authentication");
+            }
+        }
+
+        public ActionResult EditRemoveAnimeInSearchList(int progress, int episode, int status, int animeId, int accountId, string btnAction, int listStatus, string searchValue)
+        {
+            /* Check if user logged in to get user anime list */
+            if (Session["User"] != null)
+            {
+                /* Instantiate DAO obj and interact with DB */
+                AnimeListDAO dao = new AnimeListDAO();
+
+                if (btnAction.Equals("Edit"))
+                {
+                    Boolean result = dao.EditAnimeInList(accountId, animeId, progress, episode, status);
+
+                    if (!result)
+                    {
+                        // return error page
+                    }
+                }
+                else if (btnAction.Equals("Remove"))
+                {
+                    Boolean result = dao.RemoveAnimeFromList(accountId, animeId);
+
+                    if (!result)
+                    {
+                        // return error page
+                    }
+                }
+
+                return RedirectToAction("SearchAnimeInList", "Anime", new { accountId = accountId, searchValue = searchValue, listStatus = listStatus });
+            }
+            else
+            {
+                return RedirectToAction("Login", "Authentication");
+            }
         }
     }
 }

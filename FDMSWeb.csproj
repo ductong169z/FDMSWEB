@@ -588,6 +588,7 @@
     <Content Include="Views\Anime\ViewAnime.cshtml" />
     <Content Include="Views\Anime\ViewAnimeList.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
+    <Content Include="Views\Anime\ViewListSearchResult.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

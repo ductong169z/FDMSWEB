@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "ViewAnimeList";
+    ViewBag.Title = "List Search Results";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @using FDMSWeb.Models
@@ -327,7 +327,7 @@
             color: #000;
         }
 
-        .modal-footer{
+        .modal-footer {
             padding: 5px 5px 5px 0;
         }
 
@@ -346,81 +346,29 @@
     </style>
     <link href="~/Content/login/fonts/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <title>
-        @if (ViewBag.AccountUsername != null)
-        {
-            @Html.Raw(ViewBag.AccountUsername + "'s Anime List - Wibu Anime List")
-        }
-        else
-        {
-            @Html.Raw("User Anime List - Wibu Anime List")
-        }
+        @Html.Raw("List Search Results - Wibu Anime List")
     </title>
 </head>
 <body>
     <div class="header font-bold font-weight-bold">
-        Viewing
-        @if (ViewBag.AccountUsername != null)
-        {
-            @Html.Raw(ViewBag.AccountUsername + "'s")
-        }
-        else
-        {
-            @Html.Raw("User")
-        }
-        Anime List
+        Search Results for animes containing "@ViewBag.SearchValue" in name
     </div>
 
     <div id="list-container" class="list-container">
         <div id="status-menu" class="status-menu-block">
             <div class="status-menu">
-                <a id="all_anime" href="ViewAnimeList?accountId=@ViewBag.AccountId&listStatus=0"
+                <a id="all_anime" href="SearchAnimeInList?accountId=@ViewBag.AccountId&searchValue=@ViewBag.SearchValue&listStatus=0"
                    class="status-button all_anime">All Anime</a>
-                <a id="watching" href="ViewAnimeList?accountId=@ViewBag.AccountId&listStatus=1"
+                <a id="watching" href="SearchAnimeInList?accountId=@ViewBag.AccountId&searchValue=@ViewBag.SearchValue&listStatus=1"
                    class="status-button watching ">Currently Watching</a>
-                <a id="completed" href="ViewAnimeList?accountId=@ViewBag.AccountId&listStatus=2"
+                <a id="completed" href="SearchAnimeInList?accountId=@ViewBag.AccountId&searchValue=@ViewBag.SearchValue&listStatus=2"
                    class="status-button completed ">Completed</a>
-                <a id="onhold" href="ViewAnimeList?accountId=@ViewBag.AccountId&listStatus=3"
+                <a id="onhold" href="SearchAnimeInList?accountId=@ViewBag.AccountId&searchValue=@ViewBag.SearchValue&listStatus=3"
                    class="status-button onhold ">On Hold</a>
-                <a id="dropped" href="ViewAnimeList?accountId=@ViewBag.AccountId&listStatus=4"
+                <a id="dropped" href="SearchAnimeInList?accountId=@ViewBag.AccountId&searchValue=@ViewBag.SearchValue&listStatus=4"
                    class="status-button dropped ">Dropped</a>
-                <a id="plantowatch" href="ViewAnimeList?accountId=@ViewBag.AccountId&listStatus=5"
+                <a id="plantowatch" href="SearchAnimeInList?accountId=@ViewBag.AccountId&searchValue=@ViewBag.SearchValue&listStatus=5"
                    class="status-button plantowatch ">Plan to Watch</a>
-                @*<div class="search-container">
-                        <form action="searchInList" id="search-form-action">
-                            <div id="search-box" class=""><input name="search-text" type="text" value=""></div>
-                            <a id="search-button" href="#">
-                                <i class="fa fa-search"></i>
-                            </a>
-                        </form>
-                    </div>*@
-                <div class="search-container">
-                    <button class="btn searchbtn" data-toggle="modal" data-target="#searchModal">
-                        <i class="fa fa-search fa-lg"></i>
-                    </button>
-                </div>
-                <!-- Modal -->
-                <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="searchModalLabel">Search anime in your list</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <form action="@Url.Action("SearchAnimeInList", "Anime")">
-                                <div class="modal-body">
-                                    <input class="form-control" name="searchValue" type="text" value="" placeholder="Enter the name of anime to search" />
-                                    <input type="hidden" name="listStatus" value="0" />
-                                    <input type="hidden" name="accountId" value="@((Session["User"] as Account).Id)" />
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn searchanimebtn">Search</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
 
@@ -454,128 +402,33 @@
 
                 </div>
 
-                @if ((Session["User"] as Account) != null && ViewBag.AccountId == ((Session["User"] as Account).Id))
-                {
-                    <table class="anime-list-table" id="myListTable">
-                        <thead>
-                            <tr class="anime-list-table-header">
-                                <th class="header-title number">No.</th>
-                                <th class="header-title image">Poster</th>
-                                <th class="header-title title">Anime Title</th>
-                                <th class="header-title type">Type</th>
-                                <th class="header-title progress">Progress</th>
-                                <th class="header-title status">Status</th>
-                                <th class="header-title edit pr-0 pl-2">Edit</th>
-                                <th class="header-title remove pr-3 pl-3">Remove</th>
-                            </tr>
-                        </thead>
-                        <tbody class="list-item">
-                            @{ int animeIndex = 0; }
-                            @if (ViewBag.AnimeDetailList != null && ViewBag.AnimeDetailList.Count != 0)
-                            {
-                                <form action="@Url.Action("EditRemoveAnimeList", "Anime")" method="POST">
-                                    @foreach (FDMSWeb.Models.Anime anime in ViewBag.AnimeDetailList)
-                                    {
-                                        FDMSWeb.Models.List listAnime = ViewBag.AnimeList[animeIndex];
-                                        animeIndex++;
-                                        <input type="hidden" name="listStatus" value="@ViewBag.ListStatus" />
-                                        <input type="hidden" name="accountId" value="@((Session["User"] as Account).Id)" />
-                                        <input type="hidden" name="episode" value="@anime.Episodes" />
-                                        <input type="hidden" name="animeId" value="@anime.Id" />
-                                        <tr class="anime-list-table-list-item-data">
-                                            <td class="list-item-data number text-center" style="width: 5%;">@animeIndex</td>
-
-                                            <td class="list-item-data image text-center" style="width: 7%;">
-                                                <a href="Anime/ViewAnime/animeID=@anime.Id" class="link sort">
-                                                    <img src="~/Content/Images/Posters/@anime.Poster" class="hover-info image">
-                                                </a>
-                                            </td>
-
-                                            <td class="list-item-data title clearfix text-wrap" style="width: 46%;">
-                                                <a href="ViewAnime?id=@anime.Id" class="link sort">@anime.Name</a>
-                                            </td>
-
-                                            <td class="list-item-data type text-center" style="width: 8%;">
-                                                @anime.Type
-                                            </td>
-
-                                            <td class="list-item-data progress text-left" style="background-color: transparent!important; width: 9%">
-                                                @if (listAnime.Progress == 0 && listAnime.Status.Equals("Completed") && anime.Episodes == 0)
-                                                {
-                                                    <input size="1" type="number" min="0" max="9999" name="progress" class="inputtext form-control-sm text-left pl-1 progress-input" value="" required>
-                                                }
-                                                else
-                                                {
-                                                    <input size="1" type="number" min="0" max="9999" name="progress" class="inputtext form-control-sm text-left pl-1 progress-input" value="@listAnime.Progress" required>
-                                                }
-                                                @Html.Raw("/")
-                                                @if (anime.Episodes != 0)
-                                                {
-                                                    @Html.Raw(anime.Episodes)
-                                                }
-                                                else
-                                                {
-                                                    @Html.Raw("?")
-                                                }
-                                            </td>
-
-                                            <td class="list-item-data status" style="width: 15%;">
-                                                <select name="status">
-                                                    @{int statusIndex = 1; }
-                                                    @foreach (String status in ViewBag.StatusList)
-                                                    {
-                                                        if (!status.Equals(listAnime.Status))
-                                                        {
-                                                            <option value="@statusIndex"> @status </option>
-                                                            <br />
-                                                        }
-                                                        else
-                                                        {
-                                                            <option value="@statusIndex" selected="selected"> @status </option>
-                                                            <br />
-                                                        }
-                                                        statusIndex++;
-                                                    }
-                                                </select>
-                                            </td>
-                                            <td class="list-item-data pr-0 pl-2 text-center" style="width: 5%;">
-                                                <input type="submit" name="btnAction" style="font-size: 12px;" value="Edit" />
-                                            </td>
-                                            <td class="list-item-data pr-3 pl-3 text-center" style="width: 6%;">
-                                                <input type="submit" name="btnAction" style="font-size: 12px;" value="Remove" onclick="return confirm('Are you sure you want to remove \'@anime.Name\' from your list?');" />
-                                            </td>
-                                        </tr>
-                                    }
-                                </form>
-                            }
-                        </tbody>
-                    </table>
-                    if (ViewBag.AnimeDetailList == null || ViewBag.AnimeDetailList.Count == 0)
-                    {
-                        <div class="noanime">There are no animes in the list!</div>
-                    }
-                }
-                else
-                {
-                    <table class="anime-list-table" id="myListTable">
-                        <thead>
-                            <tr class="anime-list-table-header">
-                                <th class="header-title number">No.</th>
-                                <th class="header-title image">Poster</th>
-                                <th class="header-title title">Anime Title</th>
-                                <th class="header-title type">Type</th>
-                                <th class="header-title progress">Progress</th>
-                                <th class="header-title status">Status</th>
-                            </tr>
-                        </thead>
-                        <tbody class="list-item">
-                            @{ int animeIndex = 0; }
-                            @if (ViewBag.AnimeDetailList != null && ViewBag.AnimeDetailList.Count != 0)
-                            {
-                                foreach (FDMSWeb.Models.Anime anime in ViewBag.AnimeDetailList)
+                <table class="anime-list-table" id="myListTable">
+                    <thead>
+                        <tr class="anime-list-table-header">
+                            <th class="header-title number">No.</th>
+                            <th class="header-title image">Poster</th>
+                            <th class="header-title title">Anime Title</th>
+                            <th class="header-title type">Type</th>
+                            <th class="header-title progress">Progress</th>
+                            <th class="header-title status">Status</th>
+                            <th class="header-title edit pr-0 pl-2">Edit</th>
+                            <th class="header-title remove pr-3 pl-3">Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody class="list-item">
+                        @{ int animeIndex = 0; }
+                        @if (ViewBag.AnimeDetailList != null && ViewBag.AnimeDetailList.Count != 0)
+                        {
+                            <form action="@Url.Action("EditRemoveAnimeInSearchList", "Anime")" method="POST">
+                                @foreach (FDMSWeb.Models.Anime anime in ViewBag.AnimeDetailList)
                                 {
                                     FDMSWeb.Models.List listAnime = ViewBag.AnimeList[animeIndex];
                                     animeIndex++;
+                                    <input type="hidden" name="listStatus" value="@ViewBag.ListStatus" />
+                                    <input type="hidden" name="accountId" value="@ViewBag.AccountId" />
+                                    <input type="hidden" name="episode" value="@anime.Episodes" />
+                                    <input type="hidden" name="animeId" value="@anime.Id" />
+                                    <input type="hidden" name="searchValue" value="@ViewBag.SearchValue" />
                                     <tr class="anime-list-table-list-item-data">
                                         <td class="list-item-data number text-center" style="width: 5%;">@animeIndex</td>
 
@@ -589,18 +442,18 @@
                                             <a href="ViewAnime?id=@anime.Id" class="link sort">@anime.Name</a>
                                         </td>
 
-                                        <td class="list-item-data type text-center" style="width: 9%;">
+                                        <td class="list-item-data type text-center" style="width: 8%;">
                                             @anime.Type
                                         </td>
 
-                                        <td class="list-item-data progress text-center" style="width: 9%;">
+                                        <td class="list-item-data progress text-left" style="background-color: transparent!important; width: 9%">
                                             @if (listAnime.Progress == 0 && listAnime.Status.Equals("Completed") && anime.Episodes == 0)
                                             {
-                                                @Html.Raw("?")
+                                                <input size="1" type="number" min="0" max="9999" name="progress" class="inputtext form-control-sm text-left pl-1 progress-input" value="" required>
                                             }
                                             else
                                             {
-                                                @listAnime.Progress
+                                                <input size="1" type="number" min="0" max="9999" name="progress" class="inputtext form-control-sm text-left pl-1 progress-input" value="@listAnime.Progress" required>
                                             }
                                             @Html.Raw("/")
                                             @if (anime.Episodes != 0)
@@ -613,48 +466,55 @@
                                             }
                                         </td>
 
-                                        <td class="list-item-data status" style="width: 14%;">
-                                            @listAnime.Status
+                                        <td class="list-item-data status" style="width: 15%;">
+                                            <select name="status">
+                                                @{int statusIndex = 1; }
+                                                @foreach (String status in ViewBag.StatusList)
+                                                {
+                                                    if (!status.Equals(listAnime.Status))
+                                                    {
+                                                        <option value="@statusIndex"> @status </option>
+                                                        <br />
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="@statusIndex" selected="selected"> @status </option>
+                                                        <br />
+                                                    }
+                                                    statusIndex++;
+                                                }
+                                            </select>
+                                        </td>
+                                        <td class="list-item-data pr-0 pl-2 text-center" style="width: 5%;">
+                                            <input type="submit" name="btnAction" style="font-size: 12px;" value="Edit" />
+                                        </td>
+                                        <td class="list-item-data pr-3 pl-3 text-center" style="width: 6%;">
+                                            <input type="submit" name="btnAction" style="font-size: 12px;" value="Remove" onclick="return confirm('Are you sure you want to remove \'@anime.Name\' from your list?');" />
                                         </td>
                                     </tr>
                                 }
-                            }
-                        </tbody>
-                    </table>
-                    if (ViewBag.AnimeDetailList == null || ViewBag.AnimeDetailList.Count == 0)
+                            </form>
+                        }
+                    </tbody>
+                </table>
+                @if (ViewBag.AnimeDetailList == null || ViewBag.AnimeDetailList.Count == 0)
+                {
+                    if (ViewBag.ListStatus == 0)
                     {
-                        <div class="noanime">There are no animes in the list!</div>
+                        <div class="noanime">Your search "@ViewBag.SearchValue" did not match any animes in list" </div>
+                    }
+                    else
+                    {
+                        <div class="noanime">Your search "@ViewBag.SearchValue" did not match any animes in list with status "@ViewBag.StatusList[@ViewBag.ListStatus - 1]" </div>
                     }
                 }
+
             </div>
         </div>
     </div>
 
     <script>
         var status = parseInt('@ViewBag.ListStatus');
-
-        //$("#search-button").click(function () {
-        //    var buttonState = $("#search-box").attr("class");
-        //    if (buttonState != "open") {
-        //        $("#search-box").attr("class", "open");
-        //    } else {
-        //        $("#search-form-action").submit();
-        //    }
-        //});
-
-        //$("#search-box").focusout(function () {
-        //    $("#search-box").attr("class", "");
-        //});
-
-        $('#searchModal').on('shown.bs.modal', function () {
-
-        })
-
-        $(document).ready(function () {
-            $('#btnSearch').click(function () {
-                $('.modal').modal('show');
-            });
-        });
 
         /* Switching tab effects */
         if (status == 0) {
