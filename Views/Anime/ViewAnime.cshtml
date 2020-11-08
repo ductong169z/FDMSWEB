@@ -455,7 +455,7 @@
                                                             <input type="hidden" name="episode" value="@ViewBag.Anime.Episodes" />
                                                             @if (@ViewBag.AnimeInList.Progress == 0 && @ViewBag.AnimeInList.Status.Equals("Completed") && ViewBag.Anime.Episodes == 0)
                                                             {
-                                                                <input type="number" min="0" max="9999" id="myinfo_watchedeps" name="progress" size="3" class="inputtext form-control-sm" value="@Html.Raw("?")" required />
+                                                                <input type="number" min="0" max="9999" id="myinfo_watchedeps" name="progress" size="3" class="inputtext form-control-sm" value="" required />
                                                             }
                                                             else
                                                             {
