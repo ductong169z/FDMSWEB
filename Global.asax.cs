@@ -28,7 +28,7 @@ namespace FDMSWeb
                 var rd = new RouteData();
                 //rd.DataTokens["area"] = "AreaName"; // In case controller is in another area
                 rd.Values["controller"] = "Error";
-                rd.Values["action"] = "NotFound";
+                rd.Values["action"] = "Error";
 
                 IController c = new ErrorController();
                 c.Execute(new RequestContext(new HttpContextWrapper(Context), rd));

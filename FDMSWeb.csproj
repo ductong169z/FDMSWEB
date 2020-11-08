@@ -587,7 +587,7 @@
     <Content Include="Content\login\vendor\mdi-font\fonts\Material-Design-Iconic-Font.woff2" />
     <Content Include="Views\Anime\ViewAnime.cshtml" />
     <Content Include="Views\Anime\ViewAnimeList.cshtml" />
-    <Content Include="Views\Error\NotFound.cshtml" />
+    <Content Include="Views\Error\InternalError.cshtml" />
     <Content Include="Views\Anime\ViewListSearchResult.cshtml" />
   </ItemGroup>
   <ItemGroup>

@@ -295,5 +295,25 @@ namespace FDMSWeb.Controllers
                 return RedirectToAction("Login", "Authentication");
             }
         }
+
+        /// <summary>
+        /// Handles exceptions in controllers
+        /// </summary>
+        /// <param name="filterContext"></param>
+        protected override void OnException(ExceptionContext filterContext)
+        {
+            filterContext.ExceptionHandled = true;
+
+            //Log the error!!
+
+            ////Redirect to action
+            //filterContext.Result = RedirectToAction("Error", "InternalError");
+
+            // OR return specific view
+            filterContext.Result = new ViewResult
+            {
+                ViewName = "~/Views/Error/InternalError.cshtml"
+            };
+        }
     }
 }
