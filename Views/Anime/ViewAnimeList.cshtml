@@ -76,98 +76,59 @@
                 border-spacing: 40px 0;
             }
 
-                .status-menu-block .status-menu .status-button {
-                    position: relative;
-                    display: table-cell;
-                    padding: 10px 0;
-                    margin: 0;
-                    font-family: Verdana;
-                    text-align: center;
-                    vertical-align: middle;
-                    font-size: 1.3em;
-                    color: #343a40;
-                }
-
-                    .status-menu-block .status-menu .status-button.on {
-                        color: #212529;
-                        font-weight: bold;
-                    }
-
-                    .status-menu-block .status-menu .status-button:after {
-                        position: absolute;
-                        bottom: 0px;
-                        left: 0px;
-                        background-color: #343a40;
-                        display: block;
-                        overflow: hidden;
-                        width: 100%;
-                        height: 3px;
-                        content: '';
-                        opacity: 0;
-                        -moz-transition-property: all;
-                        -o-transition-property: all;
-                        -webkit-transition-property: all;
-                        transition-property: all;
-                        -moz-transition-duration: 0.3s;
-                        -o-transition-duration: 0.3s;
-                        -webkit-transition-duration: 0.3s;
-                        transition-duration: 0.3s;
-                        -moz-transition-timing-function: ease-in-out;
-                        -o-transition-timing-function: ease-in-out;
-                        -webkit-transition-timing-function: ease-in-out;
-                        transition-timing-function: ease-in-out;
-                    }
-
-                    .status-menu-block .status-menu .status-button.on:after, .status-menu .status-button:hover:after {
-                        padding: 0;
-                        margin: 0;
-                        opacity: 1;
-                    }
-
-            /* List container - Status menu - Search */
-            .status-menu-block .search-container {
+            .status-menu-block .search-button {
                 position: absolute;
                 right: 18px;
                 top: 12px;
             }
 
-                .status-menu-block .search-container input {
-                    width: 50%;
-                    float: right;
+            .status-menu-block .status-menu .status-button {
+                position: relative;
+                display: table-cell;
+                padding: 10px 0;
+                margin: 0;
+                font-family: Verdana;
+                text-align: center;
+                vertical-align: middle;
+                font-size: 1.3em;
+                color: #343a40;
+            }
+
+                .status-menu-block .status-menu .status-button.on {
+                    color: #212529;
+                    font-weight: bold;
                 }
 
-                .status-menu-block .search-container #search-button {
-                    display: inline-block;
-                    height: 22px;
-                    margin-top: 15px;
-                    color: #787878;
-                    font-size: 1.6em;
-                    vertical-align: middle;
-                }
-
-                .status-menu-block .search-container #search-box {
-                    display: inline-block;
-                    width: 0;
-                    height: 22px;
+                .status-menu-block .status-menu .status-button:after {
+                    position: absolute;
+                    bottom: 0px;
+                    left: 0px;
+                    background-color: #343a40;
+                    display: block;
                     overflow: hidden;
-                    margin-top: 13px;
-                    -webkit-transition: width 0.3s;
-                    -moz-transition: width 0.3s;
-                    transition: width 0.3s;
-                    -webkit-backface-visibility: hidden;
-                    vertical-align: middle;
+                    width: 100%;
+                    height: 3px;
+                    content: '';
+                    opacity: 0;
+                    -moz-transition-property: all;
+                    -o-transition-property: all;
+                    -webkit-transition-property: all;
+                    transition-property: all;
+                    -moz-transition-duration: 0.3s;
+                    -o-transition-duration: 0.3s;
+                    -webkit-transition-duration: 0.3s;
+                    transition-duration: 0.3s;
+                    -moz-transition-timing-function: ease-in-out;
+                    -o-transition-timing-function: ease-in-out;
+                    -webkit-transition-timing-function: ease-in-out;
+                    transition-timing-function: ease-in-out;
                 }
 
-                    .status-menu-block .search-container #search-box.open {
-                        display: inline-block;
-                        width: 100px;
-                    }
-
-                    .status-menu-block .search-container #search-box input {
-                        width: 100%;
-                        height: 100%;
-                        box-sizing: border-box;
-                    }
+                .status-menu-block .status-menu .status-button.on:after, .status-menu .status-button:hover:after {
+                    padding: 0;
+                    margin: 0;
+                    opacity: 1;
+                }
 
         /* List table container - List block */
         .list-block {
@@ -335,7 +296,7 @@
             border-top: 0 none;
         }
 
-        .modal-footer{
+        .modal-footer {
             padding: 5px 5px 5px 0;
         }
 
@@ -397,15 +358,8 @@
                    class="status-button dropped ">Dropped</a>
                 <a id="plantowatch" href="ViewAnimeList?accountId=@ViewBag.AccountId&listStatus=5"
                    class="status-button plantowatch ">Plan to Watch</a>
-                @*<div class="search-container">
-                        <form action="searchInList" id="search-form-action">
-                            <div id="search-box" class=""><input name="search-text" type="text" value=""></div>
-                            <a id="search-button" href="#">
-                                <i class="fa fa-search"></i>
-                            </a>
-                        </form>
-                    </div>*@
-                <div class="search-container">
+                <!-- Search Button -->
+                <div class="search-button">
                     <button class="btn searchbtn" data-toggle="modal" data-target="#searchModal">
                         <i class="fa fa-search fa-lg"></i>
                     </button>
@@ -644,19 +598,6 @@
 
     <script>
         var status = parseInt('@ViewBag.ListStatus');
-
-        //$("#search-button").click(function () {
-        //    var buttonState = $("#search-box").attr("class");
-        //    if (buttonState != "open") {
-        //        $("#search-box").attr("class", "open");
-        //    } else {
-        //        $("#search-form-action").submit();
-        //    }
-        //});
-
-        //$("#search-box").focusout(function () {
-        //    $("#search-box").attr("class", "");
-        //});
 
         $('#searchModal').on('shown.bs.modal', function () {
 
