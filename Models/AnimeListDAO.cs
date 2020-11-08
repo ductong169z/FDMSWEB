@@ -802,11 +802,11 @@ namespace FDMSWeb.Models
                 conn.Open(); // open the connection
                 if (listStatus == 0)
                 {
-                    cmd = new MySqlCommand("SELECT * FROM list WHERE AccountID = @Id", conn); // SQL statement
+                    cmd = new MySqlCommand("SELECT * FROM list JOIN anime on list.AnimeID = anime.AnimeID WHERE list.AccountID = @Id AND deleted_at IS NULL", conn); // SQL statement
                 }
                 else
                 {
-                    cmd = new MySqlCommand("SELECT * FROM list WHERE AccountID = @Id AND status = @Status", conn); // SQL statement
+                    cmd = new MySqlCommand("SELECT * FROM list JOIN anime on list.AnimeID = anime.AnimeID WHERE list.AccountID = @Id AND list.status = @Status AND deleted_at IS NULL", conn); // SQL statement
                     cmd.Parameters.AddWithValue("@Status", listStatus);
                 }
                 cmd.Parameters.AddWithValue("@Id", accountId);
