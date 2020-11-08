@@ -10,8 +10,10 @@
     <style>
         body {
             background: url(/Content/Backgrounds/bg-15.jpg);
-            background-size: 100%;
+            background-size: cover;
             background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
         }
 
         .emp-details {
@@ -24,78 +26,44 @@
 
         .details-img {
             text-align: center;
+            padding-top: 5px;
         }
 
             .details-img img {
-                width: 70%;
+                width: 80%;
                 height: 100%;
             }
-
-            .details-img .file {
-                position: relative;
-                overflow: hidden;
-                margin-top: -20%;
-                width: 70%;
-                border: none;
-                border-radius: 0;
-                font-size: 15px;
-                background: #212529b8;
-            }
-
-                .details-img .file input {
-                    position: absolute;
-                    opacity: 0;
-                    right: 0;
-                    top: 0;
-                }
 
         .details-head h5 {
             color: #333;
         }
 
         .details-head h6 {
-            color: #0062cc;
+            padding: 5px 0;
+            color: #0056b3;
         }
-
-        .details-edit-btn {
-            border: none;
-            border-radius: 1.5rem;
-            width: 70%;
-            padding: 2%;
-            font-weight: 600;
-            color: #6c757d;
-            cursor: pointer;
-        }
-
-        .proile-rating {
-            font-size: 12px;
-            color: #818182;
-            margin-top: 5%;
-        }
-
-            .proile-rating span {
-                color: #495057;
-                font-size: 15px;
-                font-weight: 600;
-            }
 
         .details-head .nav-tabs {
             margin-bottom: 5%;
         }
 
             .details-head .nav-tabs .nav-link {
-                font-weight: 600;
+                font-weight: 400;
                 border: none;
+                color: #0056b3;
             }
 
                 .details-head .nav-tabs .nav-link.active {
                     border: none;
-                    border-bottom: 2px solid #0062cc;
+                    font-weight: 700;
+                    color: #0056b3;
+                    border-bottom: 2px solid #0056b3;
                 }
 
         .details-work {
-            padding: 14%;
-            margin-top: -15%;
+            padding: 5%;
+            margin: 0;
+            text-align: center;
         }
 
             .details-work p {
@@ -107,7 +75,7 @@
 
             .details-work a {
                 text-decoration: none;
-                color: #495057;
+                color: #3333FF;
                 font-weight: 600;
                 font-size: 14px;
             }
@@ -122,7 +90,7 @@
 
         .details-tab p {
             font-weight: 600;
-            color: #0062cc;
+            color: #0056b3;
         }
 
         .synopsis {
@@ -144,15 +112,129 @@
             color: #007bff;
             background-color: #fff;
             border-color: #007bff;
-            width: 100%;
+            width: 90%;
+            margin-top: 1%;
+            margin-bottom: 6%;
         }
 
         .spaceit {
             margin: 3px 0;
             padding: 3px 0;
         }
+
+        #addtolist {
+            padding: 0 !important;
+        }
+
+        #collapseExample {
+            width: 90% !important;
+            margin: 0 auto;
+        }
+
+        span.notice_open_public {
+            display: block;
+            text-align: left;
+        }
+
+        .card.card-body {
+            padding: 15px;
+            margin-top: 0;
+            padding-bottom: 5px;
+        }
+
+        form {
+            display: block;
+            text-align: center;
+        }
+
+        table {
+            padding: 0;
+            display: block;
+            margin: 0 !important;
+            border-collapse: separate;
+            border-spacing: 1px 10px !important;
+        }
+
+        tbody{
+            display: block;
+            width: 100%;
+        }
+
+        .statustr .epstr .submittr {
+            display: block;
+            width: 100%;
+        }
+
+        .status {
+            text-align: left;
+            padding-left: 2%;
+        }
+
+        .epseen {
+            padding-left: 2%;
+            text-align: left;
+            width: 40%;
+        }
+
+        .epseeninput {
+            text-align: left;
+        }
+
+        .submittr {
+            text-align: right;
+        }
+
+        .inputButton {
+            text-align: right;
+            margin: 2px;
+            border-radius: 2px;
+            border: 1px solid;
+        }
+
+        .submittd {
+            display: block;
+            text-align: right;
+        }
+
+        tbody {
+            margin: 0 !important;
+        }
+
+        #myinfo_status {
+            border: 1px solid #ced4da !important;
+            font-size: 0.95rem !important;
+            padding: 0;
+        }
+
+        #myinfo_watchedeps {
+            border: 1px solid #ced4da !important;
+            font-size: 1rem !important;
+            width: 30%;
+        }
+
+        inputButton {
+            margin-top: 5% !important;
+        }
+
+        #myinfoDisplay {
+            padding-left: 89px;
+            margin-top: 3px;
+        }
+
+        /* Hide input arrows */
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Firefox */
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
     </style>
-    <title>@ViewBag.Title - WibuAnimeList</title>
+    <title>@ViewBag.Anime.Name - WibuAnimeList</title>
 </head>
 <body>
     <div class="container emp-details">
@@ -162,6 +244,134 @@
                     <img class="rounded" src="~/Content/Images/Posters/@ViewBag.Anime.Poster" alt="" />
                 </div>
                 <div class="details-work">
+                    @if ((Session["User"] as FDMSWeb.Models.Account) != null)
+                    {
+                        if (@ViewBag.AnimeInList != null)
+                        {
+                            <div class="collapse show" id="collapseExample">
+                                <div class="card card-body">
+                                    <div id="addtolist" class="addtolist-block js-anime-addtolist-block">
+                                        <span class="notice_open_public">* Note: Anyone can view your list by default.</span>
+                                        <form action="@Url.Action("AddRemoveAnimeList", "Anime")" method="POST">
+                                            <table>
+                                                <input type="hidden" name="animeId" value="@ViewBag.Anime.Id" />
+                                                <input type="hidden" name="accountId" value="@((Session["User"] as FDMSWeb.Models.Account).Id)" />
+                                                <tbody>
+                                                    <tr class="statustr">
+                                                        <td class="status spaceit">Status:</td>
+                                                        <td class="statusinput spaceit">
+                                                            <select name="status" id="myinfo_status" class="inputtext js-anime-status-dropdown form-control-sm">
+                                                                @{int statusIndex = 1; }
+                                                                @foreach (string status in ViewBag.StatusList)
+                                                                {
+                                                                    if (!status.Equals(ViewBag.AnimeInList.Status))
+                                                                    {
+                                                                        <option value="@statusIndex"> @status </option>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <option value="@statusIndex" selected="selected">  @status  </option>
+                                                                    }
+                                                                    statusIndex++;
+                                                                }
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="epstr">
+                                                        <td class="epseen spaceit">Eps Seen:</td>
+                                                        <td class="epseeninput spaceit">
+                                                            <input type="hidden" name="episode" value="@ViewBag.Anime.Episodes" />
+                                                            @if (@ViewBag.AnimeInList.Progress == 0 && @ViewBag.AnimeInList.Status.Equals("Completed") && ViewBag.Anime.Episodes == 0)
+                                                            {
+                                                                <input type="number" id="myinfo_watchedeps" name="progress" size="3" class="inputtext form-control-sm" value="?" />
+                                                            }
+                                                            else
+                                                            {
+                                                                <input type="number" id="myinfo_watchedeps" name="progress" size="3" class="inputtext form-control-sm" value="@ViewBag.AnimeInList.Progress" />
+                                                            }
+                                                            @Html.Raw("/")
+                                                            @if (@ViewBag.Anime.Episodes != 0)
+                                                            {
+                                                                @ViewBag.Anime.Episodes
+                                                            }
+                                                            else
+                                                            {
+                                                                @Html.Raw("?")
+                                                            }
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="submittr">
+                                                        <td></td>
+                                                        <td class="submittd">
+                                                            <input type="submit" name="btnAction" value="Edit" class="inputButton">
+                                                            <input type="submit" name="btnAction" value="Remove" class="inputButton" onclick="return confirm('Are you sure you want to remove \'@ViewBag.Anime.Name\' from list?');">
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                Add To List
+                            </button>
+                            <div class="collapse" id="collapseExample">
+                                <div class="card card-body">
+                                    <div id="addtolist" class="addtolist-block js-anime-addtolist-block">
+                                        <span class="notice_open_public">* Note: Anyone can view your list by default.</span>
+                                        <form action="@Url.Action("AddRemoveAnimeList", "Anime")" method="POST">
+                                            <table>
+                                                <input type="hidden" name="animeId" value="@ViewBag.Anime.Id" />
+                                                <input type="hidden" name="accountId" value="@((Session["User"] as FDMSWeb.Models.Account).Id)" />
+                                                <tbody>
+                                                    <tr class="statustr">
+                                                        <td class="status spaceit">Status:</td>
+                                                        <td class="statusinput spaceit">
+                                                            <select name="status" id="myinfo_status" class="inputtext form-control-sm">
+                                                                @{int statusIndex = 1; }
+                                                                @foreach (string status in ViewBag.StatusList)
+                                                                {
+                                                                    <option value="@statusIndex"> @status </option>
+                                                                    statusIndex++;
+                                                                }
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="epstr">
+                                                        <td class="epseen spaceit">Eps Seen:</td>
+                                                        <td class="epseeninput spaceit">
+                                                            <input type="hidden" name="episode" value="@ViewBag.Anime.Episodes" />
+                                                            <input type="number" id="myinfo_watchedeps" name="progress" size="1" class="inputtext form-control-sm" value="" required/>
+                                                            @Html.Raw("/")
+                                                            @if (@ViewBag.Anime.Episodes != 0)
+                                                            {
+                                                                @ViewBag.Anime.Episodes
+                                                            }
+                                                            else
+                                                            {
+                                                                @Html.Raw("?")
+                                                            }
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="submittr">
+                                                        <td></td>
+                                                        <td class="submittd">
+                                                            <input type="submit" name="btnAction" value="Add" class="inputButton">
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </form>
+                                        <div id="myinfoDisplay"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
                 </div>
             </div>
             <div class="col-md-8">
@@ -329,11 +539,11 @@
                     <div class="tab-pane fade" id="trailer" role="tabpanel" aria-labelledby="trailer-tab">
                         @if (@ViewBag.Anime.Trailer != null)
                         {
-                            <div class="embed-responsive embed-responsive-16by9" style="text-align: center;"><iframe class="embed-responsive-item" width="500" height="300" src="@Html.Raw(ViewBag.Anime.Trailer)?rel=0" frameborder="0" allow="encrypted-media" allowfullscreen></iframe></div>
+                            <div class="embed-responsive embed-responsive-16by9 text-center"><iframe class="embed-responsive-item" width="500" height="300" src="@Html.Raw(ViewBag.Anime.Trailer)?rel=0" frameborder="0" allow="encrypted-media" allowfullscreen></iframe></div>
                         }
                         else
                         {
-                            <p style="text-align: center; color: #000000;">There is no trailer available for this Anime title</p>
+                            <p class="text-center text-black">There is no trailer available for this Anime title</p>
                         }
                     </div>
                 </div>

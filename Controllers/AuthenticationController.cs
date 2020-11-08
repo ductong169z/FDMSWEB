@@ -36,8 +36,8 @@ namespace FDMSWeb.Controllers
                 if (account != null)
                 {
                     Session.Add("User", account);
+                    Session.Timeout = 120;
                     return RedirectToAction("Index", "Home");
-
                 }
 
             }

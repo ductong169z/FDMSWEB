@@ -166,9 +166,9 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AuthenticationController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ViewAnimeController.cs" />
-    <Compile Include="Controllers\ViewAnimeListController.cs" />
+    <Compile Include="Controllers\AnimeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -186,6 +186,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Backgrounds\bg-03.jpg" />
     <Content Include="Content\Backgrounds\bg-12.png" />
     <Content Include="Content\Backgrounds\bg-15.jpg" />
     <Content Include="Content\Backgrounds\bg-animelist.jpg" />
@@ -193,6 +194,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\lilo.png" />
     <Content Include="Content\Images\Posters\1.jpg" />
     <Content Include="Content\Images\Posters\10.jpg" />
     <Content Include="Content\Images\Posters\100.jpg" />
@@ -511,8 +513,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Authentication\Login.cshtml" />
     <Content Include="Content\login\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.eot" />
@@ -587,6 +587,7 @@
     <Content Include="Content\login\vendor\mdi-font\fonts\Material-Design-Iconic-Font.woff2" />
     <Content Include="Views\Anime\ViewAnime.cshtml" />
     <Content Include="Views\Anime\ViewAnimeList.cshtml" />
+    <Content Include="Views\Error\NotFound.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
