@@ -420,7 +420,7 @@
 
                 </div>
 
-                @if ((Session["User"] as Account) != null && ViewBag.AccountId == ((Session["User"] as Account).Id))
+                @if (Session["User"] != null && ViewBag.AccountId == ((Session["User"] as Account).Id))
                 {
                     <table class="anime-list-table" id="myListTable">
                         <thead>
@@ -452,7 +452,7 @@
                                             <td class="list-item-data number text-center" style="width: 5%;">@animeIndex</td>
 
                                             <td class="list-item-data image text-center" style="width: 7%;">
-                                                <a href="Anime/ViewAnime/animeID=@anime.Id" class="link sort">
+                                                <a href="ViewAnime?id=@anime.Id" class="link sort">
                                                     <img src="~/Content/Images/Posters/@anime.Poster" class="hover-info image">
                                                 </a>
                                             </td>
@@ -546,7 +546,7 @@
                                         <td class="list-item-data number text-center" style="width: 5%;">@animeIndex</td>
 
                                         <td class="list-item-data image text-center" style="width: 7%;">
-                                            <a href="Anime/ViewAnime/animeID=@anime.Id" class="link sort">
+                                            <a href="ViewAnime?id=@anime.Id" class="link sort">
                                                 <img src="~/Content/Images/Posters/@anime.Poster" class="hover-info image">
                                             </a>
                                         </td>
