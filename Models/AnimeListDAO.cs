@@ -1008,12 +1008,6 @@ namespace FDMSWeb.Models
             MySqlConnection conn = null; // connection to database
             MySqlCommand cmd; // store SQL statement
 
-
-            if (progress > 8888)
-            {
-                progress = 8888;
-            }
-
             if (episodes != 0)
             {
                 if (progress > episodes)
@@ -1075,12 +1069,6 @@ namespace FDMSWeb.Models
             /* Declare resources used for interacting with database */
             MySqlConnection conn = null; // connection to database
             MySqlCommand cmd; // store SQL statement
-
-
-            if (progress > 8888)
-            {
-                progress = 8888;
-            }
 
             if (episodes != 0)
             {
