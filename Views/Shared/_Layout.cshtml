@@ -33,7 +33,6 @@
         }
         else
         {
-
             <ul class="nav navbar-nav">
                 <li class="dropdown">
                     <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
@@ -49,17 +48,16 @@
             </ul>
         }
     </nav>
-    </nav>
     <div class="body-content">
+        @Scripts.Render("~/bundles/modernizr")
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
         @RenderBody()
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - Wibu Anime List</p>
         </footer>
     </div>
-    @Scripts.Render("~/bundles/modernizr")
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
 </html>

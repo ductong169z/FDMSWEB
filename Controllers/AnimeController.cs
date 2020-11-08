@@ -130,7 +130,7 @@ namespace FDMSWeb.Controllers
                     // return error page
                 }
             }
-            else if (btnAction.Equals("Delete"))
+            else if (btnAction.Equals("Remove"))
             {
                 Boolean result = dao.RemoveAnimeFromList(accountId, animeId);
 

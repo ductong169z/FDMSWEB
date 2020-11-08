@@ -379,7 +379,7 @@
                 width: 100%;
             }
 
-            #myinfo_watchedeps{
+            #myinfo_watchedeps {
                 width: 42%;
             }
 
@@ -455,11 +455,11 @@
                                                             <input type="hidden" name="episode" value="@ViewBag.Anime.Episodes" />
                                                             @if (@ViewBag.AnimeInList.Progress == 0 && @ViewBag.AnimeInList.Status.Equals("Completed") && ViewBag.Anime.Episodes == 0)
                                                             {
-                                                                <input type="number" min="0" max="9999" id="myinfo_watchedeps" name="progress" size="3" class="inputtext form-control-sm" value="@Html.Raw("?")" />
+                                                                <input type="number" min="0" max="9999" id="myinfo_watchedeps" name="progress" size="3" class="inputtext form-control-sm" value="@Html.Raw("?")" required />
                                                             }
                                                             else
                                                             {
-                                                                <input type="number" min="0" max="9999" id="myinfo_watchedeps" name="progress" size="3" class="inputtext form-control-sm" value="@ViewBag.AnimeInList.Progress" />
+                                                                <input type="number" min="0" max="9999" id="myinfo_watchedeps" name="progress" size="3" class="inputtext form-control-sm" value="@ViewBag.AnimeInList.Progress" required />
                                                             }
                                                             @Html.Raw("/")
                                                             @if (@ViewBag.Anime.Episodes != 0)
@@ -475,8 +475,8 @@
                                                     <tr class="submittr">
 
                                                         <td class="submittd">
-                                                            <input type="submit" name="btnAction" value="Edit" class="inputButton">
-                                                            <input type="submit" name="btnAction" value="Remove" class="inputButton" onclick="return confirm('Are you sure you want to remove \'@ViewBag.Anime.Name\' from list?');">
+                                                            <input id="editButton" type="submit" name="btnAction" value="Edit" class="inputButton editButton">
+                                                            <input type="submit" name="btnAction" value="Remove" class="inputButton" onclick="return confirm('Are you sure you want to remove \'@ViewBag.Anime.Name\' from your list?');">
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -532,7 +532,7 @@
                                                     <tr class="submittr">
 
                                                         <td class="submittd">
-                                                            <input type="submit" name="btnAction" value="Add" class="inputButton">
+                                                            <input id="addButton" type="submit" name="btnAction" value="Add" class="inputButton addButton">
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -724,5 +724,17 @@
             </div>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function () {
+            $('#editButton').click(function () {
+                if (@ViewBag.Anime.Episodes == 0 && $('#myinfo_status :selected').val() == 2) {
+                    alert('The anime is currently airing and has not yet finished!');
+                    return false;
+                };
+            });
+        });
+
+    </script>
 </body>
 </html>
