@@ -26,6 +26,7 @@
 
         .details-img {
             text-align: center;
+            padding: 0;
             padding-top: 5px;
         }
 
@@ -92,6 +93,8 @@
             font-weight: 600;
             color: #0056b3;
         }
+
+        /* Miscellaneous CSS */
 
         .synopsis {
             color: #000000 !important;
@@ -223,6 +226,12 @@
         }
 
         @@media (max-width: 768px) {
+            .details-img img {
+                max-width: 100%;
+                height: auto;
+                width: auto;
+            }
+
             .status {
                 float: initial;
                 width: initial;
@@ -258,6 +267,11 @@
         }
 
         @@media (min-width: 1200px) {
+            .details-img img {
+                width: 80%;
+                height: 100%;
+            }
+
             .status {
                 float: initial;
                 width: initial;
@@ -293,6 +307,11 @@
         }
 
         @@media (min-width: 768px) and (max-width: 1200px) {
+            .details-img img {
+                width: 80%;
+                height: 100%;
+            }
+
             .status {
                 display: block;
                 float: left;
@@ -353,7 +372,7 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="details-img">
-                    <img class="rounded" src="~/Content/Images/Posters/@ViewBag.Anime.Poster" alt="" />
+                    <img class="rounded " src="~/Content/Images/Posters/@ViewBag.Anime.Poster" alt="" />
                 </div>
                 <div class="details-work">
                     @if ((Session["User"] as FDMSWeb.Models.Account) != null)
