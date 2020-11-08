@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <style>
         body {
@@ -99,7 +100,7 @@
         }
 
         .btn-group {
-            margin-top: 15% !important;
+            margin-top: 15%;
             width: 200px;
         }
 
@@ -152,10 +153,10 @@
             display: block;
             margin: 0 !important;
             border-collapse: separate;
-            border-spacing: 1px 10px !important;
+            border-spacing: 1px 10px;
         }
 
-        tbody{
+        tbody {
             display: block;
             width: 100%;
         }
@@ -178,6 +179,7 @@
 
         .epseeninput {
             text-align: left;
+            margin-right: 1px !important;
         }
 
         .submittr {
@@ -197,29 +199,134 @@
         }
 
         tbody {
-            margin: 0 !important;
+            margin: 0;
         }
 
         #myinfo_status {
-            border: 1px solid #ced4da !important;
-            font-size: 0.95rem !important;
+            border: 1px solid #ced4da;
+            font-size: 0.95rem;
             padding: 0;
         }
 
         #myinfo_watchedeps {
-            border: 1px solid #ced4da !important;
-            font-size: 1rem !important;
+            border: 1px solid #ced4da;
+            font-size: 1rem;
             width: 35%;
         }
 
         inputButton {
-            margin-top: 5% !important;
+            margin-top: 5%;
         }
 
         #myinfoDisplay {
             padding-left: 89px;
             margin-top: 3px;
         }
+
+        @@media (max-width: 768px) {
+            .status {
+                float: initial;
+                width: initial;
+            }
+
+            .statusinput {
+                display: initial;
+                float: initial;
+                width: initial;
+            }
+
+                .statusinput select {
+                    float: initial;
+                    width: initial;
+                }
+
+            .epstr {
+                float: initial;
+                width: initial;
+            }
+
+            .epseen .epseeninput {
+                display: initial;
+                float: initial;
+                width: initial;
+            }
+
+            .submittr {
+                display: block;
+            }
+        }
+
+        @@media (min-width: 1200px) {
+            .status {
+                float: initial;
+                width: initial;
+            }
+
+            .statusinput {
+                display: initial;
+                float: initial;
+                width: initial;
+            }
+
+                .statusinput select {
+                    float: initial;
+                    width: initial;
+                }
+
+            .epstr {
+                float: initial;
+                width: initial;
+            }
+
+            .epseen .epseeninput {
+                display: initial;
+                float: initial;
+                width: initial;
+            }
+
+            .submittr {
+                display: block;
+            }
+        }
+
+        @@media (min-width: 768px) and (max-width: 1200px) {
+            .status {
+                display: block;
+                float: left;
+                width: 100%;
+            }
+
+            .statusinput {
+                display: block;
+                float: left;
+                width: 100%;
+            }
+
+                .statusinput select {
+                    width: 100%;
+                }
+
+            .epstr {
+                display: block;
+                float: left;
+                width: 100%;
+            }
+
+            .epseen .epseeninput {
+                display: block;
+                float: left;
+                width: 100%;
+            }
+
+            .submitfiller {
+                display: none;
+            }
+        }
+
+        .submittr{
+            float: right;
+        }
+
 
         /* Hide input arrows */
         /* Chrome, Safari, Edge, Opera */
@@ -301,7 +408,7 @@
                                                         </td>
                                                     </tr>
                                                     <tr class="submittr">
-                                                        <td></td>
+                                                        
                                                         <td class="submittd">
                                                             <input type="submit" name="btnAction" value="Edit" class="inputButton">
                                                             <input type="submit" name="btnAction" value="Remove" class="inputButton" onclick="return confirm('Are you sure you want to remove \'@ViewBag.Anime.Name\' from list?');">
@@ -345,7 +452,7 @@
                                                         <td class="epseen spaceit">Eps Seen:</td>
                                                         <td class="epseeninput spaceit">
                                                             <input type="hidden" name="episode" value="@ViewBag.Anime.Episodes" />
-                                                            <input type="number" min="0" max="9999" id="myinfo_watchedeps" name="progress" size="1" class="inputtext form-control-sm" value="" required/>
+                                                            <input type="number" min="0" max="9999" id="myinfo_watchedeps" name="progress" size="1" class="inputtext form-control-sm" value="" required />
                                                             @Html.Raw("/")
                                                             @if (@ViewBag.Anime.Episodes != 0)
                                                             {
@@ -358,7 +465,7 @@
                                                         </td>
                                                     </tr>
                                                     <tr class="submittr">
-                                                        <td></td>
+                                                        
                                                         <td class="submittd">
                                                             <input type="submit" name="btnAction" value="Add" class="inputButton">
                                                         </td>
