@@ -999,7 +999,7 @@ namespace FDMSWeb.Models
                 return rd.GetString(0);
             }
 
-            return "";
+            return null;
         }
 
         public Boolean AddAnimeToList(int accountId, int animeId, int progress, int episodes, int status)
