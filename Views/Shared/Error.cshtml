@@ -2,12 +2,80 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Error</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <style>
+        .error {
+            margin: 0 auto;
+            text-align: center;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-image: url(/Content/Backgrounds/bg-animelist.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .error-code {
+            bottom: 60%;
+            color: #FFFFFF;
+            font-size: 50px;
+            font-family: 'Raleway', sans-serif;
+            line-height: 100px;
+        }
+
+        .font-bold {
+            color: #FFFFFF;
+            font-size: 25px;
+            margin-bottom: 2% !important;
+        }
+
+        .error-desc {
+            font-size: 20px;
+            color: #FFFFFF;
+        }
+
+        .m-b-10 {
+            margin-bottom: 5% !important;
+        }
+
+        .m-b-20 {
+            margin-bottom: 5% !important;
+        }
+
+        .m-t-20 {
+            margin-top: 10% !important;
+        }
+
+        .login-detail-panel-button {
+            font-size: 20px;
+            color: #FFFFFF;
+            border-radius: 30px !important;
+            text-decoration: none;
+            border-color: #FFFFFF;
+        }
+    </style>
+    <title>An Error Occured - WibuAnimeList</title>
 </head>
 <body>
-    <hgroup>
-        <h1>Error.</h1>
-        <h2>An error occurred while processing your request.</h2>
-    </hgroup>
+    <div class="error">
+        <div class="error-code m-b-10 m-t-20">AN ERROR OCCURED!</div>
+        <h3 class="font-bold">An error occurred while processing your request</h3>
+
+        <div class="error-desc">
+            <div>
+                <a class="login-detail-panel-button btn" href="@Url.Action("Index", "Home")">
+                    <i class="fa fa-arrow-left">
+                        Go back to Home Page
+                    </i>
+                </a>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

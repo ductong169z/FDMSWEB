@@ -61,23 +61,22 @@
             text-align: left;
         }
 
-        /* Status menu */
-        .status-menu-container {
+        /* Status menu block and status menu */
+        .status-menu-block {
             width: 100%;
             height: 46px;
             border: 0;
-            z-index: 1;
             margin-top: 2px;
         }
 
-            .status-menu-container .status-menu {
+            .status-menu-block .status-menu {
                 display: table;
                 margin: 0 auto;
                 border-collapse: separate;
                 border-spacing: 40px 0;
             }
 
-                .status-menu-container .status-menu .status-button {
+                .status-menu-block .status-menu .status-button {
                     position: relative;
                     display: table-cell;
                     padding: 10px 0;
@@ -85,21 +84,22 @@
                     font-family: Verdana;
                     text-align: center;
                     vertical-align: middle;
-                    font-size: 1.4em;
+                    font-size: 1.3em;
                     color: #343a40;
                 }
 
-                    .status-menu-container .status-menu .status-button.on {
+                    .status-menu-block .status-menu .status-button.on {
                         color: #212529;
                         font-weight: bold;
                     }
 
-                    .status-menu-container .status-menu .status-button:after {
+                    .status-menu-block .status-menu .status-button:after {
                         position: absolute;
                         bottom: 0px;
                         left: 0px;
                         background-color: #343a40;
                         display: block;
+                        overflow: hidden;
                         width: 100%;
                         height: 3px;
                         content: '';
@@ -118,19 +118,19 @@
                         transition-timing-function: ease-in-out;
                     }
 
-                    .status-menu-container .status-menu .status-button.on:after, .status-menu .status-button:hover:after {
+                    .status-menu-block .status-menu .status-button.on:after, .status-menu .status-button:hover:after {
                         padding: 0;
                         margin: 0;
-                        opacity: 1
+                        opacity: 1;
                     }
 
             /* List container - Status menu - Search */
-            .status-menu-container .search-container {
+            .status-menu-block .search-container {
                 position: absolute;
                 right: 18px;
             }
 
-                .status-menu-container .search-container #search-button {
+                .status-menu-block .search-container #search-button {
                     display: inline-block;
                     height: 22px;
                     margin-top: 15px;
@@ -139,7 +139,7 @@
                     vertical-align: middle;
                 }
 
-                .status-menu-container .search-container #search-box {
+                .status-menu-block .search-container #search-box {
                     display: inline-block;
                     width: 0;
                     height: 22px;
@@ -152,12 +152,12 @@
                     vertical-align: middle;
                 }
 
-                    .status-menu-container .search-container #search-box.open {
+                    .status-menu-block .search-container #search-box.open {
                         display: inline-block;
                         width: 100px;
                     }
 
-                    .status-menu-container .search-container #search-box input {
+                    .status-menu-block .search-container #search-box input {
                         width: 100%;
                         height: 100%;
                         box-sizing: border-box;
@@ -173,7 +173,7 @@
             display: block;
             margin: 0 auto;
             width: 1024px;
-            border-radius: 0 0 5px 5px;
+            
         }
 
         .list-status-block {
@@ -184,6 +184,7 @@
             font-weight: bold;
             padding: 0.4em;
             border-radius: 5px 5px 0 0;
+            box-shadow: 0 0 0 1px #E1E1E1; /* this draws the table border  */
         }
 
         /* Anime list table */
@@ -194,6 +195,9 @@
             border-collapse: collapse;
             border: #E1E1E1 1px solid;
             font-size: 12px;
+            border-radius: 0 0 5px 5px;
+            border-style: hidden;  /*hide standard table (collapsed) border */
+            box-shadow: 0 0 0 1px #e1e1e1;  /*this draws the table border  */
         }
 
             /* Anime list table header */
@@ -207,45 +211,45 @@
                 font-size: 12px;
             }
 
-            .header-title.type {
+        .header-title.type {
+            padding-right: 6px;
+        }
+
+        /* Animes in anime list table */
+
+        .anime-list-table .anime-list-table-list-item-data .list-item-data {
+            display: table-cell;
+            padding: 8px 0;
+            text-align: center;
+            vertical-align: middle;
+            border-bottom: #E1E1E1 1px solid;
+        }
+
+            .anime-list-table .anime-list-table-list-item-data .list-item-data.image .image {
+                width: 48px;
+                height: 68px;
+                border: #E1E1E1 1px solid;
+                border-radius: 3px;
+            }
+
+            .anime-list-table .anime-list-table-list-item-data .list-item-data.title {
+                padding-left: 10px;
+                text-align: left;
+                word-wrap: break-word;
+                font-weight: bold;
+            }
+
+            .anime-list-table .anime-list-table-list-item-data .list-item-data.status {
+                text-align: center;
+            }
+
+            .anime-list-table .anime-list-table-list-item-data .list-item-data.type {
                 padding-right: 6px;
             }
 
-            /* Animes in anime list table */
-
-            .anime-list-table .anime-list-table-list-item-data .list-item-data {
-                display: table-cell;
-                padding: 8px 0;
-                text-align: center;
-                vertical-align: middle;
-                border-bottom: #E1E1E1 1px solid
+            .anime-list-table .anime-list-table-list-item-data .list-item-data.progress {
+                padding-left: 5px;
             }
-
-                .anime-list-table .anime-list-table-list-item-data .list-item-data.image .image {
-                    width: 48px;
-                    height: 68px;
-                    border: #E1E1E1 1px solid;
-                    border-radius: 3px;
-                }
-
-                .anime-list-table .anime-list-table-list-item-data .list-item-data.title {
-                    padding-left: 10px;
-                    text-align: left;
-                    word-wrap: break-word;
-                    font-weight: bold;
-                }
-
-                .anime-list-table .anime-list-table-list-item-data .list-item-data.status {
-                    text-align: center;
-                }
-
-                .anime-list-table .anime-list-table-list-item-data .list-item-data.type {
-                    padding-right: 6px;
-                }
-
-                .anime-list-table .anime-list-table-list-item-data .list-item-data.progress {
-                    padding-left: 5px;
-                }
 
         /* Miscellaneous CSS */
 
@@ -321,7 +325,7 @@
     </div>
 
     <div id="list-container" class="list-container">
-        <div id="status-menu" class="status-menu-container">
+        <div id="status-menu" class="status-menu-block">
             <div class="status-menu">
                 <a id="all_anime" href="ViewAnimeList?accountId=@ViewBag.AccountId&listStatus=0"
                    class="status-button all_anime">All Anime</a>
@@ -395,80 +399,80 @@
                             @{ int animeIndex = 0; }
                             @if (ViewBag.AnimeDetailList != null && ViewBag.AnimeDetailList.Count != 0)
                             {
-                            <form action="@Url.Action("EditRemoveAnimeList", "Anime")" method="POST">
-                                @foreach (FDMSWeb.Models.Anime anime in ViewBag.AnimeDetailList)
-                                {
-                                    FDMSWeb.Models.List listAnime = ViewBag.AnimeList[animeIndex];
-                                    animeIndex++;
-                                    <input type="hidden" name="listStatus" value="@ViewBag.ListStatus" />
-                                    <input type="hidden" name="accountId" value="@((Session["User"] as Account).Id)" />
-                                    <input type="hidden" name="episode" value="@anime.Episodes" />
-                                    <input type="hidden" name="animeId" value="@anime.Id" />
-                                    <tr class="anime-list-table-list-item-data">
-                                        <td class="list-item-data number text-center" style="width: 5%;">@animeIndex</td>
+                                <form action="@Url.Action("EditRemoveAnimeList", "Anime")" method="POST">
+                                    @foreach (FDMSWeb.Models.Anime anime in ViewBag.AnimeDetailList)
+                                    {
+                                        FDMSWeb.Models.List listAnime = ViewBag.AnimeList[animeIndex];
+                                        animeIndex++;
+                                        <input type="hidden" name="listStatus" value="@ViewBag.ListStatus" />
+                                        <input type="hidden" name="accountId" value="@((Session["User"] as Account).Id)" />
+                                        <input type="hidden" name="episode" value="@anime.Episodes" />
+                                        <input type="hidden" name="animeId" value="@anime.Id" />
+                                        <tr class="anime-list-table-list-item-data">
+                                            <td class="list-item-data number text-center" style="width: 5%;">@animeIndex</td>
 
-                                        <td class="list-item-data image text-center" style="width: 7%;">
-                                            <a href="Anime/ViewAnime/animeID=@anime.Id" class="link sort">
-                                                <img src="~/Content/Images/Posters/@anime.Poster" class="hover-info image">
-                                            </a>
-                                        </td>
+                                            <td class="list-item-data image text-center" style="width: 7%;">
+                                                <a href="Anime/ViewAnime/animeID=@anime.Id" class="link sort">
+                                                    <img src="~/Content/Images/Posters/@anime.Poster" class="hover-info image">
+                                                </a>
+                                            </td>
 
-                                        <td class="list-item-data title clearfix text-wrap" style="width: 46%;">
-                                            <a href="ViewAnime?id=@anime.Id" class="link sort">@anime.Name</a>
-                                        </td>
+                                            <td class="list-item-data title clearfix text-wrap" style="width: 46%;">
+                                                <a href="ViewAnime?id=@anime.Id" class="link sort">@anime.Name</a>
+                                            </td>
 
-                                        <td class="list-item-data type text-center" style="width: 8%;">
-                                            @anime.Type
-                                        </td>
+                                            <td class="list-item-data type text-center" style="width: 8%;">
+                                                @anime.Type
+                                            </td>
 
-                                        <td class="list-item-data progress text-left" style="background-color: transparent!important; width: 9%">
-                                            @if (listAnime.Progress == 0 && listAnime.Status.Equals("Completed") && anime.Episodes == 0)
-                                            {
-                                                <input size="1" type="number" min="0" max="9999" name="progress" class="inputtext form-control-sm text-left pl-1 progress-input" value="" required>
-                                            }
-                                            else
-                                            {
-                                                <input size="1" type="number" min="0" max="9999" name="progress" class="inputtext form-control-sm text-left pl-1 progress-input" value="@listAnime.Progress" required>
-                                            }
-                                            @Html.Raw("/")
-                                            @if (anime.Episodes != 0)
-                                            {
-                                                @Html.Raw(anime.Episodes)
-                                            }
-                                            else
-                                            {
-                                                @Html.Raw("?")
-                                            }
-                                        </td>
-
-                                        <td class="list-item-data status" style="width: 15%;">
-                                            <select name="status">
-                                                @{int statusIndex = 1; }
-                                                @foreach (String status in ViewBag.StatusList)
+                                            <td class="list-item-data progress text-left" style="background-color: transparent!important; width: 9%">
+                                                @if (listAnime.Progress == 0 && listAnime.Status.Equals("Completed") && anime.Episodes == 0)
                                                 {
-                                                    if (!status.Equals(listAnime.Status))
-                                                    {
-                                                        <option value="@statusIndex"> @status </option>
-                                                        <br />
-                                                    }
-                                                    else
-                                                    {
-                                                        <option value="@statusIndex" selected="selected"> @status </option>
-                                                        <br />
-                                                    }
-                                                    statusIndex++;
+                                                    <input size="1" type="number" min="0" max="9999" name="progress" class="inputtext form-control-sm text-left pl-1 progress-input" value="" required>
                                                 }
-                                            </select>
-                                        </td>
-                                        <td class="list-item-data pr-0 pl-2 text-center" style="width: 5%;">
-                                            <input type="submit" name="btnAction" style="font-size: 12px;" value="Edit" />
-                                        </td>
-                                        <td class="list-item-data pr-3 pl-3 text-center" style="width: 6%;">
-                                            <input type="submit" name="btnAction" style="font-size: 12px;" value="Remove" onclick="return confirm('Are you sure you want to remove \'@anime.Name\' from your list?');" />
-                                        </td>
-                                    </tr>
-                                }
-                            </form>
+                                                else
+                                                {
+                                                    <input size="1" type="number" min="0" max="9999" name="progress" class="inputtext form-control-sm text-left pl-1 progress-input" value="@listAnime.Progress" required>
+                                                }
+                                                @Html.Raw("/")
+                                                @if (anime.Episodes != 0)
+                                                {
+                                                    @Html.Raw(anime.Episodes)
+                                                }
+                                                else
+                                                {
+                                                    @Html.Raw("?")
+                                                }
+                                            </td>
+
+                                            <td class="list-item-data status" style="width: 15%;">
+                                                <select name="status">
+                                                    @{int statusIndex = 1; }
+                                                    @foreach (String status in ViewBag.StatusList)
+                                                    {
+                                                        if (!status.Equals(listAnime.Status))
+                                                        {
+                                                            <option value="@statusIndex"> @status </option>
+                                                            <br />
+                                                        }
+                                                        else
+                                                        {
+                                                            <option value="@statusIndex" selected="selected"> @status </option>
+                                                            <br />
+                                                        }
+                                                        statusIndex++;
+                                                    }
+                                                </select>
+                                            </td>
+                                            <td class="list-item-data pr-0 pl-2 text-center" style="width: 5%;">
+                                                <input type="submit" name="btnAction" style="font-size: 12px;" value="Edit" />
+                                            </td>
+                                            <td class="list-item-data pr-3 pl-3 text-center" style="width: 6%;">
+                                                <input type="submit" name="btnAction" style="font-size: 12px;" value="Remove" onclick="return confirm('Are you sure you want to remove \'@anime.Name\' from your list?');" />
+                                            </td>
+                                        </tr>
+                                    }
+                                </form>
                             }
                         </tbody>
                     </table>
