@@ -166,6 +166,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AuthenticationController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\AnimeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -586,6 +587,8 @@
     <Content Include="Content\login\vendor\mdi-font\fonts\Material-Design-Iconic-Font.woff2" />
     <Content Include="Views\Anime\ViewAnime.cshtml" />
     <Content Include="Views\Anime\ViewAnimeList.cshtml" />
+    <Content Include="Views\Error\InternalError.cshtml" />
+    <Content Include="Views\Anime\ViewListSearchResult.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

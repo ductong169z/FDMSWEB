@@ -1,10 +1,15 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @using FDMSWeb.Models
     @Styles.Render("~/bundles/css")
+    <style>
+        .navbar {
+            border-radius: 0 0 5px 5px;
+        }
+    </style>
 </head>
 <body class="container">
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
@@ -18,7 +23,7 @@
         </div>
 
 
-        @if (Session["User"] == null)
+        @if (Session == null || Session["User"] == null)
         {
             <div class="col-md-3 pull-right">
                 <a type="button" href="@Url.Action("Login", "Authentication")" class="btn btn-primary ">Login</a>
@@ -28,14 +33,15 @@
         }
         else
         {
-
             <ul class="nav navbar-nav">
                 <li class="dropdown">
                     <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
 
-                        Welcome,@((Session["User"] as Account).FullName)  <b class="caret"></b>
+                        Welcome, @((Session["User"] as Account).FullName)  <b class="caret"></b>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" href="@Url.Action("ViewAnimeList", "Anime", new { accountId = "4", listStatus = "0" })">View Own List</a>
+                        <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Change Info</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="@Url.Action("Logout", "Authentication")">Log Out</a>
@@ -44,17 +50,16 @@
             </ul>
         }
     </nav>
-    </nav>
     <div class="body-content">
+        @Scripts.Render("~/bundles/modernizr")
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - Wibu Anime List</p>
         </footer>
     </div>
-    @Scripts.Render("~/bundles/modernizr")
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
 </html>
