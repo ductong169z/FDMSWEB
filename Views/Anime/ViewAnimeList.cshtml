@@ -191,7 +191,6 @@
             vertical-align: middle;
             border-bottom: 1px solid #E1E1E1;
         }
-
             .anime-list-table .anime-list-table-list-item-data .list-item-data.poster .poster {
                 width: 48px;
                 height: 68px;
@@ -214,10 +213,62 @@
             }
 
             .anime-list-table .anime-list-table-list-item-data .list-item-data.progress {
-                padding-left: 10px;
+                padding-left: 0.6rem;
             }
 
+        .list-item-data.index {
+            width: 5%;
+        }
+
+        .list-item-data.poster{
+            width: 7%;
+        }
+
+        .list-item-data.title {
+            width: 46%;
+        }
+
+        .list-item-data.type {
+            width: 8%;
+        }
+
+        .list-item-data.progress {
+            width: 9%;
+        }
+
+        .list-item-data.status {
+            width: 15%;
+        }
+
+        .list-item-data.edit-button {
+            width: 5%;
+        }
+
+        .list-item-data.remove-button {
+            width: 6%;
+        }
+
+        .list-item-data.typenone {
+            padding: 0 !important;
+        }
+
+        .list-item-data.progressnone {
+            padding: 0 !important;
+        }
+
         /* Miscellaneous CSS */
+
+        .typenone {
+            padding: 0 !important;
+        }
+
+        .progressnone {
+            padding: 0 !important;
+        }
+
+        .input {
+            font-size: 12px;
+        }
 
         .navbar {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -242,10 +293,12 @@
         }
 
         .progress-input {
-            width: 43%;
+            width: 45%;
             border: 1px solid #969696 !important;
             font-size: 12px;
             height: 1.2rem;
+            text-align: center;
+            display: inline-block;
         }
 
         select {
@@ -385,7 +438,7 @@
                                 <div class="modal-body">
                                     <input type="hidden" name="accountId" value="@((Session["User"] as Account).Id)" />
                                     <input type="hidden" name="listStatus" value="0" />
-                                    <input class="form-control" name="searchValue" type="text" value="" placeholder="Enter the name of anime to search" />
+                                    <input id="search-input" class="form-control" name="searchValue" type="text" value="" placeholder="Enter the name of anime to search" />
                                 </div>
                                 <div class="modal-footer">
                                     <button type="submit" class="btn searchanimebtn">Search</button>
@@ -436,8 +489,8 @@
                         <!-- Table headers -->
                         <thead>
                             <tr class="anime-list-table-header">
-                                <th class="header-title number">No.</th>
-                                <th class="header-title poster">Poster</th>
+                                <th class="header-title index">No.</th>
+                                <th class="header-title poster pl-1">Poster</th>
                                 <th class="header-title title">Anime Title</th>
                                 <th class="header-title type">Type</th>
                                 <th class="header-title progress">Progress</th>
@@ -464,23 +517,23 @@
                                         <input type="hidden" name="episode" value="@anime.Episodes" />
                                         <input type="hidden" name="animeId" value="@anime.Id" />
                                         <tr class="anime-list-table-list-item-data">
-                                            <td class="list-item-data number text-center" style="width: 5%;">@animeIndex</td>
+                                            <td class="list-item-data index text-center">@animeIndex</td>
 
-                                            <td class="list-item-data poster text-center" style="width: 7%;">
+                                            <td class="list-item-data poster text-center">
                                                 <a href="ViewAnime?id=@anime.Id" class="link sort">
                                                     <img src="~/Content/Images/Posters/@anime.Poster" class="hover-info poster">
                                                 </a>
                                             </td>
 
-                                            <td class="list-item-data title clearfix text-wrap" style="width: 46%;">
+                                            <td class="list-item-data title clearfix text-wrap">
                                                 <a href="ViewAnime?id=@anime.Id" class="link sort">@anime.Name</a>
                                             </td>
 
-                                            <td class="list-item-data type text-center" style="width: 8%;">
+                                            <td class="list-item-data type text-center">
                                                 @anime.Type
                                             </td>
 
-                                            <td class="list-item-data progress text-left" style="background-color: transparent!important; width: 9%">
+                                            <td class="list-item-data progress text-left">
                                                 <input size="1" type="number" min="0" max="9999" name="progress" class="inputtext form-control-sm text-left pl-1 progress-input" value="@listAnime.Progress" required>
                                                 @Html.Raw("/")
                                                 <!-- Check if anime is currently airing -->
@@ -494,7 +547,7 @@
                                                 }
                                             </td>
 
-                                            <td class="list-item-data status" style="width: 15%;">
+                                            <td class="list-item-data status">
                                                 <select name="status">
                                                     @{int statusIndex = 1; }
                                                     <!-- Add statuses from status list to drop down list -->
@@ -515,11 +568,11 @@
                                                     }
                                                 </select>
                                             </td>
-                                            <td class="list-item-data pr-0 pl-2 text-center" style="width: 5%;">
-                                                <input type="submit" name="btnAction" style="font-size: 12px;" value="Edit" />
+                                            <td class="list-item-data pr-0 pl-2 text-center edit-button">
+                                                <input type="submit" name="btnAction" value="Edit" />
                                             </td>
-                                            <td class="list-item-data pr-3 pl-3 text-center" style="width: 6%;">
-                                                <input type="submit" name="btnAction" style="font-size: 12px;" value="Remove" onclick="return confirm('Are you sure you want to remove \'@anime.Name\' from your list?');" />
+                                            <td class="list-item-data pr-3 pl-3 text-center remove-button">
+                                                <input type="submit" name="btnAction" value="Remove" onclick="return confirm('Are you sure you want to remove \'@anime.Name\' from your list?');" />
                                             </td>
                                         </tr>
                                     }
@@ -548,11 +601,11 @@
                         <!-- Table headers -->
                         <thead>
                             <tr class="anime-list-table-header">
-                                <th class="header-title number">No.</th>
-                                <th class="header-title poster">Poster</th>
+                                <th class="header-title index">No.</th>
+                                <th class="header-title poster pl-1">Poster</th>
                                 <th class="header-title title">Anime Title</th>
-                                <th class="header-title type">Type</th>
-                                <th class="header-title progress">Progress</th>
+                                <th class="header-title type typenone">Type</th>
+                                <th class="header-title progress progressnone">Progress</th>
                                 <th class="header-title status">Status</th>
                             </tr>
                         </thead>
@@ -568,23 +621,23 @@
                                     FDMSWeb.Models.List listAnime = ViewBag.AnimeList[animeIndex];
                                     animeIndex++;
                                     <tr class="anime-list-table-list-item-data">
-                                        <td class="list-item-data number text-center" style="width: 5%;">@animeIndex</td>
+                                        <td class="list-item-data index text-center">@animeIndex</td>
 
-                                        <td class="list-item-data poster text-center" style="width: 7%;">
+                                        <td class="list-item-data poster text-center">
                                             <a href="ViewAnime?id=@anime.Id" class="link sort">
                                                 <img src="~/Content/Images/Posters/@anime.Poster" class="hover-info poster">
                                             </a>
                                         </td>
 
-                                        <td class="list-item-data title clearfix text-wrap" style="width: 46%;">
+                                        <td class="list-item-data title clearfix text-wrap">
                                             <a href="ViewAnime?id=@anime.Id" class="link sort">@anime.Name</a>
                                         </td>
 
-                                        <td class="list-item-data type text-center" style="width: 9%;">
+                                        <td class="list-item-data type typenone text-center">
                                             @anime.Type
                                         </td>
 
-                                        <td class="list-item-data progress text-center" style="width: 9%;">
+                                        <td class="list-item-data progress progressnone text-center">
                                             @listAnime.Progress
                                             @Html.Raw("/")
                                             <!-- Check if anime is currently airing -->
@@ -598,7 +651,7 @@
                                             }
                                         </td>
 
-                                        <td class="list-item-data status" style="width: 14%;">
+                                        <td class="list-item-data status">
                                             @listAnime.Status
                                         </td>
                                     </tr>
@@ -625,8 +678,8 @@
     </div>
 
     <script>
-        $('#exampleModal').on('shown.bs.modal', function () {
-            $('#message-email').focus();
+        $('#searchModal').on('shown.bs.modal', function () {
+            $('#search-input').focus();
         });
 
         /* Script to show search modal */
