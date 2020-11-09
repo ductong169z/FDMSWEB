@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <style>
+        /* General CSS to display error details */
         .error {
             margin: 0 auto;
             width: 100%;
@@ -34,22 +35,22 @@
             margin-top: 15%;
         }
 
-        .error-message {
+        .error-desc {
             text-align: center;
         }
 
-        .font-bold {
+        .font-weight-bold {
             color: #FFFFFF;
             font-size: 25px;
             margin-bottom: 2% !important;
         }
 
-        .error-desc {
+        .error-back {
             font-size: 20px;
             color: #FFFFFF;
         }
 
-        .go-back-button {
+        .back-button {
             font-size: 20px;
             color: #FFFFFF;
             border-radius: 30px !important;
@@ -60,15 +61,18 @@
     <title>Page Not Found - WibuAnimeList</title>
 </head>
 <body>
+    <!-- Div to contain error details -->
     <div class="error">
+        <!-- Display error code and description -->
         <div class="error-code">PAGE NOT FOUND!</div>
-        <h3 class="font-bold error-message mt-5">The page you were looking for could not be found.</h3>
-        <h3 class="font-bold error-message">Make sure you type the URL correctly!</h3>
+        <h3 class="font-weight-bold error-desc mt-5">The page you were looking for could not be found.</h3>
+        <h3 class="font-weight-bold error-desc">Make sure you type the URL correctly!</h3>
 
-        <div class="error-desc">
+        <!-- Display button to go back to home page -->
+        <div class="error-back">
             <div>
-                <a class="go-back-button btn mt-5" href="@Url.Action("Index", "Home")">
-                        Go back to Home Page
+                <a class="back-button btn mt-5" href="@Url.Action("Index", "Home")">
+                    Go back to Home Page
                 </a>
             </div>
         </div>

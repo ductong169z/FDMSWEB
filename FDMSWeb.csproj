@@ -422,7 +422,6 @@
     <Content Include="Library\Bootstrap\js\bootstrap.min.js" />
     <Content Include="Library\Bootstrap\js\jquery-3.5.1.slim.min.js" />
     <Content Include="Library\Bootstrap\js\popper.min.js" />
-    <Content Include="Library\fontawesome.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Library\Bootstrap\css\bootstrap-grid.css.map" />
