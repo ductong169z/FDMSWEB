@@ -374,11 +374,11 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <form action="@Url.Action("SearchAnimeInList", "Anime")">
+                            <form action="@Url.Action("ViewListSearchResult", "Anime")">
                                 <div class="modal-body">
-                                    <input class="form-control" name="searchValue" type="text" value="" placeholder="Enter the name of anime to search" />
-                                    <input type="hidden" name="listStatus" value="0" />
                                     <input type="hidden" name="accountId" value="@((Session["User"] as Account).Id)" />
+                                    <input type="hidden" name="listStatus" value="0" />
+                                    <input class="form-control" name="searchValue" type="text" value="" placeholder="Enter the name of anime to search" />
                                 </div>
                                 <div class="modal-footer">
                                     <button type="submit" class="btn searchanimebtn">Search</button>
@@ -518,7 +518,14 @@
                     </table>
                     if (ViewBag.AnimeDetailList == null || ViewBag.AnimeDetailList.Count == 0)
                     {
-                        <div class="noanime">There are no animes in the list!</div>
+                        if (ViewBag.ListStatus == 0)
+                        {
+                            <div class="noanime">There are no animes in the list </div>
+                        }
+                        else
+                        {
+                            <div class="noanime">There are no animes in the list with status "@ViewBag.StatusList[@ViewBag.ListStatus - 1]" </div>
+                        }
                     }
                 }
                 else
@@ -589,7 +596,14 @@
                     </table>
                     if (ViewBag.AnimeDetailList == null || ViewBag.AnimeDetailList.Count == 0)
                     {
-                        <div class="noanime">There are no animes in the list!</div>
+                        if (ViewBag.ListStatus == 0)
+                        {
+                            <div class="noanime">There are no animes in the list </div>
+                        }
+                        else
+                        {
+                            <div class="noanime">There are no animes in the list with status "@ViewBag.StatusList[@ViewBag.ListStatus - 1]" </div>
+                        }
                     }
                 }
             </div>
