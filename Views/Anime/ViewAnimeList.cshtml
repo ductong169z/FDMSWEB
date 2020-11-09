@@ -518,7 +518,14 @@
                     </table>
                     if (ViewBag.AnimeDetailList == null || ViewBag.AnimeDetailList.Count == 0)
                     {
-                        <div class="noanime">There are no animes in the list!</div>
+                        if (ViewBag.ListStatus == 0)
+                        {
+                            <div class="noanime">There are no animes in the list </div>
+                        }
+                        else
+                        {
+                            <div class="noanime">There are no animes in the list with status "@ViewBag.StatusList[@ViewBag.ListStatus - 1]" </div>
+                        }
                     }
                 }
                 else
@@ -589,7 +596,14 @@
                     </table>
                     if (ViewBag.AnimeDetailList == null || ViewBag.AnimeDetailList.Count == 0)
                     {
-                        <div class="noanime">There are no animes in the list!</div>
+                        if (ViewBag.ListStatus == 0)
+                        {
+                            <div class="noanime">There are no animes in the list </div>
+                        }
+                        else
+                        {
+                            <div class="noanime">There are no animes in the list with status "@ViewBag.StatusList[@ViewBag.ListStatus - 1]" </div>
+                        }
                     }
                 }
             </div>
