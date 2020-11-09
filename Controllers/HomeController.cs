@@ -13,7 +13,7 @@ namespace FDMSWeb.Controllers
         public ActionResult Index()
         {
             AnimeListDAO dao = new AnimeListDAO();
-            List<Anime> listAnime = dao.GetAllAnimes();
+            List<Anime> listAnime = dao.GetAnimes(12);
             ViewBag.listAnime = listAnime; List<Season> seasonList = dao.GetAllSeasons();
             if (Session["User"] == null)
             {

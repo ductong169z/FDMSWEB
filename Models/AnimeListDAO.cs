@@ -1189,5 +1189,120 @@ namespace FDMSWeb.Models
                 }
             }
         }
+        /// <summary>
+        /// Get all animes from database
+        /// </summary>
+        /// <returns>A list of all animes available</returns>
+        public List<Anime> GetAnimes(int amount)
+        {
+            /* Declare resources used for interacting with database */
+            MySqlConnection conn = null; // connection to database
+            MySqlCommand cmd; // store SQL statement
+            MySqlDataReader rd = null; // reader for return results
+            List<Anime> animeList = null; // list of all animes
+            try
+            {
+                conn = DBUtils.GetConnection(); // get connection to database
+                conn.Open(); // open the connection
+                cmd = new MySqlCommand("SELECT * FROM anime WHERE deleted_at IS NULL ORDER BY RAND() LIMIT @amount", conn); // SQL statement
+                cmd.Parameters.AddWithValue("@amount", amount);
+
+                rd = cmd.ExecuteReader(); // execute the SQL statement and store results to reader
+
+                /* Keep reading and adding data to list until end */
+                while (rd.Read())
+                {
+                    /* Temp vars to store anime properties */
+                    int id = rd.GetInt32(0);
+                    Season season;
+                    if (!rd.IsDBNull(2))
+                    {
+                        season = GetSeason(rd.GetInt32(2));
+                    }
+                    else
+                    {
+                        season = GetSeason(0);
+                    }
+                    List<Studio> studios = GetStudioList(id);
+                    List<Genre> genres = GetGenreList(id);
+                    string type = rd.GetString(3);
+                    string name = rd.GetString(4);
+                    string releaseDate;
+                    if (!rd.IsDBNull(5))
+                    {
+                        releaseDate = rd.GetDateTime(5).ToString("dd/MM/yyyy");
+                    }
+                    else
+                    {
+                        releaseDate = "";
+                    }
+                    string rating = rd.GetString(6);
+                    int episodes;
+                    if (!rd.IsDBNull(rd.GetOrdinal("episodes")))
+                    {
+                        Int32.TryParse(rd.GetString("episodes"), out episodes);
+                    }
+                    else
+                    {
+                        episodes = 0;
+                    }
+                    string status = rd.GetString(8);
+                    string duration;
+                    if (!rd.IsDBNull(9))
+                    {
+                        duration = rd.GetString(9);
+                    }
+                    else
+                    {
+                        duration = null;
+                    }
+                    string description = rd.GetString(10);
+                    string poster;
+                    if (!rd.IsDBNull(11))
+                    {
+                        poster = rd.GetString(11);
+                    }
+                    else
+                    {
+                        poster = null;
+                    }
+
+                    string trailer;
+                    if (!rd.IsDBNull(12))
+                    {
+                        trailer = rd.GetString(12);
+                    }
+                    else
+                    {
+                        trailer = null;
+                    }
+                    string created_at = rd.GetDateTime(13).ToString("dd/MM/yyyy");
+
+                    // instantiate if list has not yet been instantiated
+                    if (animeList == null)
+                    {
+                        animeList = new List<Anime>();
+                    }
+
+                    // add new anime to list
+                    animeList.Add(new Anime(id, season, studios, genres, type, name, releaseDate, rating, episodes, status, duration, description, poster, trailer, created_at));
+                }
+
+                return animeList;
+            }
+            finally
+            {
+                /* Close resources after use */
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+
+                if (rd != null)
+                {
+                    rd.Close();
+                }
+            }
+        }
     }
 }

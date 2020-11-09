@@ -186,10 +186,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Backgrounds\bg-02.jpg" />
     <Content Include="Content\Backgrounds\bg-03.jpg" />
     <Content Include="Content\Backgrounds\bg-12.png" />
-    <Content Include="Content\Backgrounds\bg-13.png" />
     <Content Include="Content\Backgrounds\bg-15.jpg" />
     <Content Include="Content\Backgrounds\bg-animelist.jpg" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -588,10 +586,12 @@
     <Content Include="Content\login\vendor\mdi-font\fonts\Material-Design-Iconic-Font.woff2" />
     <Content Include="Views\Anime\ViewAnime.cshtml" />
     <Content Include="Views\Anime\ViewAnimeList.cshtml" />
-    <Content Include="Views\Error\InternalError.cshtml" />
-    <Content Include="Views\Anime\ViewListSearchResult.cshtml" />
+    <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Anime\Index.cshtml" />
     <Content Include="Views\Error\NotFoundError.cshtml" />
+    <Content Include="Views\Anime\ViewListSearchResult.cshtml" />
+    <Content Include="Views\Error\InternalError.cshtml" />
+    <Content Include="Views\Anime\ShowAll.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

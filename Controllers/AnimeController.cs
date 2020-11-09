@@ -273,7 +273,20 @@ namespace FDMSWeb.Controllers
                 return RedirectToAction("Login", "Authentication");
             }
         }
-
+        public ActionResult ShowAll()
+        {
+            AnimeListDAO dao = new AnimeListDAO();
+            List<Anime> listAnime = dao.GetAllAnimes();
+            ViewBag.listAnime = listAnime; List<Season> seasonList = dao.GetAllSeasons();
+            if (Session["User"] == null)
+            {
+                return RedirectToAction("Login", "Authentication");
+            }
+            else
+            {
+                return View(seasonList);
+            }
+        }
         /// <summary>
         /// Handles exceptions in controllers
         /// </summary>
