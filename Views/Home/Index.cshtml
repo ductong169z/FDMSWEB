@@ -10,10 +10,31 @@
         .img-thumbnail {
             padding: 0 !important;
             background-color: #fff;
-            border: 1px solid #dee2e6;
+            border: 1px solid #fff;
             border-radius: .25rem;
             max-width: 100%;
             height: auto;
+            width: 221px;
+            height: 310px;
+            max-height: 100%;
+            max-width: 100%;
+        }
+
+        .card{
+            margin: 3%;
+        }
+
+        .card-body{
+            padding: 0.5rem;
+            text-align: center;
+        }
+
+        .card-footer {
+            text-align: center;
+        }
+
+        .showall {
+            text-align: center;
         }
     </style>
     <title>Wibu Anime List</title>
@@ -28,16 +49,16 @@
             foreach (FDMSWeb.Models.Anime anime in ViewBag.listAnime)
             {
                 <div class="col-md-3">
-                    <div class="card " style="margin: 2%;" title="">
+                    <div class="card " style="" title="">
                         <a href="Anime/ViewAnime/@anime.Id">
                             <div class="card-body">
-                                <img class="img-thumbnail" style="width: 200px;height: 280px" src="~/Content/Images/Posters/@anime.Poster" style="max-height: 100%; max-width: 100%">
+                                <img class="img-thumbnail" src="~/Content/Images/Posters/@anime.Poster">
                             </div>
 
-                            <div class="card-footer" style="text-align: center;" title="">
-                                @if (anime.Name.Length > 20)
+                            <div class="card-footer" title="">
+                                @if (anime.Name.Length > 25)
                                 {
-                                    <span>@anime.Name.Substring(0, 20)</span>
+                                    <span>@anime.Name.Substring(0, 25)...</span>
                                 }
                                 else
                                 {
@@ -51,14 +72,5 @@
             }
         }
     </div>
-
-    <div class="" style="text-align: center;">
-
-        <a href="" class="btn btn-secondary btn-icon-split">
-            <span class="text">Show All</span>
-        </a>
-    </div>
-    @Html.ActionLink("View Anime", "ViewAnime", "Anime", new { id = "47" }, null)
-    @Html.ActionLink("View Anime List", "ViewAnimeList", "Anime", new { accountId = "4", listStatus = "0" }, null)
 </body>
 </html>
