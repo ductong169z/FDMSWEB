@@ -4,7 +4,6 @@
 }
 
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
     <title>Login - WibuAnimeList</title>
@@ -72,7 +71,6 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarsExample03">
-
         </div>
 
         @if (Session["User"] == null)
@@ -88,7 +86,6 @@
             <ul class="nav navbar-nav">
                 <li class="dropdown">
                     <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-
                         Welcome,Uzaki-chan <b class="caret"></b>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
@@ -100,7 +97,7 @@
         }
     </nav>
     <div class="limiter">
-        <div class="container-login100" style="        background-image: url('../Content/Backgrounds/bg-02.jpg');">
+        <div class="container-login100">
             <div class="wrap-login100">
                 <form class="login100-form validate-form" action="@Url.Action("Login", "Authentication")" method="POST">
                     @Html.AntiForgeryToken()
@@ -136,13 +133,10 @@
                             Login
                         </button>
                     </div>
-
-
                 </form>
             </div>
         </div>
     </div>
-    <div id="dropDownSelect1"></div>
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/fontawesome")
     @Scripts.Render("~/bundles/jquery")
