@@ -374,11 +374,11 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <form action="@Url.Action("SearchAnimeInList", "Anime")">
+                            <form action="@Url.Action("ViewListSearchResult", "Anime")">
                                 <div class="modal-body">
-                                    <input class="form-control" name="searchValue" type="text" value="" placeholder="Enter the name of anime to search" />
-                                    <input type="hidden" name="listStatus" value="0" />
                                     <input type="hidden" name="accountId" value="@((Session["User"] as Account).Id)" />
+                                    <input type="hidden" name="listStatus" value="0" />
+                                    <input class="form-control" name="searchValue" type="text" value="" placeholder="Enter the name of anime to search" />
                                 </div>
                                 <div class="modal-footer">
                                     <button type="submit" class="btn searchanimebtn">Search</button>
