@@ -63,9 +63,9 @@ namespace FDMSWeb.Models
                     }
                     string rating = rd.GetString(6);
                     int episodes;
-                    if (!rd.IsDBNull(7))
+                    if (!rd.IsDBNull(rd.GetOrdinal("episodes")))
                     {
-                        episodes = rd.GetInt32(7);
+                        Int32.TryParse(rd.GetString("episodes"), out episodes);
                     }
                     else
                     {
@@ -82,7 +82,16 @@ namespace FDMSWeb.Models
                         duration = null;
                     }
                     string description = rd.GetString(10);
-                    string poster = rd.GetString(11);
+                    string poster;
+                    if (!rd.IsDBNull(11))
+                    {
+                        poster = rd.GetString(11);
+                    }
+                    else
+                    {
+                        poster = null;
+                    }
+
                     string trailer;
                     if (!rd.IsDBNull(12))
                     {

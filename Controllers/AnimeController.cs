@@ -10,6 +10,7 @@ namespace FDMSWeb.Controllers
 {
     public class AnimeController : Controller
     {
+
         public ActionResult ViewAnime(int id)
         {
             /* Check if user logged in to get user anime list */
@@ -315,5 +316,6 @@ namespace FDMSWeb.Controllers
                 ViewName = "~/Views/Error/InternalError.cshtml"
             };
         }
+      
     }
 }

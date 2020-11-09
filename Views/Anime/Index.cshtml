@@ -1,8 +1,10 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<!DOCTYPE html>
 @using FDMSWeb.Models
+<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -22,14 +24,13 @@
     <div class=""><p></div>
     <div class="row mb-3 ">
 
-        @if (@ViewBag.listAnime != null && @ViewBag.listAnime.Count != 0)
-        {
+        @if (@ViewBag.listAnime != null && @ViewBag.listAnime.Count != 0) { 
 
-            foreach (FDMSWeb.Models.Anime anime in ViewBag.listAnime)
-            {
+        foreach (FDMSWeb.Models.Anime anime in ViewBag.listAnime)
+        {
                 <div class="col-md-3">
                     <div class="card " style="margin: 2%;" title="">
-                        <a href="Anime/ViewAnime/@anime.Id">
+                        <a href="ViewAnime/@anime.Id">
                             <div class="card-body">
                                 <img class="img-thumbnail" style="width: 200px;height: 280px" src="~/Content/Images/Posters/@anime.Poster" style="max-height: 100%; max-width: 100%">
                             </div>
@@ -58,7 +59,6 @@
             <span class="text">Show All</span>
         </a>
     </div>
-    @Html.ActionLink("View Anime", "ViewAnime", "Anime", new { id = "47" }, null)
-    @Html.ActionLink("View Anime List", "ViewAnimeList", "Anime", new { accountId = "4", listStatus = "0" }, null)
 </body>
 </html>
+

@@ -589,6 +589,7 @@
     <Content Include="Views\Anime\ViewAnimeList.cshtml" />
     <Content Include="Views\Error\InternalError.cshtml" />
     <Content Include="Views\Anime\ViewListSearchResult.cshtml" />
+    <Content Include="Views\Anime\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
