@@ -42,7 +42,7 @@
 
         /* Anime list status block section */
         .list-status-block {
-            background-poster: url(/Content/Backgrounds/bg-03.jpg);
+            background-image: url(/Content/Backgrounds/bg-03.jpg);
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center;
@@ -136,10 +136,9 @@
         }
 
         .list-table-container {
-            margin: 0 auto;
-            width: 1024px;
+            margin: 0 2rem;
             display: block;
-            padding-bottom: 32px;
+            padding-bottom: 2rem;
         }
 
         .list-status-block {
@@ -229,7 +228,7 @@
         .noanime {
             text-align: center !important;
             font-size: 20px;
-            margin: 3% 0;
+            margin-top: 2rem;
         }
 
         .progress {
@@ -295,7 +294,7 @@
 
         <!-- List block to display table of animes in search result list -->
         <div class="list-block">
-            <div class="list-table-container all_anime pb-3">
+            <div class="list-table-container all_anime">
                 <!-- List status block indicates which status tab user is at -->
                 <div class="list-status-block">
                     @if (ViewBag.ListStatus == 0)

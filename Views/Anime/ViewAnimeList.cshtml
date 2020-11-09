@@ -56,7 +56,9 @@
             width: 100%;
             border: #E1E1E1 1px solid;
             border-radius: 5px;
-            margin: unset auto 0 auto;
+            margin-right: auto;
+            margin-bottom: 0;
+            margin-left: auto;
             text-align: left;
         }
 
@@ -78,7 +80,7 @@
             .status-menu-block .search-button {
                 position: absolute;
                 top: 12px;
-                right: 18px;
+                right: 10px;
             }
 
             .status-menu-block .status-menu .status-button {
@@ -136,10 +138,9 @@
         }
 
         .list-table-container {
-            margin: 0 auto;
-            width: 1024px;
+            margin: 0 2rem;
             display: block;
-            padding-bottom: 32px;
+            padding-bottom: 2rem;
         }
 
         .list-status-block {
@@ -229,7 +230,7 @@
         .noanime {
             text-align: center !important;
             font-size: 20px;
-            margin: 3% 0;
+            margin: 2rem;
         }
 
         .progress {
@@ -258,7 +259,7 @@
             border: 1px solid #969696;
             border-radius: 5px;
             font: 10px;
-            width: 68%;
+            width: 70%;
         }
 
         .modal {
@@ -624,6 +625,10 @@
     </div>
 
     <script>
+        $('#exampleModal').on('shown.bs.modal', function () {
+            $('#message-email').focus();
+        });
+
         /* Script to show search modal */
         $(document).ready(function () {
             $('#btnSearch').click(function () {
