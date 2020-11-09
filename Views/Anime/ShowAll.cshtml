@@ -1,6 +1,9 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿
+@{
+    ViewBag.Title = "ShowAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <!DOCTYPE html>
 @using FDMSWeb.Models
 <html>
@@ -20,11 +23,11 @@
             max-width: 100%;
         }
 
-        .card{
+        .card {
             margin: 3%;
         }
 
-        .card-body{
+        .card-body {
             padding: 0.5rem;
             text-align: center;
         }
@@ -72,11 +75,6 @@
             }
         }
     </div>
-    <div class="" style="text-align: center;">
-
-        <a href="Anime/ShowAll" class="btn btn-secondary btn-icon-split">
-            <span class="text">Show All</span>
-        </a>
-    </div>
+   
 </body>
 </html>

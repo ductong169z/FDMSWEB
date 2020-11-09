@@ -96,7 +96,6 @@ D:\FDMSWEB\FDMSWEB\bin\System.Web.WebPages.Razor.xml
 D:\FDMSWEB\FDMSWEB\bin\Newtonsoft.Json.xml
 D:\FDMSWEB\FDMSWEB\bin\Antlr3.Runtime.pdb
 D:\FDMSWEB\FDMSWEB\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-D:\FDMSWEB\FDMSWEB\obj\Debug\FDMSWeb.csprojAssemblyReference.cache
 D:\FDMSWEB\FDMSWEB\obj\Debug\FDMSWeb.csproj.CoreCompileInputs.cache
 D:\FDMSWEB\FDMSWEB\obj\Debug\FDMSWeb.csproj.CopyComplete
 D:\FDMSWEB\FDMSWEB\obj\Debug\FDMSWeb.dll
