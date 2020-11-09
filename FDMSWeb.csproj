@@ -513,7 +513,6 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\NotFoundError.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Authentication\Login.cshtml" />
@@ -592,6 +591,7 @@
     <Content Include="Views\Error\InternalError.cshtml" />
     <Content Include="Views\Anime\ViewListSearchResult.cshtml" />
     <Content Include="Views\Anime\Index.cshtml" />
+    <Content Include="Views\Error\NotFoundError.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

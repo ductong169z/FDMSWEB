@@ -45,7 +45,7 @@ namespace FDMSWeb.Controllers
                 }
                 else
                 {
-                    // throw error page
+                    return View("~/Views/Error/NotFoundError.cshtml");
                 }
 
                 ViewBag.AnimeInList = animeInList;
@@ -125,26 +125,26 @@ namespace FDMSWeb.Controllers
                 /* Instantiate DAO obj and interact with DB */
                 AnimeListDAO dao = new AnimeListDAO();
 
-            if (btnAction.Equals("Edit"))
-            {
-                Boolean result = dao.EditAnimeInList(accountId, animeId, progress, episode, status);
-
-                if (!result)
+                if (btnAction.Equals("Edit"))
                 {
-                    // return error page
-                }
-            }
-            else if (btnAction.Equals("Remove"))
-            {
-                Boolean result = dao.RemoveAnimeFromList(accountId, animeId);
+                    Boolean result = dao.EditAnimeInList(accountId, animeId, progress, episode, status);
 
-                if (!result)
+                    if (!result)
+                    {
+                        return View("~/Views/Error/InternalError.cshtml");
+                    }
+                }
+                else if (btnAction.Equals("Remove"))
                 {
-                    // return error page
-                }
-            }
+                    Boolean result = dao.RemoveAnimeFromList(accountId, animeId);
 
-            return RedirectToAction("ViewAnimeList", "Anime", new { accountId = accountId, listStatus = listStatus });
+                    if (!result)
+                    {
+                        return View("~/Views/Error/InternalError.cshtml");
+                    }
+                }
+
+                return RedirectToAction("ViewAnimeList", "Anime", new { accountId = accountId, listStatus = listStatus });
             }
             else
             {
@@ -159,36 +159,36 @@ namespace FDMSWeb.Controllers
             {
                 /* Instantiate DAO obj and interact with DB */
                 AnimeListDAO dao = new AnimeListDAO();
-            if (btnAction.Equals("Add"))
-            {
-                Boolean result = dao.AddAnimeToList(accountId, animeId, progress, episode, status);
-
-                if (!result)
+                if (btnAction.Equals("Add"))
                 {
-                    // return error page
-                }
-            }
-            else if (btnAction.Equals("Edit"))
-            {
-                Boolean result = dao.EditAnimeInList(accountId, animeId, progress, episode, status);
+                    Boolean result = dao.AddAnimeToList(accountId, animeId, progress, episode, status);
 
-                if (!result)
+                    if (!result)
+                    {
+                        return View("~/Views/Error/InternalError.cshtml");
+                    }
+                }
+                else if (btnAction.Equals("Edit"))
                 {
-                    // return error page
-                }
-            }
-            else if (btnAction.Equals("Remove"))
-            {
-                Boolean result = dao.RemoveAnimeFromList(accountId, animeId);
+                    Boolean result = dao.EditAnimeInList(accountId, animeId, progress, episode, status);
 
-                if (!result)
+                    if (!result)
+                    {
+                        return View("~/Views/Error/InternalError.cshtml");
+                    }
+                }
+                else if (btnAction.Equals("Remove"))
                 {
-                    // return error page
+                    Boolean result = dao.RemoveAnimeFromList(accountId, animeId);
+
+                    if (!result)
+                    {
+                        return View("~/Views/Error/InternalError.cshtml");
+                    }
                 }
-            }
 
 
-            return RedirectToAction("ViewAnime", "Anime", new { id = animeId });
+                return RedirectToAction("ViewAnime", "Anime", new { id = animeId });
             }
             else
             {
@@ -276,7 +276,7 @@ namespace FDMSWeb.Controllers
 
                     if (!result)
                     {
-                        // return error page
+                        return View("~/Views/Error/InternalError.cshtml");
                     }
                 }
                 else if (btnAction.Equals("Remove"))
@@ -285,7 +285,7 @@ namespace FDMSWeb.Controllers
 
                     if (!result)
                     {
-                        // return error page
+                        return View("~/Views/Error/InternalError.cshtml");
                     }
                 }
 
@@ -316,6 +316,6 @@ namespace FDMSWeb.Controllers
                 ViewName = "~/Views/Error/InternalError.cshtml"
             };
         }
-      
+
     }
 }
