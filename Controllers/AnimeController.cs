@@ -10,6 +10,7 @@ namespace FDMSWeb.Controllers
 {
     public class AnimeController : Controller
     {
+
         public ActionResult ViewAnime(int id)
         {
             /* Instantiate DAO obj and interact with DB */
@@ -164,5 +165,6 @@ namespace FDMSWeb.Controllers
 
             return RedirectToAction("ViewAnime", "Anime", new { id = animeId });
         }
+      
     }
 }
