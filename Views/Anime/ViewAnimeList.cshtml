@@ -15,6 +15,7 @@
             background-position: center;
             background-attachment: fixed;
             margin: 0;
+            margin-bottom: 3rem !important;
             font-family: Verdana, Geneva, Tahoma, sans-serif;
             text-align: center;
             font-size: 12px;
@@ -138,6 +139,7 @@
             margin: 0 auto;
             width: 1024px;
             display: block;
+            padding-bottom: 32px;
         }
 
         .list-status-block {
@@ -211,7 +213,7 @@
             }
 
             .anime-list-table .anime-list-table-list-item-data .list-item-data.progress {
-                padding-left: 5px;
+                padding-left: 10px;
             }
 
         /* Miscellaneous CSS */
@@ -250,12 +252,13 @@
         }
 
         .searchbtn {
-            margin-top: 0;
+            margin-top: 1px;
             padding-top: 0;
             margin-right: 30px;
             border: 1px solid #969696;
             border-radius: 5px;
             font: 10px;
+            width: 68%;
         }
 
         .modal {
@@ -316,8 +319,8 @@
         }
     </style>
     <link href="~/Content/login/fonts/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Check if user account username is null -->
     <title>
-        <!-- Check if user account username is null -->
         @if (ViewBag.AccountUsername != null)
         {
             @Html.Raw(ViewBag.AccountUsername + "'s Anime List - Wibu Anime List")
@@ -395,7 +398,7 @@
 
         <!-- List block to display table of animes in list -->
         <div class="list-block">
-            <div class="list-table-container all_anime pb-3">
+            <div class="list-table-container all_anime">
                 <!-- List status block indicates which status tab user is at -->
                 <div class="list-status-block">
                     @if (ViewBag.ListStatus == 0)

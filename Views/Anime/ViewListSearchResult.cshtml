@@ -41,7 +41,7 @@
 
         /* Anime list status block section */
         .list-status-block {
-            background-image: url(/Content/Backgrounds/bg-03.jpg);
+            background-poster: url(/Content/Backgrounds/bg-03.jpg);
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center;
@@ -211,7 +211,7 @@
             }
 
             .anime-list-table .anime-list-table-list-item-data .list-item-data.progress {
-                padding-left: 5px;
+                padding-left: 10px;
             }
 
         /* Miscellaneous CSS */
@@ -328,7 +328,7 @@
                     <thead>
                         <tr class="anime-list-table-header">
                             <th class="header-title number">No.</th>
-                            <th class="header-title image">Poster</th>
+                            <th class="header-title poster">Poster</th>
                             <th class="header-title title">Anime Title</th>
                             <th class="header-title type">Type</th>
                             <th class="header-title progress">Progress</th>
@@ -357,9 +357,9 @@
                                 <tr class="anime-list-table-list-item-data">
                                     <td class="list-item-data number text-center" style="width: 5%;">@animeIndex</td>
 
-                                    <td class="list-item-data image text-center" style="width: 7%;">
+                                    <td class="list-item-data poster text-center" style="width: 7%;">
                                         <a href="ViewAnime?id=@anime.Id" class="link sort">
-                                            <img src="~/Content/Images/Posters/@anime.Poster" class="hover-info image">
+                                            <img src="~/Content/Images/Posters/@anime.Poster" class="hover-info poster">
                                         </a>
                                     </td>
 
