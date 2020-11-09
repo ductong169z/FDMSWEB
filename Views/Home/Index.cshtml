@@ -12,10 +12,8 @@
             background-color: #fff;
             border: 1px solid #fff;
             border-radius: .25rem;
-            max-width: 100%;
-            height: auto;
-            width: 221px;
-            height: 310px;
+            width: 225px;
+            height: 320px;
             max-height: 100%;
             max-width: 100%;
         }
@@ -32,30 +30,24 @@
         .card-footer {
             text-align: center;
         }
-
-        .showall {
-            text-align: center;
-        }
     </style>
     <title>Wibu Anime List</title>
 </head>
 <body class="container">
-    <div class=""><p></div>
-    <div class="row mb-3 ">
-
+    <div class="row mb-3">
         @if (@ViewBag.listAnime != null && @ViewBag.listAnime.Count != 0)
         {
 
             foreach (FDMSWeb.Models.Anime anime in ViewBag.listAnime)
             {
                 <div class="col-md-3">
-                    <div class="card " style="" title="">
+                    <div class="card">
                         <a href="Anime/ViewAnime/@anime.Id">
                             <div class="card-body">
                                 <img class="img-thumbnail" src="~/Content/Images/Posters/@anime.Poster">
                             </div>
 
-                            <div class="card-footer" title="">
+                            <div class="card-footer">
                                 @if (anime.Name.Length > 20)
                                 {
                                     <span>@anime.Name.Substring(0, 20)...</span>
@@ -72,8 +64,8 @@
             }
         }
     </div>
-    <div class="" style="text-align: center;">
 
+    <div class="text-center mb-3">
         <a href="Anime/ShowAll" class="btn btn-secondary btn-icon-split">
             <span class="text">Show All</span>
         </a>
