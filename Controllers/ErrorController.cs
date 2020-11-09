@@ -9,7 +9,7 @@ namespace FDMSWeb.Controllers
 {
     public class ErrorController : Controller
     {
-        public ActionResult NotFound()
+        public ActionResult Error()
         {
             ActionResult result;
 
@@ -18,7 +18,7 @@ namespace FDMSWeb.Controllers
             if (!Request.IsAjaxRequest())
                 result = View(model);
             else
-                result = PartialView("_NotFound", model);
+                result = PartialView("_Error", model);
 
             return result;
         }
