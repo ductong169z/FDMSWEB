@@ -592,6 +592,7 @@
     <Content Include="Views\Anime\ViewListSearchResult.cshtml" />
     <Content Include="Views\Error\InternalError.cshtml" />
     <Content Include="Views\Anime\ShowAll.cshtml" />
+    <Content Include="Views\Authentication\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

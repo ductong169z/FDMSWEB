@@ -1304,5 +1304,36 @@ namespace FDMSWeb.Models
                 }
             }
         }
+
+        public bool Register(string username, string password, string fullname, string email)
+        {
+            /* Declare resources used for interacting with database */
+            MySqlConnection conn = null; // connection to database
+            MySqlCommand cmd; // store SQL statement
+            MySqlDataReader rd = null; // reader for return results
+            string md5passs = GetMD5(password);
+            conn = DBUtils.GetConnection(); // get connection to database
+            conn.Open(); // open the connection
+            cmd = new MySqlCommand("INSERT INTO Account(RoleID, username, password, fullname, email, created_at) VALUES (1, @username, @password, @fullname, @email, @created_at) ", conn); // SQL statement
+            cmd.Parameters.AddWithValue("@userName", username);
+            cmd.Parameters.AddWithValue("@password", md5passs);
+            cmd.Parameters.AddWithValue("@fullname", fullname);
+            cmd.Parameters.AddWithValue("@email", email);
+            DateTime today = DateTime.Today;
+
+            cmd.Parameters.AddWithValue("@created_at", today.ToString("yyyy-MM-dd"));
+
+            int result = cmd.ExecuteNonQuery(); // execute the SQL statement and store results to reader
+            if (result > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+
+            }
+
+        }
     }
 }

@@ -21,7 +21,7 @@ namespace FDMSWeb.Controllers
             }
             else
             {
-                return RedirectToAction("Index","Home");
+                return RedirectToAction("Index", "Home");
             }
         }
         [HttpPost]
@@ -32,7 +32,7 @@ namespace FDMSWeb.Controllers
             {
                 AnimeListDAO dao = new AnimeListDAO();
 
-               Account account = dao.login(username, password);
+                Account account = dao.login(username, password);
                 if (account != null)
                 {
                     Session.Add("User", account);
@@ -43,6 +43,38 @@ namespace FDMSWeb.Controllers
             }
             TempData["Error"] = "Username or passsword is incorrect !";
             return RedirectToAction("Login", "Authentication");
+
+        }
+
+        public ActionResult Register()
+        {
+            if (Session["User"] == null)
+            {
+                return View();
+
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Register(string username, string password, string fullname, string email)
+        {
+            if (ModelState.IsValid)
+            {
+                AnimeListDAO dao = new AnimeListDAO();
+                bool status = dao.Register(username, password, fullname, email);
+                if (status)
+                {
+                    return RedirectToAction("Login", "Authentication");
+
+
+                }
+
+            }
+            return RedirectToAction("Register", "Authentication");
 
         }
         public ActionResult Logout()

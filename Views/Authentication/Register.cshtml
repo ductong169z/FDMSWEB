@@ -1,25 +1,9 @@
 ﻿
-@{
-    Layout = null;
-}
 
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-    <title>Login - WibuAnimeList</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    @Styles.Render("~/bundles/css")
-    <style>
-        body {
-            background: url(/Content/Backgrounds/bg-02.jpg);
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-position: center;
-            filter: unset;
-        }
-    </style>
+    <title>Register - WibuAnimeList</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
     <link rel="icon" type="image/png" href="~/Content/login/images/icons/favicon.ico" />
@@ -61,10 +45,8 @@
     <!--===============================================================================================-->
     <script src="~/Content/login/js/main.js"></script>
     @*<link rel="stylesheet" href="~/Library/Bootstrap/css/bootstrap.min.css">*@
-
-    <!--===============================================================================================-->
 </head>
-<body>
+<body style="background-image: url('/Content/Backgrounds/bg-15.jpg');">
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         <a class="navbar-brand" href="#"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
@@ -75,62 +57,83 @@
 
         </div>
 
-      
+
         <div class="col-md-3 pull-right">
             <a type="button" href="@Url.Action("Login", "Authentication")" class="btn btn-primary ">Login</a>
 
             <a type="button" href="@Url.Action("Register", "Authentication")" class="btn btn-success ">Sign Up</a>
         </div>
-        
-      
+
+
     </nav>
     <div class="limiter">
-        <div class="container-login100" style="        background-image: url('../Content/Backgrounds/bg-02.jpg');">
-            <div class="wrap-login100">
-                <form class="login100-form validate-form" action="@Url.Action("Login", "Authentication")" method="POST">
-                    @Html.AntiForgeryToken()
+        <div class="container-login100">
+            <div class="wrap-register100">
+                <form class="login100-form validate-form" action="@Url.Action("Register", "Authentication")">
                     <span class="login100-form-logo">
-                        <img src="~/Content/Images/lilo.png" width="100" height="100">
+                        <img src="images/lilo.png" width="100" height="100">
                     </span>
 
                     <span class="login100-form-title p-b-34 p-t-27">
-                        Log in
+                        Sign Up
                     </span>
 
                     <div class="wrap-input100 validate-input" data-validate="Enter username">
-                        <input class="input100" type="text" name="username" placeholder="Username">
+                        <input class="input100" type="text" name="registerUsername" placeholder="Username" required>
+                        <span class="focus-input100" data-placeholder="&#xf207;"></span>
+                    </div>
+                    <div class="wrap-input100 validate-input" data-validate="Enter Full name">
+                        <input class="input100" type="text" name="registerFullname" placeholder="Full name" required>
+                        <span class="focus-input100" data-placeholder="&#xf207;"></span>
+                    </div>
+                    <div class="wrap-input100 validate-input" onchange="ValidateEmail()" data-validate="Enter Email">
+                        <input class="input100" id="email" type="text" name="registerEmail" placeholder="Email">
                         <span class="focus-input100" data-placeholder="&#xf207;"></span>
                     </div>
 
                     <div class="wrap-input100 validate-input" data-validate="Enter password">
-                        <input class="input100" type="password" name="password" placeholder="Password">
+                        <input class="input100" id="registerPassword" type="password" name="registerPassword" placeholder="Password" required>
+                        <span class="focus-input100" data-placeholder="&#xf191;"></span>
+                    </div>
+                    <div class="wrap-input100 validate-input" data-validate="Enter confirm password">
+                        <input class="input100" type="password" id="repass" onchange="checkPass()" name="repass" placeholder="Confirm Password" required>
                         <span class="focus-input100" data-placeholder="&#xf191;"></span>
                     </div>
 
-                    <div class="contact100-form-checkbox login100-form-title">
-                        <p class="text-lg" style="color:#cb7476;font-weight: bold">
-                            @if (ViewBag.error != null)
-                            {
-                                @ViewBag.error
-                            }
-                        </p>
-                    </div>
-
                     <div class="container-login100-form-btn">
-                        <button class="login100-form-btn">
-                            Login
+                        <button id="button-sign" class="login100-form-btn " disabled>
+                            Sign Up
                         </button>
                     </div>
-
 
                 </form>
             </div>
         </div>
     </div>
+
+
     <div id="dropDownSelect1"></div>
-    @Scripts.Render("~/bundles/modernizr")
-    @Scripts.Render("~/bundles/fontawesome")
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+
+
+    <script>
+        $('#email').blur(function () {
+            var email = $(this).val();
+            if (re.test(email)) {
+
+            } else {
+                alert("Not a valid email address")
+            }
+
+        });
+        function checkPass() {
+            if ($("#repass").val() == $("#registerPassword").val()) {
+                $("#button-sign").removeAttr("disabled");
+            } else {
+                alert("Please check confirm password")
+                $("#button-sign").prop("disabled", true);
+            }
+        }
+        ;
+    </script>
 </body>
 </html>

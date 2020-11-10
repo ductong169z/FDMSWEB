@@ -287,19 +287,21 @@ namespace FDMSWeb.Controllers
                 return View(seasonList);
             }
         }
+
+      
         /// <summary>
         /// Handles exceptions in controllers
         /// </summary>
         /// <param name="filterContext"></param>
         protected override void OnException(ExceptionContext filterContext)
-        {
-            filterContext.ExceptionHandled = true;
+{
+    filterContext.ExceptionHandled = true;
 
-            filterContext.Result = new ViewResult
-            {
-                ViewName = "~/Views/Error/InternalError.cshtml"
-            };
-        }
+    filterContext.Result = new ViewResult
+    {
+        ViewName = "~/Views/Error/InternalError.cshtml"
+    };
+}
 
     }
 }
