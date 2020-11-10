@@ -463,7 +463,7 @@
                         {
                             <div class="noanime">Your search "@ViewBag.SearchValue" did not match any animes in list </div>
                         }
-                        else
+                        else if (ViewBag.ListStatus < 6)
                         {
                             <div class="noanime">Your search "@ViewBag.SearchValue" did not match any animes in list with status "@ViewBag.StatusList[@ViewBag.ListStatus - 1]" </div>
                         }
@@ -542,7 +542,7 @@
                         {
                             <div class="noanime">Your search "@ViewBag.SearchValue" did not match any animes in list </div>
                         }
-                        else
+                        else if (ViewBag.ListStatus < 6)
                         {
                             <div class="noanime">Your search "@ViewBag.SearchValue" did not match any animes in list with status "@ViewBag.StatusList[@ViewBag.ListStatus - 1]" </div>
                         }

@@ -590,7 +590,7 @@
                         {
                             <div class="noanime">There are no animes in the list </div>
                         }
-                        else
+                        else if (ViewBag.ListStatus < 6)
                         {
                             <div class="noanime">There are no animes in the list with status "@ViewBag.StatusList[@ViewBag.ListStatus - 1]" </div>
                         }
@@ -669,7 +669,7 @@
                         {
                             <div class="noanime">There are no animes in the list </div>
                         }
-                        else
+                        else if (ViewBag.ListStatus < 6)
                         {
                             <div class="noanime">There are no animes in the list with status "@ViewBag.StatusList[@ViewBag.ListStatus - 1]" </div>
                         }
@@ -680,6 +680,7 @@
     </div>
 
     <script>
+        /* Focus to field upon open modal */
         $('#searchModal').on('shown.bs.modal', function () {
             $('#search-input').focus();
         });
