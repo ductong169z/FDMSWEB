@@ -1,5 +1,4 @@
 ﻿@{
-    ViewBag.Title = "List Search Results";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @using FDMSWeb.Models
@@ -297,14 +296,27 @@
     </style>
     <link href="~/Content/login/fonts/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <title>
-        @Html.Raw("List Search Results - Wibu Anime List")
+        @if (ViewBag.AccountUsername != null)
+        {
+            @Html.Raw(ViewBag.AccountUsername + "'s List Search Results - Wibu Anime List")
+        }
+        else
+        {
+            @Html.Raw("User List Search Results - Wibu Anime List")
+        }
     </title>
 </head>
 <body>
     <!-- Displaying user search value -->
-    <div class="header font-bold font-weight-bold">
-        Search Results for animes containing "@ViewBag.SearchValue" in name <br />
-        in @ViewBag.AccountUsername's list
+    <div class="header font-weight-bold">
+        @if (ViewBag.AccountUsername != null)
+        {
+            @Html.Raw("Search Results for animes containing \"" + @ViewBag.SearchValue + "\" in name in " + @ViewBag.AccountUsername + "'s list")
+        }
+        else
+        {
+            @Html.Raw("Search Results for animes containing \"" + @ViewBag.SearchValue + "\" in name in User's list")
+        }
     </div>
     <!-- Container for status menu-->
     <div id="list-container" class="list-container">
