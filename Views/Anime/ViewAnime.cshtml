@@ -206,7 +206,7 @@
             text-align: right;
         }
 
-        .inputButton {
+        .input-button {
             text-align: right;
             margin: 2px;
             border-radius: 2px;
@@ -230,7 +230,7 @@
             width: 35%;
         }
 
-        inputButton {
+        input-button {
             margin-top: 5%;
         }
 
@@ -499,8 +499,8 @@
                                                     <!-- Row for edit and remove button -->
                                                     <tr class="submittr">
                                                         <td class="submittd">
-                                                            <input id="editButton" type="submit" name="btnAction" value="Edit" class="inputButton editButton">
-                                                            <input type="submit" name="btnAction" value="Remove" class="inputButton" onclick="return confirm('Are you sure you want to remove \'@ViewBag.Anime.Name\' from your list?');">
+                                                            <input id="edit-button" type="submit" name="btnAction" value="Edit" class="input-button edit-button">
+                                                            <input type="submit" name="btnAction" value="Remove" class="input-button" onclick="return confirm('Are you sure you want to remove \'@ViewBag.Anime.Name\' from your list?');">
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -562,7 +562,7 @@
                                                     <!-- Row for add button -->
                                                     <tr class="submittr">
                                                         <td class="submittd">
-                                                            <input id="addButton" type="submit" name="btnAction" value="Add" class="inputButton addButton">
+                                                            <input id="addButton" type="submit" name="btnAction" value="Add" class="input-button addButton">
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -781,7 +781,7 @@
             });
 
             /* Script for edit button */
-            $('#editButton').click(function () {
+            $('#edit-button').click(function () {
                 if (@ViewBag.Anime.Episodes == 0 && $('#status_dropdown :selected').val() == 2) {
                     alert('You cannot change the status to "Completed"! The anime is currently airing and has not yet finished airing!');
                     return false;
