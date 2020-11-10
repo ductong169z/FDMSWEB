@@ -202,6 +202,7 @@ namespace FDMSWeb.Controllers
             {
                 /* Instantiate DAO obj and interact with DB */
                 AnimeListDAO dao = new AnimeListDAO();
+                string accountUsername = dao.GetAccountUsername(accountId);
                 List<List> animeList = dao.SearchAnimeInList(accountId, searchValue, listStatus);
                 List<Anime> animeDetailList = dao.GetAnimeDetailList(animeList);
 
@@ -225,6 +226,7 @@ namespace FDMSWeb.Controllers
                 statusList.Add("Dropped");
                 statusList.Add("Plan to Watch");
 
+                ViewBag.AccountUsername = accountUsername;
                 ViewBag.AccountId = accountId;
                 ViewBag.ListStatus = listStatus;
                 ViewBag.StatusList = statusList;
