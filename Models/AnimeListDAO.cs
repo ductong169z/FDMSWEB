@@ -818,7 +818,6 @@ namespace FDMSWeb.Models
         }
         public static string GetMD5(string str)
         {
-            System.Diagnostics.Debug.WriteLine(str);
             MD5 md5 = new MD5CryptoServiceProvider();
             byte[] fromData = Encoding.UTF8.GetBytes(str);
             byte[] targetData = md5.ComputeHash(fromData);

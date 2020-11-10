@@ -22,7 +22,6 @@ namespace FDMSWeb.Controllers
                 List<List> animeList = null;
                 List animeInList = null;
 
-
                 animeList = dao.GetAnimeList((Session["User"] as Account).Id, 0);
 
 
@@ -266,7 +265,7 @@ namespace FDMSWeb.Controllers
                     }
                 }
 
-                return RedirectToAction("SearchAnimeInList", "Anime", new { accountId = accountId, searchValue = searchValue, listStatus = listStatus });
+                return RedirectToAction("ViewListSearchResult", "Anime", new { accountId = accountId, searchValue = searchValue, listStatus = listStatus });
             }
             else
             {

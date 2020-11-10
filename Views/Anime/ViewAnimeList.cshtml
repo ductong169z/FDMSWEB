@@ -191,6 +191,7 @@
             vertical-align: middle;
             border-bottom: 1px solid #E1E1E1;
         }
+
             .anime-list-table .anime-list-table-list-item-data .list-item-data.poster .poster {
                 width: 48px;
                 height: 68px;
@@ -220,7 +221,7 @@
             width: 5%;
         }
 
-        .list-item-data.poster{
+        .list-item-data.poster {
             width: 7%;
         }
 
@@ -506,12 +507,12 @@
                             <!-- If there are any animes in the list -->
                             @if (ViewBag.AnimeDetailList != null && ViewBag.AnimeDetailList.Count != 0)
                             {
-                                <form action="@Url.Action("EditRemoveAnimeList", "Anime")" method="POST">
-                                    <!-- Iterate over all animes in list to display -->
-                                    @foreach (FDMSWeb.Models.Anime anime in ViewBag.AnimeDetailList)
-                                    {
-                                        FDMSWeb.Models.List listAnime = ViewBag.AnimeList[animeIndex];
-                                        animeIndex++;
+                                <!-- Iterate over all animes in list to display -->
+                                foreach (FDMSWeb.Models.Anime anime in ViewBag.AnimeDetailList)
+                                {
+                                    FDMSWeb.Models.List listAnime = ViewBag.AnimeList[animeIndex];
+                                    animeIndex++;
+                                    <form action="@Url.Action("EditRemoveAnimeList", "Anime")" method="POST">
                                         <input type="hidden" name="listStatus" value="@ViewBag.ListStatus" />
                                         <input type="hidden" name="accountId" value="@((Session["User"] as Account).Id)" />
                                         <input type="hidden" name="episode" value="@anime.Episodes" />
@@ -575,8 +576,8 @@
                                                 <input type="submit" name="btnAction" value="Remove" onclick="return confirm('Are you sure you want to remove \'@anime.Name\' from your list?');" />
                                             </td>
                                         </tr>
-                                    }
-                                </form>
+                                    </form>
+                                }
                             }
                         </tbody>
                     </table>
