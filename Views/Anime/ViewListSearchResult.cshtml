@@ -15,8 +15,9 @@
             background-position: center;
             background-attachment: fixed;
             margin: 0;
-            text-align: center;
+            margin-bottom: 3rem !important;
             font-family: Verdana, Geneva, Tahoma, sans-serif;
+            text-align: center;
             font-size: 12px;
         }
 
@@ -50,14 +51,12 @@
 
         /* Anime list section */
         .list-container {
+            background: #FFFFFF;
             position: relative;
-            background-color: #FFFFFF;
+            width: 100%;
             border: #E1E1E1 1px solid;
             border-radius: 5px;
-            width: 100%;
-            margin-bottom: 0;
-            margin-right: auto;
-            margin-left: auto;
+            margin: unset auto 0 auto;
             text-align: left;
         }
 
@@ -71,103 +70,64 @@
 
             .status-menu-block .status-menu {
                 display: table;
-                margin: 0 auto;
                 border-collapse: separate;
                 border-spacing: 40px 0;
+                margin: 0 auto;
             }
 
-                .status-menu-block .status-menu .status-button {
-                    position: relative;
-                    display: table-cell;
-                    padding: 10px 0;
-                    margin: 0;
-                    font-family: Verdana;
-                    text-align: center;
-                    vertical-align: middle;
-                    font-size: 1.3em;
-                    color: #343a40;
-                }
-
-                    .status-menu-block .status-menu .status-button.on {
-                        color: #212529;
-                        font-weight: bold;
-                    }
-
-                    .status-menu-block .status-menu .status-button:after {
-                        position: absolute;
-                        bottom: 0px;
-                        left: 0px;
-                        background-color: #343a40;
-                        display: block;
-                        overflow: hidden;
-                        width: 100%;
-                        height: 3px;
-                        content: '';
-                        opacity: 0;
-                        -moz-transition-property: all;
-                        -o-transition-property: all;
-                        -webkit-transition-property: all;
-                        transition-property: all;
-                        -moz-transition-duration: 0.3s;
-                        -o-transition-duration: 0.3s;
-                        -webkit-transition-duration: 0.3s;
-                        transition-duration: 0.3s;
-                        -moz-transition-timing-function: ease-in-out;
-                        -o-transition-timing-function: ease-in-out;
-                        -webkit-transition-timing-function: ease-in-out;
-                        transition-timing-function: ease-in-out;
-                    }
-
-                    .status-menu-block .status-menu .status-button.on:after, .status-menu .status-button:hover:after {
-                        padding: 0;
-                        margin: 0;
-                        opacity: 1;
-                    }
-
-            /* List container - Status menu - Search */
-            .status-menu-block .search-container {
+            .status-menu-block .search-button {
                 position: absolute;
-                right: 18px;
                 top: 12px;
+                right: 18px;
             }
 
-                .status-menu-block .search-container input {
-                    width: 50%;
-                    float: right;
+            .status-menu-block .status-menu .status-button {
+                position: relative;
+                display: table-cell;
+                font-family: Verdana;
+                text-align: center;
+                vertical-align: middle;
+                font-size: 1.3em;
+                color: #343a40;
+                padding: 10px 0;
+                margin: 0;
+            }
+
+                .status-menu-block .status-menu .status-button.on {
+                    font-weight: bold;
+                    color: #212529;
                 }
 
-                .status-menu-block .search-container #search-button {
-                    display: inline-block;
-                    height: 22px;
-                    margin-top: 15px;
-                    color: #787878;
-                    font-size: 1.6em;
-                    vertical-align: middle;
-                }
-
-                .status-menu-block .search-container #search-box {
-                    display: inline-block;
-                    width: 0;
-                    height: 22px;
+                .status-menu-block .status-menu .status-button:after {
+                    display: block;
+                    background-color: #343a40;
+                    position: absolute;
+                    left: 0px;
+                    bottom: 0px;
                     overflow: hidden;
-                    margin-top: 13px;
-                    -webkit-transition: width 0.3s;
-                    -moz-transition: width 0.3s;
-                    transition: width 0.3s;
-                    -webkit-backface-visibility: hidden;
-                    vertical-align: middle;
+                    width: 100%;
+                    height: 3px;
+                    content: '';
+                    opacity: 0;
+                    -webkit-transition-property: all;
+                    -moz-transition-property: all;
+                    -o-transition-property: all;
+                    transition-property: all;
+                    -webkit-transition-timing-function: cubic-bezier(0.42,0,0.58,1);
+                    -moz-transition-timing-function: cubic-bezier(0.42,0,0.58,1);
+                    -o-transition-timing-function: cubic-bezier(0.42,0,0.58,1);
+                    transition-timing-function: cubic-bezier(0.42,0,0.58,1);
+                    -webkit-transition-duration: 0.3s;
+                    -moz-transition-duration: 0.3s;
+                    -o-transition-duration: 0.3s;
+                    transition-duration: 0.3s;
                 }
 
-                    .status-menu-block .search-container #search-box.open {
-                        display: inline-block;
-                        width: 100px;
-                    }
-
-                    .status-menu-block .search-container #search-box input {
-                        width: 100%;
-                        height: 100%;
-                        box-sizing: border-box;
-                    }
+                .status-menu-block .status-menu .status-button.on:after, .status-menu .status-button:hover:after {
+                    padding: 0;
+                    margin: 0;
+                    opacity: 1;
+                }
 
         /* List table container - List block */
         .list-block {
@@ -176,9 +136,9 @@
         }
 
         .list-table-container {
+            margin: 0 2rem;
             display: block;
-            margin: 0 auto;
-            width: 1024px;
+            padding-bottom: 2rem;
         }
 
         .list-status-block {
@@ -195,10 +155,10 @@
         /* Anime list table */
 
         .anime-list-table {
-            width: 100%;
-            margin: 0 auto;
-            border-collapse: collapse;
             border: #E1E1E1 1px solid;
+            border-collapse: collapse;
+            margin: 0 auto;
+            width: 100%;
             font-size: 12px;
             border-radius: 0 0 5px 5px;
             border-style: hidden; /*hide standard table (collapsed) border */
@@ -208,11 +168,11 @@
             /* Anime list table header */
 
             .anime-list-table .anime-list-table-header .header-title {
-                display: table-cell;
-                border-bottom: #E1E1E1 1px solid;
-                height: 40px;
                 text-align: center;
                 vertical-align: middle;
+                border-bottom: #E1E1E1 1px solid;
+                display: table-cell;
+                height: 40px;
                 font-size: 12px;
             }
 
@@ -227,10 +187,10 @@
             padding: 8px 0;
             text-align: center;
             vertical-align: middle;
-            border-bottom: #E1E1E1 1px solid;
+            border-bottom: 1px solid #E1E1E1;
         }
 
-            .anime-list-table .anime-list-table-list-item-data .list-item-data.image .image {
+            .anime-list-table .anime-list-table-list-item-data .list-item-data.poster .poster {
                 width: 48px;
                 height: 68px;
                 border-radius: 3px;
@@ -252,8 +212,40 @@
             }
 
             .anime-list-table .anime-list-table-list-item-data .list-item-data.progress {
-                padding-left: 5px;
+                padding-left: 0.6rem;
             }
+
+        .list-item-data.index {
+            width: 5%;
+        }
+
+        .list-item-data.poster {
+            width: 7%;
+        }
+
+        .list-item-data.title {
+            width: 46%;
+        }
+
+        .list-item-data.type {
+            width: 8%;
+        }
+
+        .list-item-data.progress {
+            width: 9%;
+        }
+
+        .list-item-data.status {
+            width: 15%;
+        }
+
+        .list-item-data.edit-button {
+            width: 5%;
+        }
+
+        .list-item-data.remove-button {
+            width: 6%;
+        }
 
         /* Miscellaneous CSS */
 
@@ -268,7 +260,7 @@
         .noanime {
             text-align: center !important;
             font-size: 20px;
-            margin: 3% 0;
+            margin-top: 2rem;
         }
 
         .progress {
@@ -280,7 +272,7 @@
         }
 
         .progress-input {
-            width: 43%;
+            width: 45%;
             border: 1px solid #969696 !important;
             font-size: 12px;
             height: 1.2rem;
@@ -288,47 +280,6 @@
 
         select {
             border: 1px solid #969696 !important;
-        }
-
-        .searchbtn {
-            margin-top: 0;
-            padding-top: 0;
-            margin-right: 30px;
-            border: 1px solid #969696;
-            border-radius: 5px;
-            font: 10px;
-        }
-
-        .modal {
-            overflow-y: auto;
-        }
-
-        .modal-open {
-            overflow: auto;
-        }
-
-            .modal-open[style] {
-                padding-right: 15px !important;
-            }
-
-        #searchModalLabel {
-            font: 16px;
-        }
-
-        .clearbtn {
-            border: 1px solid #E1E1E1 !important;
-            padding: 5px 10px;
-        }
-
-        .searchanimebtn {
-            border: 1px solid #E1E1E1 !important;
-            padding: 5px 10px;
-            background-color: #f9fafb;
-            color: #000;
-        }
-
-        .modal-footer {
-            padding: 5px 5px 5px 0;
         }
 
         /* Hide input arrows */
@@ -350,30 +301,34 @@
     </title>
 </head>
 <body>
+    <!-- Displaying user search value -->
     <div class="header font-bold font-weight-bold">
-        Search Results for animes containing "@ViewBag.SearchValue" in name
+        Search Results for animes containing "@ViewBag.SearchValue" in name <br />
+        in @ViewBag.AccountUsername's list
     </div>
-
+    <!-- Container for status menu-->
     <div id="list-container" class="list-container">
         <div id="status-menu" class="status-menu-block">
             <div class="status-menu">
-                <a id="all_anime" href="SearchAnimeInList?accountId=@ViewBag.AccountId&searchValue=@ViewBag.SearchValue&listStatus=0"
+                <a id="all_anime" href="ViewListSearchResult?accountId=@ViewBag.AccountId&listStatus=0&searchValue=@ViewBag.SearchValue"
                    class="status-button all_anime">All Anime</a>
-                <a id="watching" href="SearchAnimeInList?accountId=@ViewBag.AccountId&searchValue=@ViewBag.SearchValue&listStatus=1"
-                   class="status-button watching ">Currently Watching</a>
-                <a id="completed" href="SearchAnimeInList?accountId=@ViewBag.AccountId&searchValue=@ViewBag.SearchValue&listStatus=2"
-                   class="status-button completed ">Completed</a>
-                <a id="onhold" href="SearchAnimeInList?accountId=@ViewBag.AccountId&searchValue=@ViewBag.SearchValue&listStatus=3"
-                   class="status-button onhold ">On Hold</a>
-                <a id="dropped" href="SearchAnimeInList?accountId=@ViewBag.AccountId&searchValue=@ViewBag.SearchValue&listStatus=4"
-                   class="status-button dropped ">Dropped</a>
-                <a id="plantowatch" href="SearchAnimeInList?accountId=@ViewBag.AccountId&searchValue=@ViewBag.SearchValue&listStatus=5"
-                   class="status-button plantowatch ">Plan to Watch</a>
+                <a id="watching" href="ViewListSearchResult?accountId=@ViewBag.AccountId&listStatus=1&searchValue=@ViewBag.SearchValue"
+                   class="status-button watching">Currently Watching</a>
+                <a id="completed" href="ViewListSearchResult?accountId=@ViewBag.AccountId&listStatus=2&searchValue=@ViewBag.SearchValue"
+                   class="status-button completed">Completed</a>
+                <a id="onhold" href="ViewListSearchResult?accountId=@ViewBag.AccountId&listStatus=3&searchValue=@ViewBag.SearchValue"
+                   class="status-button onhold">On Hold</a>
+                <a id="dropped" href="ViewListSearchResult?accountId=@ViewBag.AccountId&listStatus=4&searchValue=@ViewBag.SearchValue"
+                   class="status-button dropped">Dropped</a>
+                <a id="plantowatch" href="ViewListSearchResult?accountId=@ViewBag.AccountId&listStatus=5&searchValue=@ViewBag.SearchValue"
+                   class="status-button plantowatch">Plan to Watch</a>
             </div>
         </div>
 
+        <!-- List block to display table of animes in search result list -->
         <div class="list-block">
-            <div class="list-table-container all_anime pb-3">
+            <div class="list-table-container all_anime">
+                <!-- List status block indicates which status tab user is at -->
                 <div class="list-status-block">
                     @if (ViewBag.ListStatus == 0)
                     {
@@ -399,63 +354,168 @@
                     {
                         <span class="text">PLAN TO WATCH</span>
                     }
-
                 </div>
+                <!-- If user is logged in and their account ID equals the list's account ID -->
+                @if (Session["User"] != null && ViewBag.AccountId == ((Session["User"] as Account).Id))
+                {
+                    <!-- Table for search result anime list -->
+                    <table class="anime-list-table" id="myListTable">
+                        <!-- Table headers -->
+                        <thead>
+                            <tr class="anime-list-table-header">
+                                <th class="header-title index">No.</th>
+                                <th class="header-title poster pl-1">Poster</th>
+                                <th class="header-title title">Anime Title</th>
+                                <th class="header-title type">Type</th>
+                                <th class="header-title progress">Progress</th>
+                                <th class="header-title status">Status</th>
+                                <th class="header-title edit pr-0 pl-2">Edit</th>
+                                <th class="header-title remove pr-3 pl-3">Remove</th>
+                            </tr>
+                        </thead>
 
-                <table class="anime-list-table" id="myListTable">
-                    <thead>
-                        <tr class="anime-list-table-header">
-                            <th class="header-title number">No.</th>
-                            <th class="header-title image">Poster</th>
-                            <th class="header-title title">Anime Title</th>
-                            <th class="header-title type">Type</th>
-                            <th class="header-title progress">Progress</th>
-                            <th class="header-title status">Status</th>
-                            <th class="header-title edit pr-0 pl-2">Edit</th>
-                            <th class="header-title remove pr-3 pl-3">Remove</th>
-                        </tr>
-                    </thead>
-                    <tbody class="list-item">
-                        @{ int animeIndex = 0; }
-                        @if (ViewBag.AnimeDetailList != null && ViewBag.AnimeDetailList.Count != 0)
-                        {
-                            <form action="@Url.Action("EditRemoveAnimeInSearchList", "Anime")" method="POST">
-                                @foreach (FDMSWeb.Models.Anime anime in ViewBag.AnimeDetailList)
+                        <!-- Table body -->
+                        <tbody class="list-item">
+                            @{ int animeIndex = 0; }
+                            <!-- If there are any animes in the list -->
+                            @if (ViewBag.AnimeDetailList != null && ViewBag.AnimeDetailList.Count != 0)
+                            {
+                                <!-- Iterate over all animes in list to display -->
+                                foreach (FDMSWeb.Models.Anime anime in ViewBag.AnimeDetailList)
                                 {
                                     FDMSWeb.Models.List listAnime = ViewBag.AnimeList[animeIndex];
                                     animeIndex++;
-                                    <input type="hidden" name="listStatus" value="@ViewBag.ListStatus" />
-                                    <input type="hidden" name="accountId" value="@ViewBag.AccountId" />
-                                    <input type="hidden" name="episode" value="@anime.Episodes" />
-                                    <input type="hidden" name="animeId" value="@anime.Id" />
-                                    <input type="hidden" name="searchValue" value="@ViewBag.SearchValue" />
-                                    <tr class="anime-list-table-list-item-data">
-                                        <td class="list-item-data number text-center" style="width: 5%;">@animeIndex</td>
+                                    <form action="@Url.Action("EditRemoveAnimeInSearchList", "Anime")" method="POST">
+                                        <input type="hidden" name="accountId" value="@((Session["User"] as Account).Id)" />
+                                        <input type="hidden" name="listStatus" value="@ViewBag.ListStatus" />
+                                        <input type="hidden" name="episode" value="@anime.Episodes" />
+                                        <input type="hidden" name="animeId" value="@anime.Id" />
+                                        <input type="hidden" name="searchValue" value="@ViewBag.SearchValue" />
+                                        <tr class="anime-list-table-list-item-data">
+                                            <td class="list-item-data index text-center">@animeIndex</td>
 
-                                        <td class="list-item-data image text-center" style="width: 7%;">
+                                            <td class="list-item-data poster text-center">
+                                                <a href="ViewAnime?id=@anime.Id" class="link sort">
+                                                    <img src="~/Content/Images/Posters/@anime.Poster" class="hover-info poster">
+                                                </a>
+                                            </td>
+
+                                            <td class="list-item-data title clearfix text-wrap">
+                                                <a href="ViewAnime?id=@anime.Id" class="link sort">@anime.Name</a>
+                                            </td>
+
+                                            <td class="list-item-data type text-center">
+                                                @anime.Type
+                                            </td>
+
+                                            <td class="list-item-data progress text-left">
+                                                <input size="1" type="number" min="0" max="9999" name="progress" class="inputtext form-control-sm text-left pl-1 progress-input" value="@listAnime.Progress" required>
+                                                @Html.Raw("/")
+                                                <!-- Check if anime is currently airing -->
+                                                @if (anime.Episodes != 0)
+                                                {
+                                                    @Html.Raw(anime.Episodes)
+                                                }
+                                                else
+                                                {
+                                                    @Html.Raw("?")
+                                                }
+                                            </td>
+
+                                            <td class="list-item-data status">
+                                                <select name="status">
+                                                    @{int statusIndex = 1; }
+                                                    <!-- Add statuses from status list to drop down list -->
+                                                    @foreach (String status in ViewBag.StatusList)
+                                                    {
+                                                        <!-- Default selection to status of anime in list -->
+                                                        if (!status.Equals(listAnime.Status))
+                                                        {
+                                                            <option value="@statusIndex"> @status </option>
+                                                            <br />
+                                                        }
+                                                        else
+                                                        {
+                                                            <option value="@statusIndex" selected="selected"> @status </option>
+                                                            <br />
+                                                        }
+                                                        statusIndex++;
+                                                    }
+                                                </select>
+                                            </td>
+                                            <td class="list-item-data pr-0 pl-2 text-center edit-button">
+                                                <input type="submit" name="btnAction" value="Edit" />
+                                            </td>
+                                            <td class="list-item-data pr-3 pl-3 text-center remove-button">
+                                                <input type="submit" name="btnAction" value="Remove" onclick="return confirm('Are you sure you want to remove \'@anime.Name\' from your list?');" />
+                                            </td>
+                                        </tr>
+                                    </form>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                    <!-- If there are no animes in the list -->
+                    if (ViewBag.AnimeDetailList == null || ViewBag.AnimeDetailList.Count == 0)
+                    {
+                        <!-- If user is on "All Anime" tab -->
+                        if (ViewBag.ListStatus == 0)
+                        {
+                            <div class="noanime">Your search "@ViewBag.SearchValue" did not match any animes in list </div>
+                        }
+                        else
+                        {
+                            <div class="noanime">Your search "@ViewBag.SearchValue" did not match any animes in list with status "@ViewBag.StatusList[@ViewBag.ListStatus - 1]" </div>
+                        }
+                    }
+                }
+                else
+                {
+                    /* If user is not logged in or their account ID differs from the list's account ID */
+                    <table class="anime-list-table" id="myListTable">
+                        <!-- Table headers -->
+                        <thead>
+                            <tr class="anime-list-table-header">
+                                <th class="header-title index">No.</th>
+                                <th class="header-title poster pl-1">Poster</th>
+                                <th class="header-title title">Anime Title</th>
+                                <th class="header-title type typenone">Type</th>
+                                <th class="header-title progress progressnone">Progress</th>
+                                <th class="header-title status">Status</th>
+                            </tr>
+                        </thead>
+                        <!-- Table body -->
+                        <tbody class="list-item">
+                            @{ int animeIndex = 0; }
+                            <!-- Check if there are any animes in the list -->
+                            @if (ViewBag.AnimeDetailList != null && ViewBag.AnimeDetailList.Count != 0)
+                            {
+                                <!-- Iterate over all animes in list to display -->
+                                foreach (FDMSWeb.Models.Anime anime in ViewBag.AnimeDetailList)
+                                {
+                                    FDMSWeb.Models.List listAnime = ViewBag.AnimeList[animeIndex];
+                                    animeIndex++;
+                                    <tr class="anime-list-table-list-item-data">
+                                        <td class="list-item-data index text-center">@animeIndex</td>
+
+                                        <td class="list-item-data poster text-center">
                                             <a href="ViewAnime?id=@anime.Id" class="link sort">
-                                                <img src="~/Content/Images/Posters/@anime.Poster" class="hover-info image">
+                                                <img src="~/Content/Images/Posters/@anime.Poster" class="hover-info poster">
                                             </a>
                                         </td>
 
-                                        <td class="list-item-data title clearfix text-wrap" style="width: 46%;">
+                                        <td class="list-item-data title clearfix text-wrap">
                                             <a href="ViewAnime?id=@anime.Id" class="link sort">@anime.Name</a>
                                         </td>
 
-                                        <td class="list-item-data type text-center" style="width: 8%;">
+                                        <td class="list-item-data type typenone text-center">
                                             @anime.Type
                                         </td>
 
-                                        <td class="list-item-data progress text-left" style="background-color: transparent!important; width: 9%">
-                                            @if (listAnime.Progress == 0 && listAnime.Status.Equals("Completed") && anime.Episodes == 0)
-                                            {
-                                                <input size="1" type="number" min="0" max="9999" name="progress" class="inputtext form-control-sm text-left pl-1 progress-input" value="" required>
-                                            }
-                                            else
-                                            {
-                                                <input size="1" type="number" min="0" max="9999" name="progress" class="inputtext form-control-sm text-left pl-1 progress-input" value="@listAnime.Progress" required>
-                                            }
+                                        <td class="list-item-data progress progressnone text-center">
+                                            @listAnime.Progress
                                             @Html.Raw("/")
+                                            <!-- Check if anime is currently airing -->
                                             @if (anime.Episodes != 0)
                                             {
                                                 @Html.Raw(anime.Episodes)
@@ -466,57 +526,36 @@
                                             }
                                         </td>
 
-                                        <td class="list-item-data status" style="width: 15%;">
-                                            <select name="status">
-                                                @{int statusIndex = 1; }
-                                                @foreach (String status in ViewBag.StatusList)
-                                                {
-                                                    if (!status.Equals(listAnime.Status))
-                                                    {
-                                                        <option value="@statusIndex"> @status </option>
-                                                        <br />
-                                                    }
-                                                    else
-                                                    {
-                                                        <option value="@statusIndex" selected="selected"> @status </option>
-                                                        <br />
-                                                    }
-                                                    statusIndex++;
-                                                }
-                                            </select>
-                                        </td>
-                                        <td class="list-item-data pr-0 pl-2 text-center" style="width: 5%;">
-                                            <input type="submit" name="btnAction" style="font-size: 12px;" value="Edit" />
-                                        </td>
-                                        <td class="list-item-data pr-3 pl-3 text-center" style="width: 6%;">
-                                            <input type="submit" name="btnAction" style="font-size: 12px;" value="Remove" onclick="return confirm('Are you sure you want to remove \'@anime.Name\' from your list?');" />
+                                        <td class="list-item-data status">
+                                            @listAnime.Status
                                         </td>
                                     </tr>
                                 }
-                            </form>
+                            }
+                        </tbody>
+                    </table>
+                    <!-- If there are no animes in the list -->
+                    if (ViewBag.AnimeDetailList == null || ViewBag.AnimeDetailList.Count == 0)
+                    {
+                        <!-- If user is on "All Anime" tab -->
+                        if (ViewBag.ListStatus == 0)
+                        {
+                            <div class="noanime">Your search "@ViewBag.SearchValue" did not match any animes in list </div>
                         }
-                    </tbody>
-                </table>
-                @if (ViewBag.AnimeDetailList == null || ViewBag.AnimeDetailList.Count == 0)
-                {
-                    if (ViewBag.ListStatus == 0)
-                    {
-                        <div class="noanime">Your search "@ViewBag.SearchValue" did not match any animes in list </div>
-                    }
-                    else
-                    {
-                        <div class="noanime">Your search "@ViewBag.SearchValue" did not match any animes in list with status "@ViewBag.StatusList[@ViewBag.ListStatus - 1]" </div>
+                        else
+                        {
+                            <div class="noanime">Your search "@ViewBag.SearchValue" did not match any animes in list with status "@ViewBag.StatusList[@ViewBag.ListStatus - 1]" </div>
+                        }
                     }
                 }
-
             </div>
         </div>
     </div>
 
     <script>
+        /* Switching tab underline effects */
         var status = parseInt('@ViewBag.ListStatus');
 
-        /* Switching tab effects */
         if (status == 0) {
             document.getElementById('all_anime').classList.add("on");
             document.getElementById('watching').classList.remove("on");

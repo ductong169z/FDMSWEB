@@ -3,9 +3,10 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @using FDMSWeb.Models
-    @Styles.Render("~/bundles/css")
+    @using FDMSWeb.Models <!-- Add Models to use -->
+    @Styles.Render("~/bundles/css") <!-- Add Bootstrap CSS to use -->
     <style>
+        /* Navbar border radius */
         .navbar {
             border-radius: 0 0 5px 5px;
         }
@@ -13,7 +14,7 @@
 </head>
 <body class="container">
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-        <a class="navbar-brand" href="#"></a>
+        <a class="navbar-brand" href="@Url.Action("Login", "Authentication")">WibuAnimeList</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -22,25 +23,24 @@
 
         </div>
 
-
+        <!-- If there is no session or user hasn't logged in, show Login and Sign Up buttons -->
         @if (Session == null || Session["User"] == null)
         {
             <div class="col-md-3 pull-right">
                 <a type="button" href="@Url.Action("Login", "Authentication")" class="btn btn-primary ">Login</a>
 
-                <a type="button" href="#" class="btn btn-success ">Sign Up</a>
+                <a type="button" href="#" class="btn btn-success">Sign Up</a>
             </div>
         }
         else
-        {
+        {  /* User has logged in, show welcome and a navbar navigation */
             <ul class="nav navbar-nav">
                 <li class="dropdown">
                     <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-
                         Welcome, @((Session["User"] as Account).FullName)  <b class="caret"></b>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="@Url.Action("ViewAnimeList", "Anime", new { accountId = "4", listStatus = "0" })">View Own List</a>
+                        <a class="dropdown-item" href="@Url.Action("ViewAnimeList", "Anime", new { accountId = (Session["User"] as Account).Id, listStatus = 0 })">View Own List</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Change Info</a>
                         <div class="dropdown-divider"></div>
@@ -50,16 +50,13 @@
             </ul>
         }
     </nav>
+    <!-- Load scripts and render body content -->
     <div class="body-content">
         @Scripts.Render("~/bundles/modernizr")
         @Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/bootstrap")
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Wibu Anime List</p>
-        </footer>
     </div>
-    @RenderSection("scripts", required: false)
+    @RenderSection("scripts", required: false) <!-- Specifies scripts section isn't required to render -->
 </body>
 </html>

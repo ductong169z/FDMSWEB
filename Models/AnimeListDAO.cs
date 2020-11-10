@@ -63,9 +63,9 @@ namespace FDMSWeb.Models
                     }
                     string rating = rd.GetString(6);
                     int episodes;
-                    if (!rd.IsDBNull(7))
+                    if (!rd.IsDBNull(rd.GetOrdinal("episodes")))
                     {
-                        episodes = rd.GetInt32(7);
+                        Int32.TryParse(rd.GetString("episodes"), out episodes);
                     }
                     else
                     {
@@ -82,7 +82,16 @@ namespace FDMSWeb.Models
                         duration = null;
                     }
                     string description = rd.GetString(10);
-                    string poster = rd.GetString(11);
+                    string poster;
+                    if (!rd.IsDBNull(11))
+                    {
+                        poster = rd.GetString(11);
+                    }
+                    else
+                    {
+                        poster = null;
+                    }
+
                     string trailer;
                     if (!rd.IsDBNull(12))
                     {
@@ -92,15 +101,7 @@ namespace FDMSWeb.Models
                     {
                         trailer = null;
                     }
-                    string created_at;
-                    if (!rd.IsDBNull(13))
-                    {
-                        created_at = rd.GetDateTime(13).ToString("dd/MM/yyyy");
-                    }
-                    else
-                    {
-                        created_at = "";
-                    }
+                    string created_at = rd.GetDateTime(13).ToString("dd/MM/yyyy");
 
                     // instantiate if list has not yet been instantiated
                     if (animeList == null)
@@ -153,15 +154,8 @@ namespace FDMSWeb.Models
                     /* Temp vars to store genre properties */
                     int id = rd.GetInt32(0);
                     string name = rd.GetString(1);
-                    string created_at;
-                    if (!rd.IsDBNull(2))
-                    {
-                        created_at = rd.GetDateTime(2).ToString("dd/MM/yyyy");
-                    }
-                    else
-                    {
-                        created_at = "";
-                    }
+                    string created_at = rd.GetDateTime(2).ToString("dd/MM/yyyy");
+
 
                     // instantiate if list has not yet been instantiated
                     if (genreList == null)
@@ -214,15 +208,8 @@ namespace FDMSWeb.Models
                     /* Temp vars to store studio properties */
                     int id = rd.GetInt32(0);
                     string name = rd.GetString(1);
-                    string created_at;
-                    if (!rd.IsDBNull(2))
-                    {
-                        created_at = rd.GetDateTime(2).ToString("dd/MM/yyyy");
-                    }
-                    else
-                    {
-                        created_at = "";
-                    }
+                    string created_at = rd.GetDateTime(2).ToString("dd/MM/yyyy");
+
 
                     // instantiate if list has not yet been instantiated
                     if (studioList == null)
@@ -275,15 +262,7 @@ namespace FDMSWeb.Models
                     /* Temp vars to store season properties */
                     int id = rd.GetInt32(0);
                     string name = rd.GetString(1);
-                    string created_at;
-                    if (!rd.IsDBNull(2))
-                    {
-                        created_at = rd.GetDateTime(2).ToString("dd/MM/yyyy");
-                    }
-                    else
-                    {
-                        created_at = "";
-                    }
+                    string created_at = rd.GetDateTime(2).ToString("dd/MM/yyyy");
 
                     // instantiate if list has not yet been instantiated
                     if (seasonList == null)
@@ -394,15 +373,8 @@ namespace FDMSWeb.Models
                 {
                     /* Temp vars to store season properties */
                     string name = rd.GetString(1);
-                    string created_at;
-                    if (!rd.IsDBNull(2))
-                    {
-                        created_at = rd.GetDateTime(2).ToString("dd/MM/yyyy");
-                    }
-                    else
-                    {
-                        created_at = "";
-                    }
+                    string created_at = rd.GetDateTime(2).ToString("dd/MM/yyyy");
+
 
                     // assign a new instance with properties to the return season
                     season = new Season(seasonId, name, created_at);
@@ -451,15 +423,7 @@ namespace FDMSWeb.Models
                     /* Temp vars to store studio properties */
                     int id = rd.GetInt32(1);
                     string name = rd.GetString(4);
-                    string created_at;
-                    if (!rd.IsDBNull(5))
-                    {
-                        created_at = rd.GetDateTime(5).ToString("dd/MM/yyyy");
-                    }
-                    else
-                    {
-                        created_at = "";
-                    }
+                    string created_at = rd.GetDateTime(5).ToString("dd/MM/yyyy");
 
                     // instantiate if list has not yet been instantiated
                     if (studioList == null)
@@ -513,15 +477,7 @@ namespace FDMSWeb.Models
                     /* Temp vars to store genre properties */
                     int id = rd.GetInt32(1);
                     string name = rd.GetString(5);
-                    string created_at;
-                    if (!rd.IsDBNull(6))
-                    {
-                        created_at = rd.GetDateTime(6).ToString("dd/MM/yyyy");
-                    }
-                    else
-                    {
-                        created_at = "";
-                    }
+                    string created_at = rd.GetDateTime(6).ToString("dd/MM/yyyy");
 
                     // instantiate if list has not yet been instantiated
                     if (genreList == null)
@@ -627,15 +583,7 @@ namespace FDMSWeb.Models
                     {
                         trailer = null;
                     }
-                    string created_at;
-                    if (!rd.IsDBNull(13))
-                    {
-                        created_at = rd.GetDateTime(13).ToString("dd/MM/yyyy");
-                    }
-                    else
-                    {
-                        created_at = "";
-                    }
+                    string created_at = rd.GetDateTime(13).ToString("dd/MM/yyyy");
 
                     // assign a new anime instance with properties to the return anime
                     anime = new Anime(animeId, season, studios, genres, type, name, releaseDate, rating, episodes, status, duration, description, poster, trailer, created_at);
@@ -754,15 +702,8 @@ namespace FDMSWeb.Models
                     {
                         trailer = null;
                     }
-                    string created_at;
-                    if (!rd.IsDBNull(13))
-                    {
-                        created_at = rd.GetDateTime(13).ToString("dd/MM/yyyy");
-                    }
-                    else
-                    {
-                        created_at = "";
-                    }
+
+                    string created_at = rd.GetDateTime(13).ToString("dd/MM/yyyy");
 
                     // add new anime to list
                     animeList.Add(new Anime(id, season, studios, genres, type, name, releaseDate, rating, episodes, status, duration, description, poster, trailer, created_at));
@@ -877,7 +818,6 @@ namespace FDMSWeb.Models
         }
         public static string GetMD5(string str)
         {
-            System.Diagnostics.Debug.WriteLine(str);
             MD5 md5 = new MD5CryptoServiceProvider();
             byte[] fromData = Encoding.UTF8.GetBytes(str);
             byte[] targetData = md5.ComputeHash(fromData);
@@ -948,16 +888,8 @@ namespace FDMSWeb.Models
                     gender = 0; // 0 indicates null, 1 indicates Male, 2 indicates Female
                 }
 
-                string created_at;
+                string created_at = rd.GetDateTime("created_at").ToString("dd/MM/yyyy");
 
-                if (!rd.IsDBNull(rd.GetOrdinal("created_at")))
-                {
-                    created_at = rd.GetDateTime("created_at").ToString("dd/MM/yyyy");
-                }
-                else
-                {
-                    created_at = "";
-                }
                 account = new Account(id, roleID, username, fullname, avatar, email, gender, created_at);
             }
             return account;
@@ -1240,6 +1172,121 @@ namespace FDMSWeb.Models
                 }
 
                 // return the anime obj
+                return animeList;
+            }
+            finally
+            {
+                /* Close resources after use */
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+
+                if (rd != null)
+                {
+                    rd.Close();
+                }
+            }
+        }
+        /// <summary>
+        /// Get all animes from database
+        /// </summary>
+        /// <returns>A list of all animes available</returns>
+        public List<Anime> GetAnimes(int amount)
+        {
+            /* Declare resources used for interacting with database */
+            MySqlConnection conn = null; // connection to database
+            MySqlCommand cmd; // store SQL statement
+            MySqlDataReader rd = null; // reader for return results
+            List<Anime> animeList = null; // list of all animes
+            try
+            {
+                conn = DBUtils.GetConnection(); // get connection to database
+                conn.Open(); // open the connection
+                cmd = new MySqlCommand("SELECT * FROM anime WHERE deleted_at IS NULL ORDER BY RAND() LIMIT @amount", conn); // SQL statement
+                cmd.Parameters.AddWithValue("@amount", amount);
+
+                rd = cmd.ExecuteReader(); // execute the SQL statement and store results to reader
+
+                /* Keep reading and adding data to list until end */
+                while (rd.Read())
+                {
+                    /* Temp vars to store anime properties */
+                    int id = rd.GetInt32(0);
+                    Season season;
+                    if (!rd.IsDBNull(2))
+                    {
+                        season = GetSeason(rd.GetInt32(2));
+                    }
+                    else
+                    {
+                        season = GetSeason(0);
+                    }
+                    List<Studio> studios = GetStudioList(id);
+                    List<Genre> genres = GetGenreList(id);
+                    string type = rd.GetString(3);
+                    string name = rd.GetString(4);
+                    string releaseDate;
+                    if (!rd.IsDBNull(5))
+                    {
+                        releaseDate = rd.GetDateTime(5).ToString("dd/MM/yyyy");
+                    }
+                    else
+                    {
+                        releaseDate = "";
+                    }
+                    string rating = rd.GetString(6);
+                    int episodes;
+                    if (!rd.IsDBNull(rd.GetOrdinal("episodes")))
+                    {
+                        Int32.TryParse(rd.GetString("episodes"), out episodes);
+                    }
+                    else
+                    {
+                        episodes = 0;
+                    }
+                    string status = rd.GetString(8);
+                    string duration;
+                    if (!rd.IsDBNull(9))
+                    {
+                        duration = rd.GetString(9);
+                    }
+                    else
+                    {
+                        duration = null;
+                    }
+                    string description = rd.GetString(10);
+                    string poster;
+                    if (!rd.IsDBNull(11))
+                    {
+                        poster = rd.GetString(11);
+                    }
+                    else
+                    {
+                        poster = null;
+                    }
+
+                    string trailer;
+                    if (!rd.IsDBNull(12))
+                    {
+                        trailer = rd.GetString(12);
+                    }
+                    else
+                    {
+                        trailer = null;
+                    }
+                    string created_at = rd.GetDateTime(13).ToString("dd/MM/yyyy");
+
+                    // instantiate if list has not yet been instantiated
+                    if (animeList == null)
+                    {
+                        animeList = new List<Anime>();
+                    }
+
+                    // add new anime to list
+                    animeList.Add(new Anime(id, season, studios, genres, type, name, releaseDate, rating, episodes, status, duration, description, poster, trailer, created_at));
+                }
+
                 return animeList;
             }
             finally

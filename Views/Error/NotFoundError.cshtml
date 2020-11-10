@@ -4,11 +4,12 @@
     <meta name="viewport" content="width=device-width" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <style>
+        /* General CSS to display error details */
         .error {
             margin: 0 auto;
-            text-align: center;
             width: 100%;
             height: 100%;
+            text-align: center;
             position: absolute;
             top: 0;
             right: 0;
@@ -21,38 +22,35 @@
             background-attachment: fixed;
         }
 
+        a:hover {
+            color: #0056b3;
+        }
+
         .error-code {
             bottom: 60%;
             color: #FFFFFF;
             font-size: 50px;
             font-family: 'Raleway', sans-serif;
-            line-height: 100px;
+            text-align: center;
+            margin-top: 15%;
         }
 
-        .font-bold {
+        .error-desc {
+            text-align: center;
+        }
+
+        .font-weight-bold {
             color: #FFFFFF;
             font-size: 25px;
             margin-bottom: 2% !important;
         }
 
-        .error-desc {
+        .error-back {
             font-size: 20px;
             color: #FFFFFF;
         }
 
-        .m-b-10 {
-            margin-bottom: 5% !important;
-        }
-
-        .m-b-20 {
-            margin-bottom: 5% !important;
-        }
-
-        .m-t-20 {
-            margin-top: 10% !important;
-        }
-
-        .login-detail-panel-button {
+        .back-button {
             font-size: 20px;
             color: #FFFFFF;
             border-radius: 30px !important;
@@ -60,19 +58,21 @@
             border-color: #FFFFFF;
         }
     </style>
-    <title>An Error Occured - WibuAnimeList</title>
+    <title>Page Not Found - WibuAnimeList</title>
 </head>
 <body>
+    <!-- Div to contain error details -->
     <div class="error">
-        <div class="error-code m-b-10 m-t-20">AN ERROR OCCURED!</div>
-        <h3 class="font-bold">An error occurred while processing your request</h3>
+        <!-- Display error code and description -->
+        <div class="error-code">PAGE NOT FOUND</div>
+        <h3 class="font-weight-bold error-desc mt-5">The page you were looking for could not be found.</h3>
+        <h3 class="font-weight-bold error-desc">Make sure you type the URL correctly!</h3>
 
-        <div class="error-desc">
+        <!-- Display button to go back to home page -->
+        <div class="error-back">
             <div>
-                <a class="login-detail-panel-button btn" href="@Url.Action("Index", "Home")">
-                    <i class="fa fa-arrow-left">
-                        Go back to Home Page
-                    </i>
+                <a class="back-button btn mt-5" href="@Url.Action("Index", "Home")">
+                    Go back to Home Page
                 </a>
             </div>
         </div>

@@ -4,11 +4,12 @@
     <meta name="viewport" content="width=device-width" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <style>
+        /* General CSS to display error details */
         .error {
             margin: 0 auto;
-            text-align: center;
             width: 100%;
             height: 100%;
+            text-align: center;
             position: absolute;
             top: 0;
             right: 0;
@@ -21,38 +22,35 @@
             background-attachment: fixed;
         }
 
-        .error-code {
-            padding-top: 5%;
-            color: #FFFFFF;
-            font-size: 50px;
-            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 100px;
+        a:hover {
+            color: #0056b3;
         }
 
-        .font-bold {
+        .error-code {
+            bottom: 60%;
+            color: #FFFFFF;
+            font-size: 50px;
+            font-family: 'Raleway', sans-serif;
+            text-align: center;
+            margin-top: 15%;
+        }
+
+        .error-desc {
+            text-align: center;
+        }
+
+        .font-weight-bold {
             color: #FFFFFF;
             font-size: 25px;
             margin-bottom: 2% !important;
         }
 
-        .error-desc {
+        .error-back {
             font-size: 20px;
             color: #FFFFFF;
         }
 
-        .m-b-10 {
-            margin-bottom: 5% !important;
-        }
-
-        .m-b-20 {
-            margin-bottom: 5% !important;
-        }
-
-        .m-t-20 {
-            margin-top: 10% !important;
-        }
-
-        .login-detail-panel-button {
+        .back-button {
             font-size: 20px;
             color: #FFFFFF;
             border-radius: 30px !important;
@@ -63,20 +61,25 @@
     <title>Internal Server Error - WibuAnimeList</title>
 </head>
 <body>
+    <!-- Div to contain error details -->
     <div class="error">
-        <div class="error-code m-b-10 m-t-20">INTERNAL SERVER ERROR</div>
-        <h3 class="text-light mb-5">The server encountered an internal error and was unable to complete your request.</h3>
+        <!-- Display error code and description -->
+        <div class="error-code">INTERNAL SERVER ERROR</div>
+        <h3 class="font-weight-bold error-desc mt-5">
+            The server encountered an internal error and was
+        </h3>
+        <h3 class="font-weight-bold error-desc mt-2">
+            unable to complete your request.
+        </h3>
 
-        <div class="error-desc">
+        <!-- Display button to go back to home page -->
+        <div class="error-back">
             <div>
-                <a class="login-detail-panel-button btn" href="@Url.Action("Index", "Home")">
-                    <i class="fa fa-arrow-left">
-                        Click here to go back to Home Page
-                    </i>
+                <a class="back-button btn mt-5" href="@Url.Action("Index", "Home")">
+                    Go back to Home Page
                 </a>
             </div>
         </div>
     </div>
 </body>
 </html>
-
