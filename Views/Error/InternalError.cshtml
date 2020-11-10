@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <style>
+        /* General CSS to display error details */
         .error {
             margin: 0 auto;
             width: 100%;
@@ -15,14 +16,14 @@
             bottom: 0;
             left: 0;
             background-image: url(/Content/Backgrounds/bg-animelist.jpg);
-            background-repeat: no-repeat !important;
-            background-size: cover !important;
-            background-position: center !important;
-            background-attachment: fixed !important;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
         }
 
         a:hover {
-            color: #0056b3 !important;
+            color: #0056b3;
         }
 
         .error-code {
@@ -34,22 +35,22 @@
             margin-top: 15%;
         }
 
-        .error-message {
+        .error-desc {
             text-align: center;
         }
 
-        .font-bold {
+        .font-weight-bold {
             color: #FFFFFF;
             font-size: 25px;
             margin-bottom: 2% !important;
         }
 
-        .error-desc {
+        .error-back {
             font-size: 20px;
             color: #FFFFFF;
         }
 
-        .go-back-button {
+        .back-button {
             font-size: 20px;
             color: #FFFFFF;
             border-radius: 30px !important;
@@ -60,18 +61,21 @@
     <title>Internal Server Error - WibuAnimeList</title>
 </head>
 <body>
+    <!-- Div to contain error details -->
     <div class="error">
+        <!-- Display error code and description -->
         <div class="error-code">INTERNAL SERVER ERROR</div>
-        <h3 class="font-bold error-message mt-5">
-            The server encountered an internal error and was 
+        <h3 class="font-weight-bold error-desc mt-5">
+            The server encountered an internal error and was
         </h3>
-        <h3 class="font-bold error-message mt-2">
+        <h3 class="font-weight-bold error-desc mt-2">
             unable to complete your request.
         </h3>
 
-        <div class="error-desc">
+        <!-- Display button to go back to home page -->
+        <div class="error-back">
             <div>
-                <a class="go-back-button btn mt-5" href="@Url.Action("Index", "Home")">
+                <a class="back-button btn mt-5" href="@Url.Action("Index", "Home")">
                     Go back to Home Page
                 </a>
             </div>

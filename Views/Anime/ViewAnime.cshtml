@@ -1,5 +1,4 @@
 ﻿@{
-    ViewBag.Title = "View";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -8,6 +7,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <style>
+        /* General CSS */
         body {
             background: url(/Content/Backgrounds/bg-15.jpg);
             background-size: cover;
@@ -16,6 +16,7 @@
             background-position: center;
         }
 
+        /* CSS for anime detail container */
         .anime-details {
             padding: 3%;
             margin-top: 3%;
@@ -24,6 +25,7 @@
             background: #fff;
         }
 
+        /* Anime poster */
         .details-poster {
             text-align: center;
             padding: 0;
@@ -45,7 +47,7 @@
         }
 
         .details-head .nav-tabs {
-            margin-bottom: 5%;
+            margin-bottom: 3%;
         }
 
             .details-head .nav-tabs .nav-link {
@@ -61,27 +63,29 @@
                     border-bottom: 2px solid #0056b3;
                 }
 
-        .details-info {
+        /* Anime details */
+
+        .details-input-form {
             padding: 5%;
             margin: 0;
             text-align: center;
         }
 
-            .details-info p {
+            .details-input-form p {
                 font-size: 12px;
                 color: #818182;
                 font-weight: 600;
                 margin-top: 10%;
             }
 
-            .details-info a {
+            .details-input-form a {
                 text-decoration: none;
                 color: #3333FF;
                 font-weight: 600;
                 font-size: 14px;
             }
 
-            .details-info ul {
+            .details-input-form ul {
                 list-style: none;
             }
 
@@ -96,9 +100,20 @@
 
         /* Miscellaneous CSS */
 
+        h1{
+            line-height: 3.5rem;
+        }
+
+        #details{
+            line-height: 2rem;
+            padding: 0 0.5rem;
+        }
+
         .synopsis {
             color: #000000 !important;
+
             font-weight: normal !important;
+            line-height: 2rem;
         }
 
         .btn-group {
@@ -111,15 +126,26 @@
             padding-top: 5px;
         }
 
+        /* Add To List button CSS */
+
         .btn-primary {
-            color: #007bff;
             background-color: #fff;
-            border-color: #007bff;
             width: 90%;
             margin-top: 1%;
             margin-bottom: 6%;
+            color: #0056b3;
+            border-color: #0056b3;
         }
 
+            .btn-primary:hover {
+                background-color: #0056b3;
+            }
+
+            .btn-primary:focus {
+                background-color: #0056b3;
+            }
+
+        /* Spaceit class for madding and margin */
         .spaceit {
             margin: 3px 0;
             padding: 3px 0;
@@ -137,6 +163,16 @@
         span.anime-list-notice {
             display: block;
             text-align: left;
+        }
+
+        /* Input Form CSS */
+
+        .col-md-8{
+            padding-right: 2.5rem;
+        }
+
+        .card{
+            line-height: 2rem;
         }
 
         .card.card-body {
@@ -161,6 +197,7 @@
         tbody {
             display: block;
             width: 100%;
+            margin: 0;
         }
 
         .statustr .epstr .submittr {
@@ -188,7 +225,7 @@
             text-align: right;
         }
 
-        .inputButton {
+        .input-button {
             text-align: right;
             margin: 2px;
             border-radius: 2px;
@@ -198,10 +235,6 @@
         .submittd {
             display: block;
             text-align: right;
-        }
-
-        tbody {
-            margin: 0;
         }
 
         #status_dropdown {
@@ -216,10 +249,22 @@
             width: 35%;
         }
 
-        inputButton {
+        input-button {
             margin-top: 5%;
         }
 
+
+        #add-button {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        #edit-button, #remove-button {
+            padding-left: 0.75rem;
+            padding-right: 0.75rem;
+        }
+
+        /* Responsive CSS */
         @@media (max-width: 768px) {
             .details-head {
                 text-align: center;
@@ -399,7 +444,6 @@
             float: right;
         }
 
-
         /* Hide input arrows */
         /* Chrome, Safari, Edge, Opera */
         input::-webkit-outer-spin-button,
@@ -416,17 +460,22 @@
     <title>@ViewBag.Anime.Name - WibuAnimeList</title>
 </head>
 <body>
+    <!-- Container for anime details -->
     <div class="container anime-details">
         <div class="row">
+            <!-- Anime poster and input form -->
             <div class="col-md-4">
                 <div class="details-poster">
                     <img class="rounded " src="~/Content/Images/Posters/@ViewBag.Anime.Poster" alt="" />
                 </div>
-                <div class="details-info">
-                    @if ((Session["User"] as FDMSWeb.Models.Account) != null)
+                <div class="details-input-form">
+                    <!-- Check if user logged in -->
+                    @if (Session["User"] != null)
                     {
-                        if (@ViewBag.AnimeInList != null)
+                        <!-- Check if user has anime in list -->
+                        if (ViewBag.AnimeInList != null)
                         {
+                            <!-- Show anime edit and remove form -->
                             <div class="collapse show" id="collapsePanel">
                                 <div class="card card-body">
                                     <div id="addtolist" class="addtolist-block">
@@ -436,13 +485,16 @@
                                                 <input type="hidden" name="animeId" value="@ViewBag.Anime.Id" />
                                                 <input type="hidden" name="accountId" value="@((Session["User"] as FDMSWeb.Models.Account).Id)" />
                                                 <tbody>
+                                                    <!-- Row for status and status dropdown menu input -->
                                                     <tr class="statustr">
                                                         <td class="status spaceit">Status:</td>
                                                         <td class="statusinput spaceit">
                                                             <select name="status" id="status_dropdown" class="inputtext form-control-sm">
+                                                                <!-- Add statuses from status list to drop down list -->
                                                                 @{int statusIndex = 1; }
                                                                 @foreach (string status in ViewBag.StatusList)
                                                                 {
+                                                                    /* Select anime in list status as default */
                                                                     if (!status.Equals(ViewBag.AnimeInList.Status))
                                                                     {
                                                                         <option value="@statusIndex"> @status </option>
@@ -456,20 +508,15 @@
                                                             </select>
                                                         </td>
                                                     </tr>
+                                                    <!-- Row for eps seen and episode input -->
                                                     <tr class="epstr">
                                                         <td class="epseen spaceit">Eps Seen:</td>
                                                         <td class="epseeninput spaceit">
                                                             <input type="hidden" name="episode" value="@ViewBag.Anime.Episodes" />
-                                                            @if (@ViewBag.AnimeInList.Progress == 0 && @ViewBag.AnimeInList.Status.Equals("Completed") && ViewBag.Anime.Episodes == 0)
-                                                            {
-                                                                <input type="number" min="0" max="9999" id="watchedeps" name="progress" size="3" class="inputtext form-control-sm" value="" required />
-                                                            }
-                                                            else
-                                                            {
-                                                                <input type="number" min="0" max="9999" id="watchedeps" name="progress" size="3" class="inputtext form-control-sm" value="@ViewBag.AnimeInList.Progress" required />
-                                                            }
+                                                            <input type="number" min="0" max="9999" id="watchedeps" name="progress" size="3" class="inputtext form-control-sm" value="@ViewBag.AnimeInList.Progress" required />
                                                             @Html.Raw("/")
-                                                            @if (@ViewBag.Anime.Episodes != 0)
+                                                            <!-- Check if anime is still currently airing -->
+                                                            @if (ViewBag.Anime.Episodes != 0)
                                                             {
                                                                 @ViewBag.Anime.Episodes
                                                             }
@@ -479,10 +526,11 @@
                                                             }
                                                         </td>
                                                     </tr>
+                                                    <!-- Row for edit and remove button -->
                                                     <tr class="submittr">
                                                         <td class="submittd">
-                                                            <input id="editButton" type="submit" name="btnAction" value="Edit" class="inputButton editButton">
-                                                            <input type="submit" name="btnAction" value="Remove" class="inputButton" onclick="return confirm('Are you sure you want to remove \'@ViewBag.Anime.Name\' from your list?');">
+                                                            <input id="edit-button" type="submit" name="btnAction" value="Edit" class="input-button edit-button">
+                                                            <input id="remove-button" type="submit" name="btnAction" value="Remove" class="input-button" onclick="return confirm('Are you sure you want to remove \'@ViewBag.Anime.Name\' from your list?');">
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -494,9 +542,11 @@
                         }
                         else
                         {
+                            <!-- Show Add to List button -->
                             <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapsePanel" aria-expanded="false" aria-controls="collapsePanel">
                                 Add To List
                             </button>
+                            <!-- Show anime add form -->
                             <div class="collapse" id="collapsePanel">
                                 <div class="card card-body">
                                     <div id="addtolist" class="addtolist-block">
@@ -506,11 +556,13 @@
                                                 <input type="hidden" name="animeId" value="@ViewBag.Anime.Id" />
                                                 <input type="hidden" name="accountId" value="@((Session["User"] as FDMSWeb.Models.Account).Id)" />
                                                 <tbody>
+                                                    <!-- Row for status and status dropdown menu input -->
                                                     <tr class="statustr">
                                                         <td class="status spaceit">Status:</td>
                                                         <td class="statusinput spaceit">
                                                             <select name="status" id="status_dropdown" class="inputtext form-control-sm">
                                                                 @{int statusIndex = 1; }
+                                                                <!-- Add statuses from status list to drop down list -->
                                                                 @foreach (string status in ViewBag.StatusList)
                                                                 {
                                                                     <option value="@statusIndex"> @status </option>
@@ -519,13 +571,15 @@
                                                             </select>
                                                         </td>
                                                     </tr>
+                                                    <!-- Row for eps seen and episode input -->
                                                     <tr class="epstr">
                                                         <td class="epseen spaceit">Eps Seen:</td>
                                                         <td class="epseeninput spaceit">
                                                             <input type="hidden" name="episode" value="@ViewBag.Anime.Episodes" />
-                                                            <input type="number" min="0" max="9999" id="watchedeps" name="progress" size="1" class="inputtext form-control-sm" value="" required />
+                                                            <input type="number" min="0" max="9999" id="watchedeps" name="progress" size="1" class="inputtext form-control-sm" value="0" required />
                                                             @Html.Raw("/")
-                                                            @if (@ViewBag.Anime.Episodes != 0)
+                                                            <!-- Check if anime is still currently airing -->
+                                                            @if (ViewBag.Anime.Episodes != 0)
                                                             {
                                                                 @ViewBag.Anime.Episodes
                                                             }
@@ -535,9 +589,10 @@
                                                             }
                                                         </td>
                                                     </tr>
+                                                    <!-- Row for add button -->
                                                     <tr class="submittr">
                                                         <td class="submittd">
-                                                            <input id="addButton" type="submit" name="btnAction" value="Add" class="inputButton addButton">
+                                                            <input id="add-button" type="submit" name="btnAction" value="Add" class="input-button add-button">
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -550,6 +605,7 @@
                     }
                 </div>
             </div>
+            <!-- Display anime details -->
             <div class="col-md-8">
                 <div class="details-head">
                     <h1>
@@ -563,6 +619,8 @@
                     {
                         <h6>Unknown Season</h6>
                     }
+
+                    <!-- Navigation bar to navigate between Synopsis, Details and Trailer tabs -->
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item">
                             <a class="nav-link active" id="synopsis-tab" data-toggle="tab" href="#synopsis" role="tab" aria-controls="synopsis" aria-selected="true">Synopsis</a>
@@ -573,15 +631,17 @@
                         <li class="nav-item">
                             <a class="nav-link" id="trailer-tab" data-toggle="tab" href="#trailer" role="tab" aria-controls="trailer" aria-selected="false">Trailer</a>
                         </li>
-
                     </ul>
                 </div>
 
+                <!-- Content for tabs -->
                 <div class="tab-content details-tab" id="myTabContent">
+                    <!-- Content for Synopsis tab -->
                     <div class="tab-pane fade show active" id="synopsis" role="tabpanel" aria-labelledby="synopsis-tab">
                         <p class="synopsis text-justify">@Html.Raw(ViewBag.Anime.Description)</p>
                     </div>
 
+                    <!-- Content for Details tab -->
                     <div class="tab-pane fade" id="details" role="tabpanel" aria-labelledby="details-tab">
                         <div class="row">
                             <div class="col-md-6">
@@ -596,8 +656,9 @@
                             <div class="col-md-6">
                                 <label>Episodes</label>
                             </div>
+                            <!-- Check if anime is still airing -->
                             <div class="col-md-6">
-                                @if (@ViewBag.Anime.Episodes != 0)
+                                @if (ViewBag.Anime.Episodes != 0)
                                 {
                                     <p>@Html.Raw(ViewBag.Anime.Episodes)</p>
                                 }
@@ -621,8 +682,9 @@
                             <div class="col-md-6">
                                 <label>Release Date</label>
                             </div>
+                            <!-- Check if release date is null -->
                             <div class="col-md-6">
-                                @if (@ViewBag.Anime.ReleaseDate != null)
+                                @if (ViewBag.Anime.ReleaseDate != null)
                                 {
                                     <p>@Html.Raw(ViewBag.Anime.ReleaseDate)</p>
                                 }
@@ -637,22 +699,25 @@
                             <div class="col-md-6">
                                 <label>Studio(s)</label>
                             </div>
+                            <!-- Display multiple studios with "," -->
                             <div class="col-md-6 text-wrap">
                                 <p>
                                     @{ int studioIndex = 0; }
-                                    @foreach (FDMSWeb.Models.Studio studio in @ViewBag.Studios)
+                                    @foreach (FDMSWeb.Models.Studio studio in ViewBag.Studios)
                                     {
-                                        if (studioIndex == 0 && @ViewBag.Studios.Count == 1)
+                                        // if there is only one studio
+                                        if (studioIndex == 0 && ViewBag.Studios.Count == 1)
                                         {
-                                            @Html.Raw(@studio.Name)
+                                            @Html.Raw(studio.Name)
                                         }
+                                        // if there is more than one studio for the anime
                                         else if (studioIndex == 0)
                                         {
-                                            @Html.Raw(@studio.Name)
+                                            @Html.Raw(studio.Name)
                                         }
                                         else
                                         {
-                                            @Html.Raw(", " + @studio.Name)
+                                            @Html.Raw(", " + studio.Name)
                                         }
                                         studioIndex++;
                                     }
@@ -664,22 +729,25 @@
                             <div class="col-md-6">
                                 <label>Genre(s)</label>
                             </div>
+                            <!-- Display multiple genres with "," -->
                             <div class="col-md-6 text-wrap">
                                 <p>
                                     @{ int genreIndex = 0; }
-                                    @foreach (FDMSWeb.Models.Genre genre in @ViewBag.Genres)
+                                    @foreach (FDMSWeb.Models.Genre genre in ViewBag.Genres)
                                     {
-                                        if (genreIndex == 0 && @ViewBag.Genres.Count == 1)
+                                        // if there is only one genre
+                                        if (genreIndex == 0 && ViewBag.Genres.Count == 1)
                                         {
-                                            @Html.Raw(@genre.Name)
+                                            @Html.Raw(genre.Name)
                                         }
+                                        // if there is more than one genre for the anime
                                         else if (genreIndex == 0)
                                         {
-                                            @Html.Raw(@genre.Name)
+                                            @Html.Raw(genre.Name)
                                         }
                                         else
                                         {
-                                            @Html.Raw(", " + @genre.Name)
+                                            @Html.Raw(", " + genre.Name)
                                         }
                                         genreIndex++;
                                     }
@@ -690,6 +758,7 @@
                             <div class="col-md-6">
                                 <label>Duration</label>
                             </div>
+                            <!-- Check if duration is null -->
                             <div class="col-md-6">
                                 @if (@ViewBag.Anime.Duration != null)
                                 {
@@ -712,6 +781,7 @@
                         </div>
                     </div>
 
+                    <!-- Check if trailer is null -->
                     <div class="tab-pane fade" id="trailer" role="tabpanel" aria-labelledby="trailer-tab">
                         @if (@ViewBag.Anime.Trailer != null)
                         {
@@ -730,17 +800,20 @@
     </div>
 
     <script>
+        /* Script to disallow users to add currently airing animes with status Completed to list*/
         $(document).ready(function () {
-            $('#editButton').click(function () {
+             /* Script for add button */
+             $('#add-button').click(function () {
                 if (@ViewBag.Anime.Episodes == 0 && $('#status_dropdown :selected').val() == 2) {
-                    alert('You cannot change the status to "Completed"! The anime is currently airing and has not yet finished airing!');
+                    alert('You cannot mark the status as "Completed"! The anime is currently airing and has not yet finished airing!');
                     return false;
                 };
             });
 
-             $('#addButton').click(function () {
+            /* Script for edit button */
+            $('#edit-button').click(function () {
                 if (@ViewBag.Anime.Episodes == 0 && $('#status_dropdown :selected').val() == 2) {
-                    alert('You cannot mark the status as "Completed"! The anime is currently airing and has not yet finished airing!');
+                    alert('You cannot change the status to "Completed"! The anime is currently airing and has not yet finished airing!');
                     return false;
                 };
             });

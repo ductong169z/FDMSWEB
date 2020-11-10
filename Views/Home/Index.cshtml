@@ -1,21 +1,17 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-}
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 @using FDMSWeb.Models
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <style>
+        /* CSS for image, card and show all button elements */
         .img-thumbnail {
             padding: 0 !important;
             background-color: #fff;
             border: 1px solid #fff;
             border-radius: .25rem;
-            max-width: 100%;
-            height: auto;
-            width: 221px;
-            height: 310px;
+            width: 225px;
+            height: 320px;
             max-height: 100%;
             max-width: 100%;
         }
@@ -31,31 +27,37 @@
 
         .card-footer {
             text-align: center;
+            color: #0056b3;
         }
 
-        .showall {
-            text-align: center;
+        .btn {
+            background-color: #353b41;
+            color: #fff!important;
         }
     </style>
     <title>Wibu Anime List</title>
 </head>
 <body class="container">
-    <div class=""><p></div>
-    <div class="row mb-3 ">
-
-        @if (@ViewBag.listAnime != null && @ViewBag.listAnime.Count != 0)
+    <!-- Row for 4 animes to display -->
+    <div class="row mb-3 mt-4">
+        <!-- Display animes in cards if there are animes in database -->
+        @if (ViewBag.listAnime != null && ViewBag.listAnime.Count != 0)
         {
 
             foreach (FDMSWeb.Models.Anime anime in ViewBag.listAnime)
             {
+                <!-- Each anime card spans 3 columns in Bootstrap grid -->
                 <div class="col-md-3">
-                    <div class="card " style="" title="">
-                        <a href="Anime/ViewAnime/@anime.Id">
+                    <div class="card">
+                        <a href="Anime/ViewAnime?id=@anime.Id">
+                            <!-- Show anime poster -->
                             <div class="card-body">
                                 <img class="img-thumbnail" src="~/Content/Images/Posters/@anime.Poster">
                             </div>
 
-                            <div class="card-footer" title="">
+                            <!-- Show anime name -->
+                            <div class="card-footer">
+                                <!-- Only display up to 20 characters in anime name -->
                                 @if (anime.Name.Length > 20)
                                 {
                                     <span>@anime.Name.Substring(0, 20)...</span>
@@ -72,10 +74,11 @@
             }
         }
     </div>
-    <div class="" style="text-align: center;">
 
-        <a href="Anime/ShowAll" class="btn btn-secondary btn-icon-split">
-            <span class="text">Show All</span>
+    <!-- Show All button -->
+    <div class="text-center mb-3">
+        <a href="Anime/ShowAll" class="btn bg-secondary">
+            <span class="text-light">Show All Animes</span>
         </a>
     </div>
 </body>
