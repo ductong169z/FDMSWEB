@@ -337,7 +337,7 @@
             padding: 5px 10px;
         }
 
-        .searchanimebtn {
+        .search-anime-button {
             border: 1px solid #969696 !important;
             padding: 0.3rem 1rem;
             background-color: #fafafa;
@@ -426,7 +426,7 @@
                 </div>
                 <!-- Search modal -->
                 <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
                             <!-- Modal header -->
                             <div class="modal-header">
@@ -443,7 +443,7 @@
                                     <input id="search-input" class="form-control" name="searchValue" type="text" value="" placeholder="Enter the name of anime to search" required />
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="submit" class="btn searchanimebtn">Search</button>
+                                    <button id="search-anime-button" type="submit" class="btn search-anime-button">Search</button>
                                 </div>
                             </form>
                         </div>
@@ -680,6 +680,13 @@
     </div>
 
     <script>
+        $('#search-anime-button').click(function () {
+            if ($.trim($('#search-input').val()) == '') {
+                alert('Your input cannot contain only white spaces!');
+                return false;
+            }
+        });
+
         /* Focus to field upon open modal */
         $('#searchModal').on('shown.bs.modal', function () {
             $('#search-input').focus();
@@ -687,7 +694,7 @@
 
         /* Script to show search modal */
         $(document).ready(function () {
-            $('#btnSearch').click(function () {
+            $('#search-button').click(function () {
                 $('.modal').modal('show');
             });
         });
