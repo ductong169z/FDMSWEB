@@ -18,6 +18,12 @@
             background-position: center;
             filter: unset;
         }
+
+        #error-text {
+            color: #d05558;
+            font-weight: bold;
+            font-size: 16px;
+        }
     </style>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
@@ -110,17 +116,17 @@
                     </span>
 
                     <div class="wrap-input100 validate-input" data-validate="Enter username">
-                        <input class="input100" type="text" name="username" placeholder="Username">
+                        <input class="input100" type="text" name="username" placeholder="Username" required>
                         <span class="focus-input100" data-placeholder="&#xf207;"></span>
                     </div>
 
                     <div class="wrap-input100 validate-input" data-validate="Enter password">
-                        <input class="input100" type="password" name="password" placeholder="Password">
+                        <input class="input100" type="password" name="password" placeholder="Password" required>
                         <span class="focus-input100" data-placeholder="&#xf191;"></span>
                     </div>
 
                     <div class="contact100-form-checkbox login100-form-title">
-                        <p class="text-lg" style="color:#cb7476;font-weight: bold">
+                        <p id="error-text" class="text-lg">
                             @if (ViewBag.error != null)
                             {
                                 @ViewBag.error

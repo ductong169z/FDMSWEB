@@ -57,7 +57,7 @@ namespace FDMSWeb.Controllers
             }
 
             /* Request input again if account doesn't exist */
-            TempData["Error"] = "Username or passsword is incorrect!";
+            TempData["Error"] = "Username or password is incorrect!";
             return RedirectToAction("Login", "Authentication");
         }
 
