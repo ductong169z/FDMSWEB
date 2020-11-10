@@ -546,7 +546,7 @@
                                                         <td class="epseen spaceit">Eps Seen:</td>
                                                         <td class="epseeninput spaceit">
                                                             <input type="hidden" name="episode" value="@ViewBag.Anime.Episodes" />
-                                                            <input type="number" min="0" max="9999" id="watchedeps" name="progress" size="1" class="inputtext form-control-sm" value="" required />
+                                                            <input type="number" min="0" max="9999" id="watchedeps" name="progress" size="1" class="inputtext form-control-sm" value="0" required />
                                                             @Html.Raw("/")
                                                             <!-- Check if anime is still currently airing -->
                                                             @if (ViewBag.Anime.Episodes != 0)
