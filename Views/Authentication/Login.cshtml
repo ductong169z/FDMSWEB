@@ -24,6 +24,25 @@
             font-weight: bold;
             font-size: 16px;
         }
+
+        #login-button{
+            padding-left: 1rem;
+            padding-right: 1rem;
+            margin-right: 0.5rem;
+        }
+
+        #signup-button {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        .buttons{
+            padding: 0;
+        }
+
+        .navbar-brand {
+            margin-left: 1rem;
+        }
     </style>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
@@ -71,35 +90,18 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-        <a class="navbar-brand" href="#"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        <a class="col-3 navbar-brand" href="">WibuAnimeList</a>
 
         <div class="collapse navbar-collapse" id="navbarsExample03">
         </div>
 
         @if (Session["User"] == null)
         {
-            <div class="col-md-3 pull-right">
-                <a type="button" href="@Url.Action("Login", "Authentication")" class="btn btn-primary ">Login</a>
+            <div class="col-2 pull-right buttons">
+                <a id="login-button" type="button" href="@Url.Action("Login", "Authentication")" class="btn btn-primary">Login</a>
 
-                <a type="button" href="#" class="btn btn-success ">Sign Up</a>
+                <a id="signup-button" type="button" href="#" class="btn btn-success ">Sign Up</a>
             </div>
-        }
-        else
-        {
-            <ul class="nav navbar-nav">
-                <li class="dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                        Welcome,Uzaki-chan <b class="caret"></b>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right">
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="$">Log Out</a>
-                    </div>
-                </li>
-            </ul>
         }
     </nav>
     <div class="limiter">
