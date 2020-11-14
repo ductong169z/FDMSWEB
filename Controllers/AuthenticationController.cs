@@ -92,6 +92,19 @@ namespace FDMSWeb.Controllers
             return RedirectToAction("Register", "Authentication");
 
         }
+
+        public ActionResult UserInfo(string userID)
+        {
+            if (Session["User"] != null)
+            {
+                return View();
+
+            }
+            else
+            {
+                return RedirectToAction("Login", "Authentication");
+            }
+        }
         /// <summary>
         /// Log out action
         /// </summary>

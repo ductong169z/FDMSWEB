@@ -186,8 +186,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Backgrounds\bg-02.jpg" />
     <Content Include="Content\Backgrounds\bg-03.jpg" />
     <Content Include="Content\Backgrounds\bg-12.png" />
+    <Content Include="Content\Backgrounds\bg-13.png" />
     <Content Include="Content\Backgrounds\bg-15.jpg" />
     <Content Include="Content\Backgrounds\bg-animelist.jpg" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -593,6 +595,7 @@
     <Content Include="Views\Error\InternalError.cshtml" />
     <Content Include="Views\Anime\ShowAll.cshtml" />
     <Content Include="Views\Authentication\Register.cshtml" />
+    <Content Include="Views\Authentication\UserInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

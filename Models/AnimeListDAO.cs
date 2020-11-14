@@ -1477,6 +1477,7 @@ namespace FDMSWeb.Models
             MySqlConnection conn = null; // connection to database
             MySqlCommand cmd; // store SQL statement
             MySqlDataReader rd = null; // reader for return results
+            System.Diagnostics.Debug.WriteLine(password);
             string md5passs = GetMD5(password);
             conn = DBUtils.GetConnection(); // get connection to database
             conn.Open(); // open the connection
