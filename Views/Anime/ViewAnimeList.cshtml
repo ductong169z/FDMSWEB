@@ -258,6 +258,10 @@
 
         /* Miscellaneous CSS */
 
+        #anime-dropdown{
+            font-size: 1rem;
+        }
+
         .typenone {
             padding: 0 !important;
         }
@@ -437,7 +441,7 @@
                             <!-- Modal body (input form) -->
                             <form action="@Url.Action("ViewListSearchResult", "Anime")">
                                 <div class="modal-body">
-                                    <input type="hidden" name="accountId" value="@((Session["User"] as Account).Id)" />
+                                    <input type="hidden" name="accountId" value="@ViewBag.AccountId" />
                                     <input type="hidden" name="listStatus" value="0" />
                                     <input id="search-input" class="form-control" name="searchValue" type="text" value="" placeholder="Enter the name of anime to search" required />
                                 </div>
