@@ -47,7 +47,7 @@
         }
 
         .details-head .nav-tabs {
-            margin-bottom: 5%;
+            margin-bottom: 3%;
         }
 
             .details-head .nav-tabs .nav-link {
@@ -100,9 +100,20 @@
 
         /* Miscellaneous CSS */
 
+        h1{
+            line-height: 3.5rem;
+        }
+
+        #details{
+            line-height: 2rem;
+            padding: 0 0.5rem;
+        }
+
         .synopsis {
             color: #000000 !important;
+
             font-weight: normal !important;
+            line-height: 2rem;
         }
 
         .btn-group {
@@ -156,6 +167,14 @@
 
         /* Input Form CSS */
 
+        .col-md-8{
+            padding-right: 2.5rem;
+        }
+
+        .card{
+            line-height: 2rem;
+        }
+
         .card.card-body {
             padding: 15px;
             margin-top: 0;
@@ -206,7 +225,7 @@
             text-align: right;
         }
 
-        .inputButton {
+        .input-button {
             text-align: right;
             margin: 2px;
             border-radius: 2px;
@@ -230,8 +249,19 @@
             width: 35%;
         }
 
-        inputButton {
+        input-button {
             margin-top: 5%;
+        }
+
+
+        #add-button {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        #edit-button, #remove-button {
+            padding-left: 0.75rem;
+            padding-right: 0.75rem;
         }
 
         /* Responsive CSS */
@@ -499,8 +529,8 @@
                                                     <!-- Row for edit and remove button -->
                                                     <tr class="submittr">
                                                         <td class="submittd">
-                                                            <input id="editButton" type="submit" name="btnAction" value="Edit" class="inputButton editButton">
-                                                            <input type="submit" name="btnAction" value="Remove" class="inputButton" onclick="return confirm('Are you sure you want to remove \'@ViewBag.Anime.Name\' from your list?');">
+                                                            <input id="edit-button" type="submit" name="btnAction" value="Edit" class="input-button edit-button">
+                                                            <input id="remove-button" type="submit" name="btnAction" value="Remove" class="input-button" onclick="return confirm('Are you sure you want to remove \'@ViewBag.Anime.Name\' from your list?');">
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -546,7 +576,7 @@
                                                         <td class="epseen spaceit">Eps Seen:</td>
                                                         <td class="epseeninput spaceit">
                                                             <input type="hidden" name="episode" value="@ViewBag.Anime.Episodes" />
-                                                            <input type="number" min="0" max="9999" id="watchedeps" name="progress" size="1" class="inputtext form-control-sm" value="" required />
+                                                            <input type="number" min="0" max="9999" id="watchedeps" name="progress" size="1" class="inputtext form-control-sm" value="0" required />
                                                             @Html.Raw("/")
                                                             <!-- Check if anime is still currently airing -->
                                                             @if (ViewBag.Anime.Episodes != 0)
@@ -562,7 +592,7 @@
                                                     <!-- Row for add button -->
                                                     <tr class="submittr">
                                                         <td class="submittd">
-                                                            <input id="addButton" type="submit" name="btnAction" value="Add" class="inputButton addButton">
+                                                            <input id="add-button" type="submit" name="btnAction" value="Add" class="input-button add-button">
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -761,7 +791,7 @@
                         }
                         else
                         {
-                            <p class="text-center text-black">There is no trailer available for this Anime title</p>
+                            <p class="text-center text-dark mt-5">There is no trailer available for this Anime title</p>
                         }
                     </div>
                 </div>
@@ -773,7 +803,7 @@
         /* Script to disallow users to add currently airing animes with status Completed to list*/
         $(document).ready(function () {
              /* Script for add button */
-             $('#addButton').click(function () {
+             $('#add-button').click(function () {
                 if (@ViewBag.Anime.Episodes == 0 && $('#status_dropdown :selected').val() == 2) {
                     alert('You cannot mark the status as "Completed"! The anime is currently airing and has not yet finished airing!');
                     return false;
@@ -781,7 +811,7 @@
             });
 
             /* Script for edit button */
-            $('#editButton').click(function () {
+            $('#edit-button').click(function () {
                 if (@ViewBag.Anime.Episodes == 0 && $('#status_dropdown :selected').val() == 2) {
                     alert('You cannot change the status to "Completed"! The anime is currently airing and has not yet finished airing!');
                     return false;

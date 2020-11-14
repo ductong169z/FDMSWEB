@@ -35,6 +35,11 @@
             text-align: center;
             color: #0056b3; 
         }
+
+        /* CSS for nav bar spacing with body */
+        .navbar{
+            margin-bottom: 1.5rem;
+        }
     </style>
     <title>Wibu Anime List</title>
 </head>
@@ -50,7 +55,7 @@
                 <!-- Each anime card spans 3 columns in Bootstrap grid -->
                 <div class="col-md-3">
                     <div class="card">
-                        <a href="Anime/ViewAnime/@anime.Id">
+                        <a href="ViewAnime?id=@anime.Id">
                             <!-- Show anime poster -->
                             <div class="card-body">
                                 <img class="img-thumbnail" src="~/Content/Images/Posters/@anime.Poster">
