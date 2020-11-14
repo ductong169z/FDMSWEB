@@ -6,22 +6,46 @@
     @using FDMSWeb.Models <!-- Add Models to use -->
     @Styles.Render("~/bundles/css") <!-- Add Bootstrap CSS to use -->
     <style>
-        /* Navbar border radius */
+        /* Navbar CSS */
         .navbar {
             border-radius: 0 0 5px 5px;
+        }
+
+        /* Search bar CSS */
+        #navbar-search-input {
+            margin-right: 0.625rem;
+        }
+
+        #navbar-search-btn {
+            margin-right: 1.25rem;
+            background-color: #fff;
+            color: #343a40 !important;
         }
     </style>
 </head>
 <body class="container">
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-        <a class="navbar-brand" href="@Url.Action("Login", "Authentication")">WibuAnimeList</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        <!-- Website name -->
+        <a class="navbar-brand pl-1" href="@Url.Action("Login", "Authentication")">WibuAnimeList</a>
 
-        <div class="collapse navbar-collapse" id="navbarsExample03">
-
+        <!-- Anime dropdown -->
+        <div class="collapse navbar-collapse" id="anime-navbar">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="anime-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Anime</a>
+                    <div class="dropdown-menu" aria-labelledby="anime-dropdown">
+                        <a class="dropdown-item" href="#">Advanced Search</a>
+                    </div>
+                </li>
+            </ul>
         </div>
+
+        <!-- Search form -->
+        <form class="form-inline my-2 my-md-0" id="search-form" action="">
+            <!-- để tên khác searchValue coi chừng bị trùng với searchValue lúc user qua bên anime list-->
+            <input id="navbar-search-input" class="form-control" type="text" name="animeSearchValue" placeholder="Search Anime...">
+            <input id="navbar-search-btn" class="btn btn-search form-control" type="submit" value="Search">
+        </form>
 
         <!-- If there is no session or user hasn't logged in, show Login and Sign Up buttons -->
         @if (Session == null || Session["User"] == null)
