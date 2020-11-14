@@ -408,6 +408,21 @@
     <Content Include="Content\Images\Posters\97.jpg" />
     <Content Include="Content\Images\Posters\98.jpg" />
     <Content Include="Content\Images\Posters\99.jpg" />
+    <Content Include="Content\Images\users\1595341915945.jpg" />
+    <Content Include="Content\Images\users\1595341946320.jpg" />
+    <Content Include="Content\Images\users\1595350841631.jpg" />
+    <Content Include="Content\Images\users\1595361653817.png" />
+    <Content Include="Content\Images\users\1595361769654.jpg" />
+    <Content Include="Content\Images\users\1595361786566.png" />
+    <Content Include="Content\Images\users\1595504869880.jpg" />
+    <Content Include="Content\Images\users\1595504902570.jpg" />
+    <Content Include="Content\Images\users\1595504902737.jpg" />
+    <Content Include="Content\Images\users\1595505055698.png" />
+    <Content Include="Content\Images\users\1595505265129.jpg" />
+    <Content Include="Content\Images\users\1595505286959.jpg" />
+    <Content Include="Content\Images\users\1595505333379.jpg" />
+    <Content Include="Content\Images\users\1595505359554.jpg" />
+    <Content Include="Content\Images\users\1595521737510.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -596,6 +611,8 @@
     <Content Include="Views\Anime\ShowAll.cshtml" />
     <Content Include="Views\Authentication\Register.cshtml" />
     <Content Include="Views\Authentication\UserInfo.cshtml" />
+    <Content Include="Views\Authentication\EditUserInfo.cshtml" />
+    <Content Include="Views\Anime\SearchAnime.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

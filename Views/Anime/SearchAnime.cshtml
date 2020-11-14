@@ -1,0 +1,85 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+@using FDMSWeb.Models
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <style>
+        /* Poster Image CSS */
+        .img-thumbnail {
+            padding: 0 !important;
+            background-color: #fff;
+            border: 1px solid #fff;
+            border-radius: .25rem;
+            max-width: 100%;
+            height: auto;
+            width: 221px;
+            height: 310px;
+            max-height: 100%;
+            max-width: 100%;
+        }
+
+        /* Anime Card CSS */
+        .card {
+            margin: 3%;
+        }
+
+        .card-body {
+            padding: 0.5rem;
+            text-align: center;
+        }
+
+        .card-footer {
+            text-align: center;
+            color: #0056b3;
+        }
+
+        /* Navbar CSS */
+        .navbar {
+            margin-bottom: 1.5rem;
+        }
+    </style>
+    <title>Wibu Anime List</title>
+</head>
+<body class="container">
+    <!-- Row for 4 animes to display -->
+    <div class="row mb-3">
+        <!-- Display animes in cards if there are animes in database -->
+        @if (ViewBag.listAnime != null && ViewBag.listAnime.Count != 0)
+        {
+
+            foreach (FDMSWeb.Models.Anime anime in ViewBag.listAnime)
+            {
+                <!-- Each anime card spans 3 columns in Bootstrap grid -->
+                <div class="col-md-3">
+                    <div class="card">
+                        <a href="ViewAnime?id=@anime.Id">
+                            <!-- Show anime poster -->
+                            <div class="card-body">
+                                <img class="img-thumbnail" src="~/Content/Images/Posters/@anime.Poster">
+                            </div>
+
+                            <!-- Show anime poster -->
+                            <div class="card-footer">
+                                <!-- Only display up to 20 characters in anime name -->
+                                @if (anime.Name.Length > 20)
+                                {
+                                    <span>@anime.Name.Substring(0, 20)...</span>
+                                }
+                                else
+                                {
+                                    @anime.Name
+                                }
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+            }
+        }
+    </div>
+</body>
+</html>

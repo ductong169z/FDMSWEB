@@ -2,8 +2,10 @@
 using Org.BouncyCastle.Asn1.Ocsp;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.Hosting;
 using System.Web.Mvc;
 
 namespace FDMSWeb.Controllers
@@ -104,6 +106,39 @@ namespace FDMSWeb.Controllers
             {
                 return RedirectToAction("Login", "Authentication");
             }
+        }
+        public ActionResult EditUserInfo(string userID)
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult UpdateUserInfo(string id, string fullname, string email, string gender, HttpPostedFileBase file)
+        {
+            if (Session["User"] == null)
+            {
+                return RedirectToAction("Login", "Authentication");
+
+            }
+            Account account = (Account)Session["User"];
+
+            string avatar = account.Avatar;
+            if (file != null && file.ContentLength > 0)
+            {
+                string path = Path.Combine(HostingEnvironment.MapPath("~/Content/Images/users"),
+                Path.GetFileName(file.FileName));
+                file.SaveAs(path);
+                avatar = file.FileName;
+            }
+            AnimeListDAO dao = new AnimeListDAO();
+            bool status = dao.UpdateUserInfo(id, fullname, email, gender, avatar);
+            if (status)
+            {
+                account.FullName = fullname;
+                account.Avatar = avatar;
+                account.Email = email;
+                Session.Add("User", account);
+            }
+            return RedirectToAction("UserInfo", "Authentication");
         }
         /// <summary>
         /// Log out action

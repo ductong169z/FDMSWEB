@@ -366,14 +366,57 @@ namespace FDMSWeb.Controllers
             }
         }
 
+        public ActionResult SearchAnime(string searchValue, string type, string studioID, string genreID, string seasonID)
+        {
+            /* Check if user logged in */
+            if (Session["User"] == null)
+            {
+                return RedirectToAction("Login", "Authentication");
+            }
+            else
+            {
+                /* Instantiate DAO obj and interact with DB */
+                AnimeListDAO dao = new AnimeListDAO();
+                if (searchValue == null || searchValue.Equals(""))
+                {
+                    searchValue = "%";
+                }
+                if (type == null || type.Equals(""))
+                {
+                    type = "%";
+                }
+                if (genreID == null || genreID.Equals(""))
+                {
+                    genreID = "%";
+                }
+                if (studioID == null || studioID.Equals(""))
+                {
+                    studioID = "%";
+                }
+                if (seasonID == null || seasonID.Equals(""))
+                {
+                    seasonID = "%";
+                }
+                List<Anime> listAnime = dao.getSearchAnime(searchValue,type, studioID, genreID,seasonID);
 
+                /* Set value to ViewBag to display */
+                ViewBag.listAnime = listAnime;
+                ViewBag.searchValue = searchValue;
+                ViewBag.type = type;
+                ViewBag.genreID = genreID;
+                ViewBag.studioID = studioID;
+                ViewBag.seasonID = seasonID;
+
+                return View();
+            }
+        }
         /// <summary>
         /// Handles exceptions in controllers
         /// </summary>
         /// <param name="filterContext"></param>
         protected override void OnException(ExceptionContext filterContext)
-{
-    filterContext.ExceptionHandled = true;
+        {
+            filterContext.ExceptionHandled = true;
 
             /* Throw internal error view */
             filterContext.Result = new ViewResult

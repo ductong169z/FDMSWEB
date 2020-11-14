@@ -28,10 +28,10 @@ window.Modernizr = (function( window, document, undefined ) {
 
     Modernizr = {},
 
-    /*>>cssclasses*/
+    /*>>classes*/
     // option for enabling the HTML classes to be added
     enableClasses = true,
-    /*>>cssclasses*/
+    /*>>classes*/
 
     docElement = document.documentElement,
 
@@ -1393,13 +1393,13 @@ window.Modernizr = (function( window, document, undefined ) {
     /*>>prefixed*/
 
 
-    /*>>cssclasses*/
+    /*>>classes*/
     // Remove "no-js" class from <html> element, if it exists:
     docElement.className = docElement.className.replace(/(^|\s)no-js(\s|$)/, '$1$2') +
 
                             // Add the new classes to the <html> element.
                             (enableClasses ? ' js ' + classes.join(' ') : '');
-    /*>>cssclasses*/
+    /*>>classes*/
 
     return Modernizr;
 

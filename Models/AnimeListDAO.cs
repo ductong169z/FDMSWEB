@@ -1,10 +1,12 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web;
+using System.Web.Hosting;
 
 namespace FDMSWeb.Models
 {
@@ -802,7 +804,7 @@ namespace FDMSWeb.Models
                 {
                     cmd = new MySqlCommand("SELECT * FROM list JOIN anime on list.AnimeID = anime.AnimeID WHERE list.AccountID = @Id AND list.status = @Status AND deleted_at IS NULL", conn); // SQL statement
                     cmd.Parameters.AddWithValue("@Status", listStatus); // set value for SQL command 
-                } 
+                }
                 cmd.Parameters.AddWithValue("@Id", accountId); // set value for SQL command
                 rd = cmd.ExecuteReader(); // execute the SQL statement and store results to reader
 
@@ -914,7 +916,7 @@ namespace FDMSWeb.Models
             cmd.Parameters.AddWithValue("@userName", username); // set value for SQL command
             cmd.Parameters.AddWithValue("@password", md5passs); // set value for SQL command
             rd = cmd.ExecuteReader(); // execute the SQL statement and store results to reader
-            
+
             /* If user account exists */
             if (rd.Read())
             {
@@ -942,7 +944,6 @@ namespace FDMSWeb.Models
                 {
                     avatar = "";
                 }
-
                 string email;
                 // Check if email is null
                 if (!rd.IsDBNull(rd.GetOrdinal("email")))
@@ -1477,7 +1478,6 @@ namespace FDMSWeb.Models
             MySqlConnection conn = null; // connection to database
             MySqlCommand cmd; // store SQL statement
             MySqlDataReader rd = null; // reader for return results
-            System.Diagnostics.Debug.WriteLine(password);
             string md5passs = GetMD5(password);
             conn = DBUtils.GetConnection(); // get connection to database
             conn.Open(); // open the connection
@@ -1500,6 +1500,168 @@ namespace FDMSWeb.Models
                 return false;
 
             }
+
+        }
+        public bool UpdateUserInfo(string id, string fullname, string email, string gender, string avatar)
+        {
+            /* Declare resources used for interacting with database */
+            MySqlConnection conn = null; // connection to database
+            MySqlCommand cmd; // store SQL statement
+            MySqlDataReader rd = null; // reader for return results
+            conn = DBUtils.GetConnection(); // get connection to database
+            conn.Open(); // open the connection
+            cmd = new MySqlCommand("Update account set fullname = @fullname, email=@email , avatar=@avatar, gender=@gender where AccountID=@id", conn); // SQL statement
+            cmd.Parameters.AddWithValue("@fullname", fullname);
+            cmd.Parameters.AddWithValue("@email", email);
+            cmd.Parameters.AddWithValue("@gender", gender);
+            cmd.Parameters.AddWithValue("@id", id);
+            cmd.Parameters.AddWithValue("@avatar", avatar);
+            int result = cmd.ExecuteNonQuery(); // execute the SQL statement and store results to reader
+            if (result > 0)
+            {
+                return true;
+
+            }
+            else
+            {
+                return false;
+
+            }
+        }
+        /**
+     * Get an anime with search criteria
+     *
+     * @param searchValue
+     * @param type
+     * @param StudioID
+     * @param genreID
+     * @param seasonID
+     * @return list of searched animes
+     * @throws SQLException
+     */
+        public List<Anime> getSearchAnime(String searchValue, String type, String StudioID, String genreID, String seasonID)
+        {
+            /* Declare resources used for interacting with database */
+            MySqlConnection conn = null; // connection to database
+            MySqlCommand cmd; // store SQL statement
+            MySqlDataReader rd = null; // reader for return results
+            List<Anime> animeList = null; // store result
+
+            conn = DBUtils.GetConnection(); // get connection to database
+            conn.Open(); // open the connection
+            cmd = new MySqlCommand("SELECT anime.AccountID, anime.AnimeID, anime.SeasonID, anime.name , anime.type , anime.releaseDate , anime.rating , anime.episodes , anime.status , anime.duration, anime.description, anime.poster, anime.trailer, anime.created_at, anime.deleted_at, StudioID, GenreID \n"
+                    + "FROM \n"
+                    + "anime JOIN anime_studio on anime.AnimeID = anime_studio.AnimeID  \n"
+                    + "JOIN genre_anime on genre_anime.AnimeID = anime.AnimeID \n"
+                    + "WHERE anime.name like @name and \n"
+                    + "type like @type and \n"
+                    + "GenreID like @genreid and \n"
+                    + "StudioID like @studioid and \n"
+                    + "(SeasonID like @seasonid or SeasonID is NULL)\n"
+                    + "GROUP BY anime.name", conn);
+            cmd.Parameters.AddWithValue("@name", "%" + searchValue + "%");
+            cmd.Parameters.AddWithValue("@type", type);
+            cmd.Parameters.AddWithValue("@genreid", genreID);
+            cmd.Parameters.AddWithValue("@studioid", StudioID);
+            cmd.Parameters.AddWithValue("@seasonid", seasonID);
+            rd = cmd.ExecuteReader(); // execute the SQL statement and store results to reader
+            /* Keep reading and adding data to list until end */
+            while (rd.Read())
+            {
+                /* Temp vars to store anime properties */
+                int id = rd.GetInt32("AnimeID");
+                Season season;
+
+                // Check if season is null
+                if (!rd.IsDBNull(rd.GetOrdinal("SeasonID")))
+                {
+                    season = GetSeason(rd.GetInt32("SeasonID"));
+                }
+                else
+                {
+                    season = GetSeason(0);
+                }
+
+                List<Studio> studios = GetStudioList(id);
+                List<Genre> genres = GetGenreList(id);
+                string typeAni = rd.GetString("type");
+                string name = rd.GetString("name");
+                string releaseDate;
+
+                // Check if release date is null
+                if (!rd.IsDBNull(5))
+                {
+                    releaseDate = rd.GetDateTime(5).ToString("dd/MM/yyyy");
+                }
+                else
+                {
+                    releaseDate = "";
+                }
+
+                string rating = rd.GetString(6);
+                int episodes;
+
+                // Check if episodes is null
+                if (!rd.IsDBNull(rd.GetOrdinal("episodes")))
+                {
+                    Int32.TryParse(rd.GetString("episodes"), out episodes);
+                }
+                else
+                {
+                    episodes = 0;
+                }
+
+                string status = rd.GetString(8);
+                string duration;
+
+                // Check if duration is null
+                if (!rd.IsDBNull(9))
+                {
+                    duration = rd.GetString(9);
+                }
+                else
+                {
+                    duration = null;
+                }
+
+                string description = rd.GetString(10);
+                string poster;
+
+                // Check if poster is null
+                if (!rd.IsDBNull(11))
+                {
+                    poster = rd.GetString(11);
+                }
+                else
+                {
+                    poster = null;
+                }
+
+                string trailer;
+                // Check if trailer is null
+                if (!rd.IsDBNull(12))
+                {
+                    trailer = rd.GetString(12);
+                }
+                else
+                {
+                    trailer = null;
+                }
+
+                string created_at = rd.GetDateTime(13).ToString("dd/MM/yyyy");
+
+                // instantiate if list has not yet been instantiated
+                if (animeList == null)
+                {
+                    animeList = new List<Anime>();
+                }
+
+                // add new anime to list
+                animeList.Add(new Anime(id, season, studios, genres, typeAni, name, releaseDate, rating, episodes, status, duration, description, poster, trailer, created_at));
+            }
+
+            return animeList;
+
 
         }
     }

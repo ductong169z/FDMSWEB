@@ -27,7 +27,7 @@
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         <!-- Website name -->
         <a class="navbar-brand pl-1" href="@Url.Action("Login", "Authentication")">WibuAnimeList</a>
-
+      
         <!-- Anime dropdown -->
         <div class="collapse navbar-collapse" id="anime-navbar">
             <ul class="navbar-nav mr-auto">
@@ -41,9 +41,9 @@
         </div>
 
         <!-- Search form -->
-        <form class="form-inline my-2 my-md-0" id="search-form" action="">
+        <form class="form-inline my-2 my-md-0" id="search-form" action="@Url.Action("SearchAnime", "Anime")">
             <!-- để tên khác searchValue coi chừng bị trùng với searchValue lúc user qua bên anime list-->
-            <input id="navbar-search-input" class="form-control" type="text" name="animeSearchValue" placeholder="Search Anime...">
+            <input id="navbar-search-input" class="form-control" type="text" name="searchValue" placeholder="Search Anime..." value="@ViewBag.searchValue">
             <input id="navbar-search-btn" class="btn btn-search form-control" type="submit" value="Search">
         </form>
 
@@ -66,7 +66,7 @@
                     <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item" href="@Url.Action("ViewAnimeList", "Anime", new { accountId = (Session["User"] as Account).Id, listStatus = 0 })">View Own List</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Change Info</a>
+                        <a class="dropdown-item" href="@Url.Action("EditUserInfo", "Authentication")">Change Info</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="@Url.Action("Logout", "Authentication")">Log Out</a>
                     </div>

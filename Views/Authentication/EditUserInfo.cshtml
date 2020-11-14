@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "UserInfo";
+    ViewBag.Title = "EditUserInfo";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @using FDMSWeb.Models <!-- Add Models to use -->
@@ -9,7 +9,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Personal Profile - WibuAnimeList</title>
+    <title>Edit Profile - WibuAnimeList</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <style type="text/css">
@@ -466,8 +466,6 @@
 
 </head>
 <body style=" background-image: url('/Content/Backgrounds/bg-13.png'); background-size: cover; background-repeat: no-repeat; ">
-    <jsp:include page='header.jsp' />
-
     <div class="container-userinfo" style="margin-top:2%">
         <div class="container">
             <div class="row">
@@ -475,33 +473,38 @@
                     <div class="profile-card-4 z-depth-3">
                         <div class="card">
                             <div class="card-body text-center bg-primary rounded-top" style="background-color: #bd000066!important">
-                                <div class="user-box">
+                                <div class="md-avatar rounded-circle size-4">
                                     @if ((Session["User"] as Account).Avatar.IsEmpty())
                                     {
-                                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="user avatar">
+                                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" class="rounded-circle" alt="user avatar" width="150" height="150">
 
                                     }
                                     else
                                     {
-                                        <img src="/Content/Images/users/@((Session["User"] as Account).Avatar)" alt="user avatar">
+                                        <img src="/Content/Images/users/@((Session["User"] as Account).Avatar)" class="rounded-circle" alt="user avatar"  width="150" height="150">
                                     }
                                 </div>
+
                             </div>
-                            <h5 class="mb-1 text-white"></h5>
+                            <h5 class="mb-1 text-white">@((Session["User"] as Account).FullName)</h5>
                             <h6 class="text-light">- Wibu -</h6>
                         </div>
                         <div class="card-body">
+                            <ul class="list-group shadow-none">
+                                <li class="list-group-item">
+                                    <div class="list-icon"> <i class="fa fa-user-circle"></i> </div>
+                                    <div class="list-details"> <span>@((Session["User"] as Account).Username)</span> <small>Username</small> </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="list-icon"> <i class="fa fa-envelope"></i> </div>
+                                    <div class="list-details"> <span>@((Session["User"] as Account).Email)</span> <small>Email Address</small> </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="list-icon"> <i class="fa fa-genderless"></i> </div>
+                                    <div class="list-details"> <span>@((Session["User"] as Account).Gender)</span> <small>Gender</small> </div>
+                                </li>
+                            </ul>
 
-                            <div class="row text-center mt-4">
-                                <div class="col p-2">
-                                    <h4 class="mb-1 line-height-5"></h4>
-                                    <small class="mb-0 font-weight-bold">Animes In List</small>
-                                </div>
-                                <div class="col p-2">
-                                    <h4 class="mb-1 line-height-5"></h4>
-                                    <small class="mb-0 font-weight-bold">Completed Animes</small>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -509,34 +512,84 @@
                     <div class="card z-depth-3">
                         <div class="card-body">
                             <ul class="nav nav-pills nav-pills-primary nav-justified">
-                                <li class="nav-item"> <a href="javascript:void();" data-target="#profile" data-toggle="pill" class="nav-link active show"><i class="icon-user"></i> <span class="hidden-xs">Profile</span></a> </li>
+                                <li class="nav-item"> <a href="javascript:void()" data-target="#edit" data-toggle="pill" class="nav-link"><i class="icon-note"></i> <span class="hidden-xs">Edit</span></a> </li>
                             </ul>
                             <div class="tab-content p-3">
-                                <div class="tab-pane active show" id="profile">
-                                    <h5 class="mb-3">User Information</h5>
-                                    <div class="form-group row">
-                                        <div class="col-lg-9"> </div>
-                                    </div>
-                                    <h6 class="mb-3">Username: <p style="display: inline;">  @((Session["User"] as Account).Username)  </p></h6>
+                                <div class="tab-pane" id="edit">
+                                    <form action="@Url.Action("UpdateUserInfo", "Authentication")" method="POST" enctype="multipart/form-data" theme="simple" onsubmit="return isValid()">
+                                        <div class="form-group row">
+                                            <input hidden name="id" value="@((Session["User"] as Account).Id)" />
+                                            <label class="col-lg-3 col-form-label form-control-label">Full name</label>
+                                            <div class="col-lg-9">
+                                                <input class="form-control" name="fullname" value="@((Session["User"] as Account).FullName)" theme="simple" id="fullname" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-lg-9"> </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-3 col-form-label form-control-label">Email</label>
+                                            <div class="col-lg-9">
+                                                <input type="email" class="form-control" name="email" value="@((Session["User"] as Account).Email)" theme="simple" id="email" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-lg-9"> </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-3 col-form-label form-control-label">Profile Picture</label>
+                                            <div class="col-lg-9">
+                                                <input  type="file" name="file" class="form-control" theme="simple" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-lg-9"> </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-lg-6"> </div>
+                                            <div class="col-lg-3"> </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-3 col-form-label form-control-label">Gender</label>
+                                            <div class="col-lg-9">
+                                                @if ((Session["User"] as Account).Gender == 1)
+                                                {
+                                                    <input type="radio" id="gender0" name="gender" value="1" checked>
+                                                    <label for="gender0">Male</label>
+                                                    <input type="radio" id="gender1" name="gender" value="2">
+                                                    <label for="gender1">Female</label>
+                                                    <input type="radio" id="gender2" name="gender" value="3">
+                                                    <label for="gender2">Other</label>
+                                                }
+                                                else if ((Session["User"] as Account).Gender == 2)
+                                                {
+                                                    <input type="radio" id="gender0" name="gender" value="1">
+                                                    <label for="gender0">Male</label>
+                                                    <input type="radio" id="gender1" name="gender" value="2" checked>
+                                                    <label for="gender1">Female</label>
+                                                    <input type="radio" id="gender2" name="gender" value="3">
+                                                    <label for="gender2">Other</label>
+                                                }
+                                                else
+                                                {
+                                                    <input type="radio" id="gender0" name="gender" value="1">
+                                                    <label for="gender0">Male</label>
+                                                    <input type="radio" id="gender1" name="gender" value="2">
+                                                    <label for="gender1">Female</label>
+                                                    <input type="radio" id="gender2" name="gender" value="3" checked>
+                                                    <label for="gender2">Other</label>
+                                                }
 
-                                    <h6 class="mb-3">Email: <p style="display: inline;">  @((Session["User"] as Account).Email)</p></h6>
-
-                                    @if ((Session["User"] as Account).Gender == 1)
-                                    {
-                                        <h6 class="mb-3">Gender: <p style="display: inline;">Male</p></h6>
-
-                                    }
-                                    else if ((Session["User"] as Account).Gender == 2)
-                                    {
-                                        <h6 class="mb-3">Gender: <p style="display: inline;">Femle</p></h6>
-
-                                    }
-                                    else
-                                    {
-                                        <h6 class="mb-3">Gender: <p style="display: inline;">Undefined</p></h6>
-
-                                    }
-
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-3 col-form-label form-control-label"></label>
+                                            <div class="col-lg-9">
+                                                <input type="reset" class="btn btn-secondary" value="Cancel">
+                                                <input type="submit" class="btn btn-primary" value="Save Changes">
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -546,6 +599,18 @@
             </div>
         </div>
     </div>
-   
+    <script type="text/javascript">
+        $('input[type="checkbox"]').on('change', function () {
+            $('input[type="checkbox"]').not(this).prop('checked', false);
+        });
+
+        function isValid() {
+            if ($("#fullname").val() == "" || $("#email").val() == "") {
+                alert("Check Your Input Again!!! Email and Fullname Can't Be NULL!!!");
+                return false;
+            }
+        }
+    </script>
 </body>
 </html>
+
