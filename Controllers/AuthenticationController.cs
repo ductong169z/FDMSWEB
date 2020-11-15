@@ -140,6 +140,18 @@ namespace FDMSWeb.Controllers
             }
             return RedirectToAction("UserInfo", "Authentication");
         }
+        public ActionResult ChangePassword()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult ChangePassword(string id, string password)
+        {
+
+            return RedirectToAction("UserInfo", "Authentication");
+        }
         /// <summary>
         /// Log out action
         /// </summary>

@@ -689,6 +689,7 @@
     <Content Include="Views\Anime\SearchAnime.cshtml" />
     <Content Include="Views\Anime\ViewSearch.cshtml" />
     <Content Include="Views\Error\NotFoundError.cshtml" />
+    <Content Include="Views\Authentication\ChangePassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
