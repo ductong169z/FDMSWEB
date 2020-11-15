@@ -396,7 +396,7 @@ namespace FDMSWeb.Controllers
             }
         }
 
-        public ActionResult SearchAnime(string searchValue, string type, string studioID, string genreID, string seasonID)
+        public ActionResult SearchAnime(string animeSearchValue, string type, string studioID, string genreID, string seasonID)
         {
             /* Check if user logged in */
             if (Session["User"] == null)
@@ -407,9 +407,9 @@ namespace FDMSWeb.Controllers
             {
                 /* Instantiate DAO obj and interact with DB */
                 AnimeListDAO dao = new AnimeListDAO();
-                if (searchValue == null || searchValue.Equals(""))
+                if (animeSearchValue == null || animeSearchValue.Equals(""))
                 {
-                    searchValue = "%";
+                    animeSearchValue = "%";
                 }
                 if (type == null || type.Equals(""))
                 {
@@ -427,11 +427,11 @@ namespace FDMSWeb.Controllers
                 {
                     seasonID = "%";
                 }
-                List<Anime> listAnime = dao.getSearchAnime(searchValue,type, studioID, genreID,seasonID);
+                List<Anime> listAnime = dao.getSearchAnime(animeSearchValue,type, studioID, genreID,seasonID);
 
                 /* Set value to ViewBag to display */
                 ViewBag.listAnime = listAnime;
-                ViewBag.searchValue = searchValue;
+                ViewBag.animeSearchValue = animeSearchValue;
                 ViewBag.type = type;
                 ViewBag.genreID = genreID;
                 ViewBag.studioID = studioID;
@@ -447,7 +447,7 @@ namespace FDMSWeb.Controllers
         /// <param name="filterContext"></param>
         protected override void OnException(ExceptionContext filterContext)
         {
-            filterContext.ExceptionHandled = true;
+            filterContext.ExceptionHandled = true; // mark exception as handled
 
             /* Throw internal error view */
             filterContext.Result = new ViewResult

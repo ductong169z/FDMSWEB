@@ -42,8 +42,7 @@
 
         <!-- Search form -->
         <form class="form-inline my-2 my-md-0" id="search-form" action="@Url.Action("SearchAnime", "Anime")">
-            <!-- để tên khác searchValue coi chừng bị trùng với searchValue lúc user qua bên anime list-->
-            <input id="navbar-search-input" class="form-control" type="text" name="searchValue" placeholder="Search Anime..." value="@ViewBag.searchValue">
+            <input id="navbar-search-input" class="form-control" type="text" name="animeSearchValue" placeholder="Search Anime..." value="@ViewBag.animeSearchValue">
             <input id="navbar-search-btn" class="btn btn-search form-control" type="submit" value="Search">
         </form>
 

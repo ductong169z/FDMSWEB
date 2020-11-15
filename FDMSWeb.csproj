@@ -461,7 +461,6 @@
     <Content Include="Library\Bootstrap\js\bootstrap.min.js" />
     <Content Include="Library\Bootstrap\js\jquery-3.5.1.slim.min.js" />
     <Content Include="Library\Bootstrap\js\popper.min.js" />
-    <Content Include="Library\fontawesome.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Library\Bootstrap\css\bootstrap-grid.css.map" />
@@ -605,7 +604,6 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Authentication\Login.cshtml" />
@@ -681,7 +679,6 @@
     <Content Include="Content\login\vendor\mdi-font\fonts\Material-Design-Iconic-Font.woff2" />
     <Content Include="Views\Anime\ViewAnime.cshtml" />
     <Content Include="Views\Anime\ViewAnimeList.cshtml" />
-    <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Anime\Index.cshtml" />
     <Content Include="Views\Anime\ViewListSearchResult.cshtml" />
     <Content Include="Views\Error\InternalError.cshtml" />
@@ -691,6 +688,7 @@
     <Content Include="Views\Authentication\EditUserInfo.cshtml" />
     <Content Include="Views\Anime\SearchAnime.cshtml" />
     <Content Include="Views\Anime\ViewSearch.cshtml" />
+    <Content Include="Views\Error\NotFoundError.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
