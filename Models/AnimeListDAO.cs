@@ -1472,6 +1472,14 @@ namespace FDMSWeb.Models
             }
         }
 
+        /// <summary>
+        /// Register new account
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <param name="fullname"></param>
+        /// <param name="email"></param>
+        /// <returns></returns>
         public bool Register(string username, string password, string fullname, string email)
         {
             /* Declare resources used for interacting with database */
@@ -1502,6 +1510,16 @@ namespace FDMSWeb.Models
             }
 
         }
+
+        /// <summary>
+        /// Update user info
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="fullname"></param>
+        /// <param name="email"></param>
+        /// <param name="gender"></param>
+        /// <param name="avatar"></param>
+        /// <returns></returns>
         public bool UpdateUserInfo(string id, string fullname, string email, string gender, string avatar)
         {
             /* Declare resources used for interacting with database */
@@ -1536,7 +1554,7 @@ namespace FDMSWeb.Models
      * @param StudioID
      * @param genreID
      * @param seasonID
-     * @return list of searched animes
+     * @return 
      * @throws SQLException
      */
         public List<Anime> getSearchAnime(String searchValue, String type, String StudioID, String genreID, String seasonID)
@@ -1665,6 +1683,12 @@ namespace FDMSWeb.Models
 
         }
 
+        /// <summary>
+        /// Change user password
+        /// </summary>
+        /// <param name="accountid"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public bool changePassword(string accountid, string password)
         {
             string hashPassword = ""; // store password that is MD5 hashed version of user's password (for validation)

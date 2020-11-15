@@ -17,7 +17,7 @@ namespace FDMSWeb.Controllers
     {
         // GET: Authentication
         /// <summary>
-        /// Check if user is logged in or not
+        /// Check if user is logged in or not before go to Login page
         /// </summary>
         /// <returns>Login page or index page</returns>
         public ActionResult Login()
@@ -63,6 +63,10 @@ namespace FDMSWeb.Controllers
             return RedirectToAction("Login", "Authentication");
         }
 
+        /// <summary>
+        /// Check if user is logged in or not before go to Register page
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Register()
         {
             if (Session["User"] == null)
@@ -75,19 +79,29 @@ namespace FDMSWeb.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
+        
+        /// <summary>
+        /// Register action
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <param name="fullname"></param>
+        /// <param name="email"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Register(string username, string password, string fullname, string email)
         {
             if (ModelState.IsValid)
             {
+                /* Instantiate DAO obj and interact with DB */
                 AnimeListDAO dao = new AnimeListDAO();
                 bool status = dao.Register(username, password, fullname, email);
+
+                // if successful
                 if (status)
                 {
                     return RedirectToAction("Login", "Authentication");
-
-
                 }
 
             }
@@ -95,20 +109,32 @@ namespace FDMSWeb.Controllers
 
         }
 
+        /// <summary>
+        /// View user info action
+        /// </summary>
+        /// <param name="userID"></param>
+        /// <returns></returns>
         public ActionResult UserInfo(string userID)
         {
+            /* Check if user logged in */
             if (Session["User"] != null)
             {
                 return View();
-
             }
             else
             {
                 return RedirectToAction("Login", "Authentication");
             }
         }
+
+        /// <summary>
+        /// Check if user logged in or not before go to Edit Info page
+        /// </summary>
+        /// <param name="userID"></param>
+        /// <returns></returns>
         public ActionResult EditUserInfo(string userID)
         {
+            /* Check if user logged in */
             if (Session["User"] == null)
             {
                 return RedirectToAction("Login", "Authentication");
@@ -116,9 +142,20 @@ namespace FDMSWeb.Controllers
 
             return View();
         }
+
+        /// <summary>
+        /// Update user info action
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="fullname"></param>
+        /// <param name="email"></param>
+        /// <param name="gender"></param>
+        /// <param name="file"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult UpdateUserInfo(string id, string fullname, string email, string gender, HttpPostedFileBase file)
         {
+            /* Check if user logged in */
             if (Session["User"] == null)
             {
                 return RedirectToAction("Login", "Authentication");
@@ -133,10 +170,15 @@ namespace FDMSWeb.Controllers
                 file.SaveAs(path);
                 avatar = file.FileName;
             }
+
+            /* Instantiate DAO obj and interact with DB */
             AnimeListDAO dao = new AnimeListDAO();
             bool status = dao.UpdateUserInfo(id, fullname, email, gender, avatar);
+            
+            // if successful
             if (status)
             {
+                /* Update current session account info */
                 account.FullName = fullname;
                 account.Avatar = avatar;
                 account.Email = email;
@@ -156,29 +198,39 @@ namespace FDMSWeb.Controllers
             }
             return RedirectToAction("UserInfo", "Authentication");
         }
+
+        /// <summary>
+        /// Check if user is logged in or not before go to Change Password page
+        /// </summary>
+        /// <returns></returns>
         public ActionResult ChangePassword()
         {
             if (Session["User"] == null)
             {
                 return RedirectToAction("Login", "Authentication");
-
             }
             return View();
         }
 
-
+        /// <summary>
+        /// Change password action
+        /// </summary>
+        /// <param name="password"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult ChangePassword(string password)
         {
-            Account account = (Account)Session["User"];
 
+            Account account = (Account)Session["User"]; // get current session account
             int id = account.Id;
-            System.Diagnostics.Debug.WriteLine(id);
+
+            /* Instantiate DAO obj and interact with DB */
             AnimeListDAO dao = new AnimeListDAO();
             bool status = dao.changePassword(id + "", password);
 
             return RedirectToAction("UserInfo", "Authentication");
         }
+
         /// <summary>
         /// Log out action
         /// </summary>
