@@ -1664,5 +1664,31 @@ namespace FDMSWeb.Models
 
 
         }
+
+        public bool changePassword(string accountid, string password)
+        {
+            string hashPassword = ""; // store password that is MD5 hashed version of user's password (for validation)
+            hashPassword = GetMD5(password);
+
+
+            /* Declare resources used for interacting with database */
+            MySqlConnection conn = null; // connection to database
+            MySqlCommand cmd; // store SQL statement
+            MySqlDataReader rd = null; // reader for return results
+            conn = DBUtils.GetConnection(); // get connection to database
+            conn.Open(); // open the connection            st = conn.prepareStatement("Update account set password = ? where username=?");
+            cmd = new MySqlCommand("Update account set password = @password where accountid =@AccountID", conn);
+            cmd.Parameters.AddWithValue("@password", hashPassword);
+            cmd.Parameters.AddWithValue("@AccountID", accountid);
+
+            int result = cmd.ExecuteNonQuery(); // execute the SQL statement and store results to reader
+
+            if (result > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
     }
 }

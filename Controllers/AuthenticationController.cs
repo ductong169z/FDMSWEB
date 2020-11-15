@@ -144,6 +144,29 @@ namespace FDMSWeb.Controllers
             }
             return RedirectToAction("UserInfo", "Authentication");
         }
+        public ActionResult ChangePassword()
+        {
+            if (Session["User"] == null)
+            {
+                return RedirectToAction("Login", "Authentication");
+
+            }
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult ChangePassword(string password)
+        {
+            Account account = (Account)Session["User"];
+
+            int id = account.Id;
+            System.Diagnostics.Debug.WriteLine(id);
+            AnimeListDAO dao = new AnimeListDAO();
+            bool status = dao.changePassword(id+"", password);
+
+            return RedirectToAction("UserInfo", "Authentication");
+        }
         /// <summary>
         /// Log out action
         /// </summary>
