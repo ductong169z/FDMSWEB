@@ -119,12 +119,12 @@
                         <span class="focus-input100" data-placeholder="&#xf191;"></span>
                     </div>
                     <div class="wrap-input100 validate-input" data-validate="Enter confirm password">
-                        <input class="input100" type="password" id="repass" onchange="checkPass()" name="repass" placeholder="Confirm Password" required>
+                        <input class="input100" type="password" id="repass" name="repass" placeholder="Confirm Password" required>
                         <span class="focus-input100" data-placeholder="&#xf191;"></span>
                     </div>
 
                     <div class="container-login100-form-btn">
-                        <button id="button-sign" class="login100-form-btn " disabled>
+                        <button id="button-sign" class="login100-form-btn " onclick="checkPass()">
                             Sign Up
                         </button>
                     </div>
@@ -143,10 +143,9 @@
       
         function checkPass() {
             if ($("#repass").val() == $("#registerPassword").val()) {
-                $("#button-sign").removeAttr("disabled");
             } else {
                 alert("Please check confirm password")
-                $("#button-sign").prop("disabled", true);
+                return;
             }
             $('#email').blur(function () {
                 var email = $(this).val();
@@ -155,6 +154,8 @@
                 if (re.test(email)) {
                 } else {
                     alert("Not a valid email address")
+                    return;
+
                 }
 
             });

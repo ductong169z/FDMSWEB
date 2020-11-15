@@ -365,6 +365,36 @@ namespace FDMSWeb.Controllers
                 return View();
             }
         }
+        public ActionResult ViewSearch()
+        {
+         List<string> types;
+         List<Genre> genres;
+         List<Studio> studios;
+         List<Season> seasons;
+            /* Check if user logged in */
+            if (Session["User"] == null)
+            {
+                return RedirectToAction("Login", "Authentication");
+            }
+            else
+            {
+
+                AnimeListDAO dao = new AnimeListDAO();
+
+                /* Get data from Database */
+                types = dao.GetAllTypes();
+                ViewData["types"] = types;
+
+                genres = dao.GetAllGenres();
+                ViewData["genres"] = genres;
+                studios = dao.GetAllStudios();
+                ViewData["studios"] = studios;
+                seasons = dao.GetAllSeasons();
+                ViewData["seasons"] = seasons;
+
+                return View();
+            }
+        }
 
         public ActionResult SearchAnime(string searchValue, string type, string studioID, string genreID, string seasonID)
         {
@@ -410,6 +440,7 @@ namespace FDMSWeb.Controllers
                 return View();
             }
         }
+
         /// <summary>
         /// Handles exceptions in controllers
         /// </summary>

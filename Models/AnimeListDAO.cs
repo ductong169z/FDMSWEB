@@ -175,7 +175,7 @@ namespace FDMSWeb.Models
                     /* Temp vars to store genre properties */
                     int id = rd.GetInt32(0);
                     string name = rd.GetString(1);
-                    string created_at = rd.GetDateTime(2).ToString("dd/MM/yyyy");
+                    //string created_at = rd.GetDateTime(2).ToString("dd/MM/yyyy");
 
                     // instantiate if list has not yet been instantiated
                     if (genreList == null)
@@ -184,7 +184,7 @@ namespace FDMSWeb.Models
                     }
 
                     // add new genre to list
-                    genreList.Add(new Genre(id, name, created_at));
+                    genreList.Add(new Genre(id, name, null));
                 }
 
                 return genreList;
