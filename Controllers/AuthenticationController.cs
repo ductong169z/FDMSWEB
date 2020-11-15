@@ -140,6 +140,18 @@ namespace FDMSWeb.Controllers
                 account.FullName = fullname;
                 account.Avatar = avatar;
                 account.Email = email;
+                if (gender.Equals("1"))
+                {
+                    account.Gender = 1;
+                }
+                else if (gender.Equals("2"))
+                {
+                    account.Gender = 2;
+                }
+                else if (gender.Equals("3"))
+                {
+                    account.Gender = 3;
+                }
                 Session.Add("User", account);
             }
             return RedirectToAction("UserInfo", "Authentication");
@@ -163,7 +175,7 @@ namespace FDMSWeb.Controllers
             int id = account.Id;
             System.Diagnostics.Debug.WriteLine(id);
             AnimeListDAO dao = new AnimeListDAO();
-            bool status = dao.changePassword(id+"", password);
+            bool status = dao.changePassword(id + "", password);
 
             return RedirectToAction("UserInfo", "Authentication");
         }
