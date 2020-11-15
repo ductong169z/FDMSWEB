@@ -647,136 +647,131 @@ namespace FDMSWeb.Models
         /// <param name="genreId"></param>
         /// <param name="seasonId"></param>
         /// <returns>A list of animes matching search criteria</returns>
-        public List<Anime> GetSearchAnime(string searchValue, string searchType, string studioId, string genreId, string seasonId)
+        public List<Anime> GetSearchAnime(String searchValue, String type, String StudioID, String genreID, String seasonID)
         {
             /* Declare resources used for interacting with database */
             MySqlConnection conn = null; // connection to database
             MySqlCommand cmd; // store SQL statement
             MySqlDataReader rd = null; // reader for return results
-            List<Anime> animeList = null; // list of animes matching search criteria
-            try
-            {
-                conn = DBUtils.GetConnection(); // get connection to database
-                conn.Open(); // open the connection
-                cmd = new MySqlCommand("SELECT anime.AnimeID, anime.SeasonID, anime.name , anime.type , anime.releaseDate , anime.rating , anime.episodes , anime.status , anime.duration, anime.description, anime.poster, anime.trailer, anime.created_at, StudioID, GenreID \n"
+            List<Anime> animeList = null; // store result
+
+            conn = DBUtils.GetConnection(); // get connection to database
+            conn.Open(); // open the connection
+            cmd = new MySqlCommand("SELECT anime.AccountID, anime.AnimeID, anime.SeasonID, anime.name , anime.type , anime.releaseDate , anime.rating , anime.episodes , anime.status , anime.duration, anime.description, anime.poster, anime.trailer, anime.created_at, anime.deleted_at, StudioID, GenreID \n"
                     + "FROM \n"
-                    + "anime JOIN anime_studio ON anime.AnimeID = anime_studio.AnimeID  \n"
-                    + "JOIN genre_anime ON genre_anime.AnimeID = anime.AnimeID \n"
-                    + "WHERE anime.name LIKE @animename AND \n"
-                    + "type LIKE @type AND \n"
-                    + "GenreID LIKE @genreId AND \n"
-                    + "StudioID LIKE @studioId AND \n"
-                    + "(SeasonID LIKE @seasonId OR SeasonID IS NULL)\n"
-                    + "GROUP BY anime.name", conn); // SQL statement
-                cmd.Parameters.AddWithValue("@animename", "%" + searchValue + "%"); // set value for SQL command
-                cmd.Parameters.AddWithValue("@type", searchType); // set value for SQL command
-                cmd.Parameters.AddWithValue("@genreId", genreId); // set value for SQL command
-                cmd.Parameters.AddWithValue("@studioId", studioId); // set value for SQL command
-                cmd.Parameters.AddWithValue("@seasonId", seasonId); // set value for SQL command
-                rd = cmd.ExecuteReader(); // execute the SQL statement and store results to reader
-
-                /* If there is anime matching criteria */
-                if (rd.Read())
-                {
-                    /* Temp vars to store anime properties */
-                    int id = rd.GetInt32(0);
-                    Season season;
-
-                    // Check if season is null
-                    if (!rd.IsDBNull(2))
-                    {
-                        season = GetSeason(rd.GetInt32(2));
-                    }
-                    else
-                    {
-                        season = GetSeason(0);
-                    }
-
-                    List<Studio> studios = GetStudioList(id);
-                    List<Genre> genres = GetGenreList(id);
-                    string type = rd.GetString(3);
-                    string name = rd.GetString(4);
-                    string releaseDate;
-
-                    // Check if release date is null
-                    if (!rd.IsDBNull(5))
-                    {
-                        releaseDate = rd.GetDateTime(5).ToString("dd/MM/yyyy");
-                    }
-                    else
-                    {
-                        releaseDate = "";
-                    }
-
-                    string rating = rd.GetString(6);
-                    int episodes;
-
-                    // Check if episodes is null
-                    if (!rd.IsDBNull(7))
-                    {
-                        episodes = rd.GetInt32(7);
-                    }
-                    else
-                    {
-                        episodes = 0;
-                    }
-
-                    string status = rd.GetString(8);
-                    string duration;
-
-                    // Check if duration is null
-                    if (!rd.IsDBNull(9))
-                    {
-                        duration = rd.GetString(9);
-                    }
-                    else
-                    {
-                        duration = null;
-                    }
-
-                    string description = rd.GetString(10);
-                    string poster = rd.GetString(11);
-                    string trailer;
-
-                    // Check if trailer is null
-                    if (!rd.IsDBNull(12))
-                    {
-                        trailer = rd.GetString(12);
-                    }
-                    else
-                    {
-                        trailer = null;
-                    }
-
-                    string created_at = rd.GetDateTime(13).ToString("dd/MM/yyyy");
-
-                    // instantiate if list has not yet been instantiated
-                    if (animeList == null)
-                    {
-                        animeList = new List<Anime>();
-                    }
-
-                    // add new anime to list
-                    animeList.Add(new Anime(id, season, studios, genres, type, name, releaseDate, rating, episodes, status, duration, description, poster, trailer, created_at));
-                }
-
-                return animeList;
-            }
-            finally
+                    + "anime JOIN anime_studio on anime.AnimeID = anime_studio.AnimeID  \n"
+                    + "JOIN genre_anime on genre_anime.AnimeID = anime.AnimeID \n"
+                    + "WHERE anime.name like @name and \n"
+                    + "type like @type and \n"
+                    + "GenreID like @genreid and \n"
+                    + "StudioID like @studioid and \n"
+                    + "(SeasonID like @seasonid or SeasonID is NULL)\n"
+                    + "GROUP BY anime.name", conn);
+            cmd.Parameters.AddWithValue("@name", "%" + searchValue + "%");// set value for SQL command
+            cmd.Parameters.AddWithValue("@type", type);// set value for SQL command
+            cmd.Parameters.AddWithValue("@genreid", genreID);// set value for SQL command
+            cmd.Parameters.AddWithValue("@studioid", StudioID);// set value for SQL command
+            cmd.Parameters.AddWithValue("@seasonid", seasonID);// set value for SQL command
+            rd = cmd.ExecuteReader(); // execute the SQL statement and store results to reader
+            /* Keep reading and adding data to list until end */
+            while (rd.Read())
             {
-                /* Close resources after use */
-                if (conn != null)
+                /* Temp vars to store anime properties */
+                int id = rd.GetInt32("AnimeID");
+                Season season;
+
+                // Check if season is null
+                if (!rd.IsDBNull(rd.GetOrdinal("SeasonID")))
                 {
-                    conn.Close();
+                    season = GetSeason(rd.GetInt32("SeasonID"));
+                }
+                else
+                {
+                    season = GetSeason(0);
                 }
 
-                if (rd != null)
+                List<Studio> studios = GetStudioList(id);
+                List<Genre> genres = GetGenreList(id);
+                string typeAni = rd.GetString("type");
+                string name = rd.GetString("name");
+                string releaseDate;
+
+                // Check if release date is null
+                if (!rd.IsDBNull(5))
                 {
-                    rd.Close();
+                    releaseDate = rd.GetDateTime(5).ToString("dd/MM/yyyy");
                 }
+                else
+                {
+                    releaseDate = "";
+                }
+
+                string rating = rd.GetString(6);
+                int episodes;
+
+                // Check if episodes is null
+                if (!rd.IsDBNull(rd.GetOrdinal("episodes")))
+                {
+                    Int32.TryParse(rd.GetString("episodes"), out episodes);
+                }
+                else
+                {
+                    episodes = 0;
+                }
+
+                string status = rd.GetString(8);
+                string duration;
+
+                // Check if duration is null
+                if (!rd.IsDBNull(9))
+                {
+                    duration = rd.GetString(9);
+                }
+                else
+                {
+                    duration = null;
+                }
+
+                string description = rd.GetString(10);
+                string poster;
+
+                // Check if poster is null
+                if (!rd.IsDBNull(11))
+                {
+                    poster = rd.GetString(11);
+                }
+                else
+                {
+                    poster = null;
+                }
+
+                string trailer;
+                // Check if trailer is null
+                if (!rd.IsDBNull(12))
+                {
+                    trailer = rd.GetString(12);
+                }
+                else
+                {
+                    trailer = null;
+                }
+
+                string created_at = rd.GetDateTime(13).ToString("dd/MM/yyyy");
+
+                // instantiate if list has not yet been instantiated
+                if (animeList == null)
+                {
+                    animeList = new List<Anime>();
+                }
+
+                // add new anime to list
+                animeList.Add(new Anime(id, season, studios, genres, typeAni, name, releaseDate, rating, episodes, status, duration, description, poster, trailer, created_at));
             }
-        }
 
+            return animeList;
+
+
+        }
         /// <summary>
         /// Get anime list of an user
         /// </summary>
@@ -1546,143 +1541,6 @@ namespace FDMSWeb.Models
 
             }
         }
-        /**
-     * Get an anime with search criteria
-     *
-     * @param searchValue
-     * @param type
-     * @param StudioID
-     * @param genreID
-     * @param seasonID
-     * @return 
-     * @throws SQLException
-     */
-        public List<Anime> getSearchAnime(String searchValue, String type, String StudioID, String genreID, String seasonID)
-        {
-            /* Declare resources used for interacting with database */
-            MySqlConnection conn = null; // connection to database
-            MySqlCommand cmd; // store SQL statement
-            MySqlDataReader rd = null; // reader for return results
-            List<Anime> animeList = null; // store result
-
-            conn = DBUtils.GetConnection(); // get connection to database
-            conn.Open(); // open the connection
-            cmd = new MySqlCommand("SELECT anime.AccountID, anime.AnimeID, anime.SeasonID, anime.name , anime.type , anime.releaseDate , anime.rating , anime.episodes , anime.status , anime.duration, anime.description, anime.poster, anime.trailer, anime.created_at, anime.deleted_at, StudioID, GenreID \n"
-                    + "FROM \n"
-                    + "anime JOIN anime_studio on anime.AnimeID = anime_studio.AnimeID  \n"
-                    + "JOIN genre_anime on genre_anime.AnimeID = anime.AnimeID \n"
-                    + "WHERE anime.name like @name and \n"
-                    + "type like @type and \n"
-                    + "GenreID like @genreid and \n"
-                    + "StudioID like @studioid and \n"
-                    + "(SeasonID like @seasonid or SeasonID is NULL)\n"
-                    + "GROUP BY anime.name", conn);
-            cmd.Parameters.AddWithValue("@name", "%" + searchValue + "%");
-            cmd.Parameters.AddWithValue("@type", type);
-            cmd.Parameters.AddWithValue("@genreid", genreID);
-            cmd.Parameters.AddWithValue("@studioid", StudioID);
-            cmd.Parameters.AddWithValue("@seasonid", seasonID);
-            rd = cmd.ExecuteReader(); // execute the SQL statement and store results to reader
-            /* Keep reading and adding data to list until end */
-            while (rd.Read())
-            {
-                /* Temp vars to store anime properties */
-                int id = rd.GetInt32("AnimeID");
-                Season season;
-
-                // Check if season is null
-                if (!rd.IsDBNull(rd.GetOrdinal("SeasonID")))
-                {
-                    season = GetSeason(rd.GetInt32("SeasonID"));
-                }
-                else
-                {
-                    season = GetSeason(0);
-                }
-
-                List<Studio> studios = GetStudioList(id);
-                List<Genre> genres = GetGenreList(id);
-                string typeAni = rd.GetString("type");
-                string name = rd.GetString("name");
-                string releaseDate;
-
-                // Check if release date is null
-                if (!rd.IsDBNull(5))
-                {
-                    releaseDate = rd.GetDateTime(5).ToString("dd/MM/yyyy");
-                }
-                else
-                {
-                    releaseDate = "";
-                }
-
-                string rating = rd.GetString(6);
-                int episodes;
-
-                // Check if episodes is null
-                if (!rd.IsDBNull(rd.GetOrdinal("episodes")))
-                {
-                    Int32.TryParse(rd.GetString("episodes"), out episodes);
-                }
-                else
-                {
-                    episodes = 0;
-                }
-
-                string status = rd.GetString(8);
-                string duration;
-
-                // Check if duration is null
-                if (!rd.IsDBNull(9))
-                {
-                    duration = rd.GetString(9);
-                }
-                else
-                {
-                    duration = null;
-                }
-
-                string description = rd.GetString(10);
-                string poster;
-
-                // Check if poster is null
-                if (!rd.IsDBNull(11))
-                {
-                    poster = rd.GetString(11);
-                }
-                else
-                {
-                    poster = null;
-                }
-
-                string trailer;
-                // Check if trailer is null
-                if (!rd.IsDBNull(12))
-                {
-                    trailer = rd.GetString(12);
-                }
-                else
-                {
-                    trailer = null;
-                }
-
-                string created_at = rd.GetDateTime(13).ToString("dd/MM/yyyy");
-
-                // instantiate if list has not yet been instantiated
-                if (animeList == null)
-                {
-                    animeList = new List<Anime>();
-                }
-
-                // add new anime to list
-                animeList.Add(new Anime(id, season, studios, genres, typeAni, name, releaseDate, rating, episodes, status, duration, description, poster, trailer, created_at));
-            }
-
-            return animeList;
-
-
-        }
-
         /// <summary>
         /// Change user password
         /// </summary>
