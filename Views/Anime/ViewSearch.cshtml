@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta -equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Search - WibuAnimeList</title>
+    <title>Advanced Search - WibuAnimeList</title>
     <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="~/Content/login/vendor/bootstrap/css/bootstrap.min.css">
@@ -25,21 +25,54 @@
     <link rel="stylesheet" type="text/css" href="~/Content/login/css/main.css">
     <!--===============================================================================================-->
     <!--===============================================================================================-->
-    <script src="/Content/login/vendor/animsition/js/animsition.min.js" "></script>
+    <!--<script src="/Content/login/vendor/animsition/js/animsition.min.js" "></script>-->
     <!--===============================================================================================-->
-    <script src="/Content/login/vendor/select2/select2.min.js"></script>
+    <!--<script src="/Content/login/vendor/select2/select2.min.js"></script>-->
     <!--===============================================================================================-->
-    <script src="/Content/login/vendor/daterangepicker/moment.min.js"></script>
-    <script src="/Content/login/vendor/daterangepicker/daterangepicker.js"></script>
+    <!--<script src="/Content/login/vendor/daterangepicker/moment.min.js"></script>
+    <script src="/Content/login/vendor/daterangepicker/daterangepicker.js"></script>-->
     <!--===============================================================================================-->
-    <script src="/Content/login/vendor/countdowntime/countdowntime.js"></script>
+    <!--<script src="/Content/login/vendor/countdowntime/countdowntime.js"></script>-->
     <!--===============================================================================================-->
-    <script src="/Content/login/js/main.js"></script>
+    <!--<script src="/Content/login/js/main.js"></script>-->
     <link rel="stylesheet" type="text/css" href="~/Content/login/css/AdvanceSearch.css">
+    <style>
+        /* Micellaneous CSS */
+        body, .s010 {
+            background-image: url('/Content/Backgrounds/bg-10.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
 
+        #anime-dropdown, #navbar-search-input, #navbar-search-btn, #navbarDropdown {
+            font-family: 'Segoe UI' !important;
+            font-size: 16px;
+        }
+
+        .navbar-brand {
+            font-family: 'Segoe UI' !important;
+            font-size: 20px;
+        }
+
+        .choices__inner {
+            background: linear-gradient(-20deg, #d683e6, #28a6d6);
+        }
+
+        .btn-delete {
+            border-radius: 20px !important;
+            margin-right: 1rem !important;
+            border: 1px solid #666 !important;
+        }
+
+        #advanced-search{
+            margin-right: 2rem;
+        }
+    </style>
 </head>
 <body>
-    <div class="s010" style="background-image: url('/Content/Backgrounds/bg-10.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center; background-attachment: fixed;">
+    <div class="s010">
         <form action="@Url.Action("SearchAnime", "Anime")">
             <div class="inner-form">
                 <div class="basic-search">
@@ -113,7 +146,7 @@
                             </div>
                             <div class="group-btn">
                                 <button type="reset" class="btn-delete" id="delete">RESET</button>
-                                <button type="submit" class="btn-search" value="SEARCH">SEARCH</button>
+                                <button type="submit" class="btn-search" id="advanced-search" value="SEARCH">SEARCH</button>
                             </div>
                         </div>
                     </div>
