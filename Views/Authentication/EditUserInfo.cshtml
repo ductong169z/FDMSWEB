@@ -570,6 +570,10 @@
         .fullname-row{
             margin-top: 1rem;
         }
+
+        .hidden-xs {
+            font-size: 14px;
+        }
     </style>
 
 </head>
@@ -589,7 +593,7 @@
                                     }
                                     else
                                     {
-                                        <img src="/Content/Images/users/@((Session["User"] as Account).Avatar)" class="rounded-circle" alt="user avatar" width="150" height="150">
+                                        <img src="/Content/Images/users/@((Session["User"] as Account).Avatar)" class="rounded-circle" alt="user avatar" width="104" height="104">
                                     }
                                 </div>
 
@@ -612,12 +616,10 @@
                                     @if ((Session["User"] as Account).Gender == 1)
                                     {
                                         <div class="list-details"> <span>Male</span> <small>Gender</small> </div>
-
                                     }
                                     else if ((Session["User"] as Account).Gender == 2)
                                     {
                                         <div class="list-details"> <span>Female</span> <small>Gender</small> </div>
-
                                     }
                                     else
                                     {
