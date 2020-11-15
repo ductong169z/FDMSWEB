@@ -11,7 +11,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Edit Profile - WibuAnimeList</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <link href="~/Content/login/fonts/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <style type="text/css">
         body {
             margin-top: 20px;
@@ -95,7 +95,7 @@
 
         .profile-card-4 .list-icon {
             display: table-cell;
-            font-size: 30px;
+            font-size: 25px;
             padding-right: 20px;
             vertical-align: middle;
             color: #ffffff;
@@ -462,6 +462,114 @@
         p {
             color: #ffffff !important;
         }
+
+        /* Micellaneous CSS */
+        body {
+            margin-top: 0;
+        }
+
+        .fullname {
+            margin: 1rem 0;
+            text-align: center;
+        }
+
+        .wibu {
+            margin: 1rem 0;
+            text-align: center;
+        }
+
+        .mb-4 {
+            margin-bottom: 2rem !important;
+        }
+
+        .tab-content {
+            padding-bottom: 0 !important;
+        }
+
+        .user-info {
+            text-align: center;
+            margin-bottom: 0 !important;
+        }
+
+        .card-body {
+            padding-bottom: 0 !important;
+        }
+
+        .avatar-body {
+            padding-bottom: 1.25rem !important;
+        }
+
+        .info-body {
+            padding-bottom: 1.25rem !important;
+        }
+
+        .user-avatar {
+            background: #fff;
+            padding: 3px;
+        }
+
+        .list-details {
+            text-shadow: 0px 0px 1px #000000;
+        }
+
+        .gender-group {
+            padding-left: 1.5rem;
+        }
+
+        .gender-icon {
+            padding-right: 1.4rem !important;
+        }
+
+        i {
+            padding-bottom: 10px;
+        }
+
+        #edit-a {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-link:active {
+            background-color: #000 !important;
+        }
+
+        label {
+            font-weight: 600;
+        }
+
+        .gender-row{
+            padding: 0 1rem;
+            vertical-align: middle;
+            padding-top: calc(0.375rem + 1px);
+        }
+
+        .gender-full-row{
+            margin-bottom: 1.5rem;
+        }
+
+        #cancel-btn{
+            margin-right: 1.5rem;
+            opacity: 0.9;
+        }
+
+        #save-btn {
+            background-color: rgba(254, 152, 152, 0.75) !important;
+            border-color: rgba(254, 152, 152, 0.75) !important;
+            color: #000;
+        }
+
+        label{
+            padding-right: 2rem;
+        }
+
+        #file-input {
+            padding: 0 !important;
+            padding-top: 0.25rem !important;
+            padding-left: 0.6rem !important;
+        }
+
+        .fullname-row{
+            margin-top: 1rem;
+        }
     </style>
 
 </head>
@@ -472,36 +580,49 @@
                 <div class="col-lg-4">
                     <div class="profile-card-4 z-depth-3">
                         <div class="card">
-                            <div class="card-body text-center bg-primary rounded-top" style="background-color: #bd000066!important">
+                            <div class="card-body text-center bg-primary rounded-top avatar-body" style="background-color: #bd000066!important">
                                 <div class="md-avatar rounded-circle size-4">
                                     @if ((Session["User"] as Account).Avatar.IsEmpty())
                                     {
-                                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" class="rounded-circle" alt="user avatar" width="150" height="150">
+                                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" class="rounded-circle user-avatar" alt="user avatar" width="104" height="104">
 
                                     }
                                     else
                                     {
-                                        <img src="/Content/Images/users/@((Session["User"] as Account).Avatar)" class="rounded-circle" alt="user avatar"  width="150" height="150">
+                                        <img src="/Content/Images/users/@((Session["User"] as Account).Avatar)" class="rounded-circle" alt="user avatar" width="150" height="150">
                                     }
                                 </div>
 
                             </div>
-                            <h5 class="mb-1 text-white">@((Session["User"] as Account).FullName)</h5>
-                            <h6 class="text-light">- Wibu -</h6>
+                            <h5 class="mb-1 text-white fullname">@((Session["User"] as Account).FullName)</h5>
+                            <h6 class="text-light wibu">- Wibu -</h6>
                         </div>
                         <div class="card-body">
-                            <ul class="list-group shadow-none">
+                            <ul class="list-group shadow-none info-body">
                                 <li class="list-group-item">
-                                    <div class="list-icon"> <i class="fa fa-user-circle"></i> </div>
+                                    <div class="list-icon"> <i class="fa fa-sm fa-user-circle"></i> </div>
                                     <div class="list-details"> <span>@((Session["User"] as Account).Username)</span> <small>Username</small> </div>
                                 </li>
                                 <li class="list-group-item">
-                                    <div class="list-icon"> <i class="fa fa-envelope"></i> </div>
+                                    <div class="list-icon"> <i class="fa fa-sm fa-envelope"></i> </div>
                                     <div class="list-details"> <span>@((Session["User"] as Account).Email)</span> <small>Email Address</small> </div>
                                 </li>
-                                <li class="list-group-item">
-                                    <div class="list-icon"> <i class="fa fa-genderless"></i> </div>
-                                    <div class="list-details"> <span>@((Session["User"] as Account).Gender)</span> <small>Gender</small> </div>
+                                <li class="list-group-item gender-group">
+                                    <div class="list-icon gender-icon"> <i class="fa fa-sm fa-genderless"></i> </div>
+                                    @if ((Session["User"] as Account).Gender == 1)
+                                    {
+                                        <div class="list-details"> <span>Male</span> <small>Gender</small> </div>
+
+                                    }
+                                    else if ((Session["User"] as Account).Gender == 2)
+                                    {
+                                        <div class="list-details"> <span>Female</span> <small>Gender</small> </div>
+
+                                    }
+                                    else
+                                    {
+                                        <div class="list-details"> <span>Other</span> <small>Gender</small> </div>
+                                    }
                                 </li>
                             </ul>
 
@@ -512,14 +633,14 @@
                     <div class="card z-depth-3">
                         <div class="card-body">
                             <ul class="nav nav-pills nav-pills-primary nav-justified">
-                                <li class="nav-item"> <a href="javascript:void()" data-target="#edit" data-toggle="pill" class="nav-link"><i class="icon-note"></i> <span class="hidden-xs">Edit</span></a> </li>
+                                <li class="nav-item"> <a href="javascript:void()" id="edit-a" data-target="#edit" data-toggle="pill" class="nav-link active"><i class="icon-note"></i> <span class="hidden-xs">Edit your profile</span></a> </li>
                             </ul>
                             <div class="tab-content p-3">
-                                <div class="tab-pane" id="edit">
+                                <div class="tab-pane active" id="edit">
                                     <form action="@Url.Action("UpdateUserInfo", "Authentication")" method="POST" enctype="multipart/form-data" theme="simple" onsubmit="return isValid()">
-                                        <div class="form-group row">
+                                        <div class="form-group row fullname-row">
                                             <input hidden name="id" value="@((Session["User"] as Account).Id)" />
-                                            <label class="col-lg-3 col-form-label form-control-label">Full name</label>
+                                            <label class="col-lg-3 col-form-label form-control-label">Full Name</label>
                                             <div class="col-lg-9">
                                                 <input class="form-control" name="fullname" value="@((Session["User"] as Account).FullName)" theme="simple" id="fullname" />
                                             </div>
@@ -539,19 +660,15 @@
                                         <div class="form-group row">
                                             <label class="col-lg-3 col-form-label form-control-label">Profile Picture</label>
                                             <div class="col-lg-9">
-                                                <input  type="file" name="file" class="form-control" theme="simple" />
+                                                <input id="file-input" type="file" name="file" class="form-control" theme="simple" />
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-lg-9"> </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <div class="col-lg-6"> </div>
-                                            <div class="col-lg-3"> </div>
-                                        </div>
-                                        <div class="form-group row">
+                                        <div class="form-group row gender-full-row">
                                             <label class="col-lg-3 col-form-label form-control-label">Gender</label>
-                                            <div class="col-lg-9">
+                                            <div class="col-lg-9 gender-row">
                                                 @if ((Session["User"] as Account).Gender == 1)
                                                 {
                                                     <input type="radio" id="gender0" name="gender" value="1" checked>
@@ -585,8 +702,8 @@
                                         <div class="form-group row">
                                             <label class="col-lg-3 col-form-label form-control-label"></label>
                                             <div class="col-lg-9">
-                                                <input type="reset" class="btn btn-secondary" value="Cancel">
-                                                <input type="submit" class="btn btn-primary" value="Save Changes">
+                                                <input id="cancel-btn" type="reset" class="btn btn-secondary" value="Cancel Changes">
+                                                <input id="save-btn" type="submit" class="btn btn-primary" value="Save Changes">
                                             </div>
                                         </div>
                                     </form>
@@ -610,6 +727,13 @@
                 return false;
             }
         }
+
+        //$(document).ready(function () {
+        //    $('#cancel-btn').click(function () {
+        //        $('#edit').removeClass('active');
+        //        $('#edit-a').removeClass('active');
+        //    });
+        //});
     </script>
 </body>
 </html>

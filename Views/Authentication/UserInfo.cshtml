@@ -462,6 +462,42 @@
         p {
             color: #ffffff !important;
         }
+
+        /* Micellaneous CSS */
+        body {
+            margin-top: 0;
+        }
+
+        .fullname {
+            margin: 1rem 0;
+            text-align: center;
+        }
+
+        .wibu {
+            margin: 1rem 0;
+            text-align: center;
+        }
+
+        .mb-4{
+            margin-bottom: 2rem !important;
+        }
+
+        .tab-content{
+            padding-bottom: 0 !important;
+        }
+
+        .user-info {
+            text-align: center;
+            margin-bottom: 0 !important;
+        }
+
+        .card-body{
+            padding-bottom: 0 !important;
+        }
+
+        .avatar-body {
+            padding-bottom: 1.25rem !important;
+        }
     </style>
 
 </head>
@@ -474,7 +510,7 @@
                 <div class="col-lg-4">
                     <div class="profile-card-4 z-depth-3">
                         <div class="card">
-                            <div class="card-body text-center bg-primary rounded-top" style="background-color: #bd000066!important">
+                            <div class="card-body text-center bg-primary rounded-top avatar-body" style="background-color: #bd000066!important">
                                 <div class="user-box">
                                     @if ((Session["User"] as Account).Avatar.IsEmpty())
                                     {
@@ -487,21 +523,8 @@
                                     }
                                 </div>
                             </div>
-                            <h5 class="mb-1 text-white"></h5>
-                            <h6 class="text-light">- Wibu -</h6>
-                        </div>
-                        <div class="card-body">
-
-                            <div class="row text-center mt-4">
-                                <div class="col p-2">
-                                    <h4 class="mb-1 line-height-5"></h4>
-                                    <small class="mb-0 font-weight-bold">Animes In List</small>
-                                </div>
-                                <div class="col p-2">
-                                    <h4 class="mb-1 line-height-5"></h4>
-                                    <small class="mb-0 font-weight-bold">Completed Animes</small>
-                                </div>
-                            </div>
+                            <h5 class="mb-1 text-white fullname">@((Session["User"] as Account).FullName)</h5>
+                            <h6 class="text-light wibu">- Wibu -</h6>
                         </div>
                     </div>
                 </div>
@@ -513,27 +536,27 @@
                             </ul>
                             <div class="tab-content p-3">
                                 <div class="tab-pane active show" id="profile">
-                                    <h5 class="mb-3">User Information</h5>
+                                    <h5 class="mb-3 user-info">Your Information</h5>
                                     <div class="form-group row">
                                         <div class="col-lg-9"> </div>
                                     </div>
-                                    <h6 class="mb-3">Username: <p style="display: inline;">  @((Session["User"] as Account).Username)  </p></h6>
+                                    <h6 class="mb-4">Username: <p style="display: inline;">  @((Session["User"] as Account).Username)  </p></h6>
 
-                                    <h6 class="mb-3">Email: <p style="display: inline;">  @((Session["User"] as Account).Email)</p></h6>
+                                    <h6 class="mb-4">Email: <p style="display: inline;">  @((Session["User"] as Account).Email)</p></h6>
 
                                     @if ((Session["User"] as Account).Gender == 1)
                                     {
-                                        <h6 class="mb-3">Gender: <p style="display: inline;">Male</p></h6>
+                                        <h6 class="mb-4">Gender: <p style="display: inline;">Male</p></h6>
 
                                     }
                                     else if ((Session["User"] as Account).Gender == 2)
                                     {
-                                        <h6 class="mb-3">Gender: <p style="display: inline;">Femle</p></h6>
+                                        <h6 class="mb-4">Gender: <p style="display: inline;">Femle</p></h6>
 
                                     }
                                     else
                                     {
-                                        <h6 class="mb-3">Gender: <p style="display: inline;">Undefined</p></h6>
+                                        <h6 class="mb-4">Gender: <p style="display: inline;">Other</p></h6>
 
                                     }
 

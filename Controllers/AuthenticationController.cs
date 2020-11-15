@@ -109,6 +109,11 @@ namespace FDMSWeb.Controllers
         }
         public ActionResult EditUserInfo(string userID)
         {
+            if (Session["User"] == null)
+            {
+                return RedirectToAction("Login", "Authentication");
+            }
+
             return View();
         }
         [HttpPost]
@@ -117,7 +122,6 @@ namespace FDMSWeb.Controllers
             if (Session["User"] == null)
             {
                 return RedirectToAction("Login", "Authentication");
-
             }
             Account account = (Account)Session["User"];
 

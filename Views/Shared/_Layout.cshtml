@@ -65,6 +65,8 @@
                     <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item" href="@Url.Action("ViewAnimeList", "Anime", new { accountId = (Session["User"] as Account).Id, listStatus = 0 })">View Own List</a>
                         <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="@Url.Action("UserInfo", "Authentication")">Personal Profile</a>
+                        <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="@Url.Action("EditUserInfo", "Authentication")">Change Info</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="@Url.Action("Logout", "Authentication")">Log Out</a>
