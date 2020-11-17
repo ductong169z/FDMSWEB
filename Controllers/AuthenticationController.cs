@@ -79,7 +79,7 @@ namespace FDMSWeb.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
-        
+
         /// <summary>
         /// Register action
         /// </summary>
@@ -165,16 +165,21 @@ namespace FDMSWeb.Controllers
             string avatar = account.Avatar;
             if (file != null && file.ContentLength > 0)
             {
+                Guid g = Guid.NewGuid();
+                string GuidString = Convert.ToBase64String(g.ToByteArray());
+                GuidString = GuidString.Replace("=", "");
+                GuidString = GuidString.Replace("+", "");
+                string extension = Path.GetExtension(file.FileName);
+                avatar = GuidString + "." + extension;
                 string path = Path.Combine(HostingEnvironment.MapPath("~/Content/Images/users"),
-                Path.GetFileName(file.FileName));
+               avatar);
                 file.SaveAs(path);
-                avatar = file.FileName;
             }
 
             /* Instantiate DAO obj and interact with DB */
             AnimeListDAO dao = new AnimeListDAO();
             bool status = dao.UpdateUserInfo(id, fullname, email, gender, avatar);
-            
+
             // if successful
             if (status)
             {
