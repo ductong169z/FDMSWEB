@@ -9,8 +9,14 @@ using System.Web.Routing;
 
 namespace FDMSWeb
 {
+    /// <summary>
+    /// Class for MVC Global
+    /// </summary>
     public class MvcApplication : System.Web.HttpApplication
     {
+        /// <summary>
+        /// Register filters, bundles and routes upon start
+        /// </summary>
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
@@ -19,6 +25,9 @@ namespace FDMSWeb
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
 
+        /// <summary>
+        /// Catch 404 errors
+        /// </summary>
         protected void Application_EndRequest()
         {
             if (Context.Response.StatusCode == 404)

@@ -164,7 +164,6 @@ C:\Workbench\Coding\GitHub\FDMSWEB\bin\Newtonsoft.Json.dll
 C:\Workbench\Coding\GitHub\FDMSWEB\bin\Renci.SshNet.dll
 C:\Workbench\Coding\GitHub\FDMSWEB\bin\System.Buffers.dll
 C:\Workbench\Coding\GitHub\FDMSWEB\bin\System.Memory.dll
-C:\Workbench\Coding\GitHub\FDMSWEB\bin\System.Numerics.Vectors.dll
 C:\Workbench\Coding\GitHub\FDMSWEB\bin\System.Runtime.CompilerServices.Unsafe.dll
 C:\Workbench\Coding\GitHub\FDMSWEB\bin\System.Web.Helpers.dll
 C:\Workbench\Coding\GitHub\FDMSWEB\bin\System.Web.Mvc.dll
@@ -185,7 +184,6 @@ C:\Workbench\Coding\GitHub\FDMSWEB\bin\MySql.Data.xml
 C:\Workbench\Coding\GitHub\FDMSWEB\bin\Renci.SshNet.xml
 C:\Workbench\Coding\GitHub\FDMSWEB\bin\System.Buffers.xml
 C:\Workbench\Coding\GitHub\FDMSWEB\bin\System.Memory.xml
-C:\Workbench\Coding\GitHub\FDMSWEB\bin\System.Numerics.Vectors.xml
 C:\Workbench\Coding\GitHub\FDMSWEB\bin\System.Runtime.CompilerServices.Unsafe.xml
 C:\Workbench\Coding\GitHub\FDMSWEB\bin\System.Web.Helpers.xml
 C:\Workbench\Coding\GitHub\FDMSWEB\bin\System.Web.Mvc.xml
