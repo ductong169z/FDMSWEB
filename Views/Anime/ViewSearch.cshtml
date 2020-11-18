@@ -102,7 +102,7 @@
                         </div>
                         <div class="input-field">
                             <div class="input-select">
-                                <select data-trigger="" name="genre">
+                                <select data-trigger="" name="genreID">
                                     <option placeholder="" value="">Genre</option>
                                     @foreach (var item in ViewData["genres"] as IEnumerable<FDMSWeb.Models.Genre>)
                                     {
@@ -116,7 +116,7 @@
                     <div class="row second">
                         <div class="input-field">
                             <div class="input-select">
-                                <select data-trigger="" name="studio">
+                                <select data-trigger="" name="studioID">
                                     <option placeholder="" value="">Studio</option>
                                     @foreach (var item in ViewData["studios"] as IEnumerable<FDMSWeb.Models.Studio>)
                                     {
@@ -128,7 +128,7 @@
                         </div>
                         <div class="input-field">
                             <div class="input-select">
-                                <select data-trigger="" name="season">
+                                <select data-trigger="" name="seasonID">
                                     <option placeholder="" value="">Season</option>
                                     @foreach (var item in ViewData["seasons"] as IEnumerable<FDMSWeb.Models.Season>)
                                     {

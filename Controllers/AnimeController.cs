@@ -423,11 +423,13 @@ namespace FDMSWeb.Controllers
                 {
                     studioID = "%";
                 }
+
                 if (seasonID == null || seasonID.Equals(""))
                 {
                     seasonID = "%";
                 }
-                List<Anime> listAnime = dao.getSearchAnime(animeSearchValue,type, studioID, genreID,seasonID);
+
+                List<Anime> listAnime = dao.getSearchAnime(animeSearchValue, type, studioID, genreID,seasonID);
 
                 /* Set value to ViewBag to display */
                 ViewBag.listAnime = listAnime;
